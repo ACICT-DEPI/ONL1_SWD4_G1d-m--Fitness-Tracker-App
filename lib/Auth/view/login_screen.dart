@@ -3,6 +3,7 @@ import 'package:final_project/Auth/cubit/auth_states.dart';
 import 'package:final_project/Auth/view/sign_up_screen.dart';
 import 'package:final_project/Auth/widgets/custom_Auth_button.dart';
 import 'package:final_project/Auth/widgets/custom_text_form_field.dart';
+import 'package:final_project/core/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder:  (context) => SignUpScreen(),));
                     },
-                      child: Text("Sign up", style: TextStyle(color: Colors.blue),))
+                      child: Text("Sign up", style: TextStyle(color: primary),))
                 ],
               ),
             ],
