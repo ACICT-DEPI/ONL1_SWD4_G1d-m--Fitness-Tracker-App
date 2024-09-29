@@ -11,17 +11,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passController = TextEditingController();
-  var confirmPassController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  final confirmPassController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if(state is AuthSuccess){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
         }
       },
       builder: (context, state) => Scaffold(
@@ -111,12 +111,12 @@ class SignUpScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have an account? "),
+                  const Text("Already have an account? "),
                   InkWell(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder:  (context) => LoginScreen(),));
                     },
-                      child: Text("Login", style: TextStyle(color: Colors.blue),))
+                      child: const Text("Login", style: TextStyle(color: Colors.blue),))
                 ],
               ),
             ],

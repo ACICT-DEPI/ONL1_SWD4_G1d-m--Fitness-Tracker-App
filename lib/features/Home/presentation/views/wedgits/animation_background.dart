@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/custom_appbar.dart';
 import 'package:final_project/features/Home/presentation/views/wedgits/custom_workoutview.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/fitness_list.dart';
 import 'package:flutter/material.dart';
 
 class AnimationBackground extends StatefulWidget {

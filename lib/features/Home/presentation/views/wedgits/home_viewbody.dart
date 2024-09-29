@@ -14,7 +14,7 @@ class _HomeViewbodyState extends State<HomeViewbody> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor:Color.fromARGB(221, 119, 118, 118),
+      // backgroundColor:Color.fromARGB(221, 119, 118, 118),
       body: SingleChildScrollView(child: AnimationBackground())
     );
   }

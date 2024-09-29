@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField({super.key,
+const  CustomTextFormField({super.key,
     required this.keyboardType,
     required this.controller,
     required this.decoration,
     required this.validator,
     this.obscure = false,
   });
-  var controller;
-  TextInputType keyboardType;
-  InputDecoration decoration;
-  String? Function(dynamic value) validator;
-  bool obscure;
+  final  controller;
+final  TextInputType keyboardType;
+final  InputDecoration decoration;
+final  String? Function(dynamic value) validator;
+final  bool obscure;
 
   @override
   Widget build(BuildContext context) {
