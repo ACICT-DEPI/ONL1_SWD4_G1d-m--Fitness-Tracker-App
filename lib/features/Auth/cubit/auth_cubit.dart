@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:final_project/Auth/cubit/auth_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'auth_states.dart';
 
 
 

@@ -1,9 +1,10 @@
-import 'package:final_project/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/Auth/view/login_screen.dart';
+import 'package:final_project/core/utls/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/color.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'features/Auth/cubit/auth_cubit.dart';
+import 'features/Auth/view/login_screen.dart';
 import 'firebase_options.dart';
 
 
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: primary),
+        textTheme: GoogleFonts.antonTextTheme(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colorsapp.primarycolor),
         useMaterial3: true,
       ),
       home: LoginScreen(),

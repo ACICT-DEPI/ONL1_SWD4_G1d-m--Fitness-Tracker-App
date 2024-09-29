@@ -1,4 +1,4 @@
-import 'package:final_project/core/color.dart';
+import 'package:final_project/core/utls/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAuthButton extends StatelessWidget {
@@ -21,12 +21,12 @@ class CustomAuthButton extends StatelessWidget {
                 horizontal: MediaQuery.of(context).size.width / 4),
             child: Text(text,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 fontSize: 20
               ),),
           ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: primary,
+          backgroundColor: Colorsapp.primarycolor,
           elevation: 4,
             shape:  const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
