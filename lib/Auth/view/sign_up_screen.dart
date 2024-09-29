@@ -4,6 +4,7 @@ import 'package:final_project/Auth/view/home_screen.dart';
 import 'package:final_project/Auth/view/login_screen.dart';
 import 'package:final_project/Auth/widgets/custom_Auth_button.dart';
 import 'package:final_project/Auth/widgets/custom_text_form_field.dart';
+import 'package:final_project/core/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -116,7 +117,11 @@ class SignUpScreen extends StatelessWidget {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder:  (context) => LoginScreen(),));
                     },
+ 
                       child: const Text("Login", style: TextStyle(color: Colors.blue),))
+ 
+                      child: Text("Login", style: TextStyle(color: primary),))
+ 
                 ],
               ),
             ],
