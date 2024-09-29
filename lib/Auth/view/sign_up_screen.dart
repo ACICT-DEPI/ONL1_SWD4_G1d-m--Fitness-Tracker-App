@@ -120,7 +120,7 @@ class SignUpScreen extends StatelessWidget {
  
                       child: const Text("Login", style: TextStyle(color: Colors.blue),))
  
-                      child: Text("Login", style: TextStyle(color: primary),))
+                      
  
                 ],
               ),

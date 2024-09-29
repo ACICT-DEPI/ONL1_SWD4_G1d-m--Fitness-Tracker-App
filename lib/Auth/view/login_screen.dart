@@ -102,22 +102,11 @@ class LoginScreen extends StatelessWidget {
                         ))
                   ],
                 ),
-              ],
-            ),
+           
  
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Don't have an account? "),
-                  InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder:  (context) => SignUpScreen(),));
-                    },
-                      child: Text("Sign up", style: TextStyle(color: primary),))
-                ],
-              ),
+             
             ],
-  main
+            ),
           ),
         ),
       ),
