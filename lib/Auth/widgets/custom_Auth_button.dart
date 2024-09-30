@@ -1,4 +1,5 @@
 import 'package:final_project/core/color.dart';
+import 'package:final_project/core/utls/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAuthButton extends StatelessWidget {
@@ -15,15 +16,14 @@ class CustomAuthButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: primary,
+          backgroundColor: Colorsapp.darkGrey,
           elevation: 4,
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: 10, horizontal: MediaQuery.of(context).size.width / 4),
+          padding: EdgeInsets.all(10),
           child: Text(
             text,
             style: const TextStyle(color: Colors.white, fontSize: 20),

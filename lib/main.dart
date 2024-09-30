@@ -1,8 +1,10 @@
 import 'package:final_project/Auth/cubit/auth_cubit.dart';
+import 'package:final_project/Auth/view/first_screen.dart';
 import 'package:final_project/Auth/view/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Auth/widgets/custom_background.dart';
 import 'core/color.dart';
 import 'firebase_options.dart';
 // test
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: primary),
           useMaterial3: true,
         ),
-        home: LoginScreen(),
+        home: FirstScreen(),
       ),
     );
   }
