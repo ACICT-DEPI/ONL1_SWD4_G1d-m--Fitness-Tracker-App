@@ -54,7 +54,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               showSelectedLabels: true,
               showUnselectedLabels: false,
               backgroundColor: const Color.fromARGB(80, 0, 0, 0),
-              selectedItemColor: Colorsapp.primarycolor,
+              selectedItemColor: Colorsapp.liteOrange,
               unselectedItemColor: Colors.white,
                 currentIndex: mycurrentIndex,
                 onTap: (index) {
