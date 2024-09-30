@@ -1,16 +1,15 @@
-import 'package:final_project/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/Auth/cubit/auth_states.dart';
-import 'package:final_project/Auth/view/home_screen.dart';
-import 'package:final_project/Auth/view/login_screen.dart';
-import 'package:final_project/Auth/widgets/custom_Auth_button.dart';
-import 'package:final_project/Auth/widgets/custom_auth_title.dart';
-import 'package:final_project/Auth/widgets/custom_background.dart';
-import 'package:final_project/Auth/widgets/custom_text_form_field.dart';
-import 'package:final_project/core/color.dart';
 import 'package:final_project/core/utls/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../Target/presentation/view/target_screen.dart';
+import '../cubit/auth_cubit.dart';
+import '../cubit/auth_states.dart';
+import '../widgets/custom_Auth_button.dart';
+import '../widgets/custom_auth_title.dart';
+import '../widgets/custom_background.dart';
+import '../widgets/custom_text_form_field.dart';
+import 'login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -28,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+                builder: (context) => const TargetScreen(),
               ));
         }
       },

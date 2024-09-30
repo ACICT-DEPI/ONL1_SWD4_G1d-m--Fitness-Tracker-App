@@ -1,8 +1,6 @@
-import 'package:final_project/Auth/view/sign_up_screen.dart';
-import 'package:final_project/Auth/widgets/custom_Auth_button.dart';
+import 'package:final_project/features/Auth/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/utls/colors.dart';
+import '../widgets/custom_Auth_button.dart';
 import '../widgets/custom_background.dart';
 import 'login_screen.dart';
 

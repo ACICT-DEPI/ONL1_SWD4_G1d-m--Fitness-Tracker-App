@@ -1,6 +1,6 @@
-import 'package:final_project/Auth/view/home_screen.dart';
 import 'package:final_project/core/utls/colors.dart';
 import 'package:final_project/features/Home/presentation/views/home_view.dart';
+import 'package:final_project/features/Target/presentation/view/target_screen.dart';
 import 'package:flutter/material.dart';
 
 class FloatingNavBar extends StatefulWidget {
@@ -20,7 +20,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
     HomeView(),
-    HomeScreen(),
+    TargetScreen(),
     HomeView(),
   ];
   int mycurrentIndex = 0;
@@ -53,9 +53,13 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               selectedFontSize: 12,
               showSelectedLabels: true,
               showUnselectedLabels: false,
-              backgroundColor: const Color.fromARGB(80, 0, 0, 0),
+              //backgroundColor: const Color.fromARGB(80, 0, 0, 0),
+              ///Changes here: just these 2 lines
+              backgroundColor: Colors.white,
+              unselectedItemColor: Colorsapp.darkGrey,
+              ///*********************************
               selectedItemColor: Colorsapp.liteOrange,
-              unselectedItemColor: Colors.white,
+              //unselectedItemColor: Colors.white,
                 currentIndex: mycurrentIndex,
                 onTap: (index) {
                   setState(() {

@@ -1,20 +1,15 @@
-import 'package:final_project/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/Auth/cubit/auth_states.dart';
-import 'package:final_project/Auth/view/sign_up_screen.dart';
-import 'package:final_project/Auth/widgets/custom_Auth_button.dart';
-import 'package:final_project/Auth/widgets/custom_background.dart';
-import 'package:final_project/Auth/widgets/custom_text_form_field.dart';
-
-import 'package:final_project/core/custom_wedgits/custom_bottomnavigationbar.dart';
-
-import 'package:final_project/core/color.dart';
-
-import 'package:flutter/cupertino.dart';
+import 'package:final_project/features/Auth/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../core/utls/colors.dart';
+import '../../../core/custom_wedgits/custom_bottomnavigationbar.dart';
+import '../../../core/utls/colors.dart';
+import '../../Target/presentation/view/target_screen.dart';
+import '../cubit/auth_cubit.dart';
+import '../cubit/auth_states.dart';
+import '../widgets/custom_Auth_button.dart';
 import '../widgets/custom_auth_title.dart';
+import '../widgets/custom_background.dart';
+import '../widgets/custom_text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -35,6 +30,7 @@ class LoginScreen extends StatelessWidget {
         }
       },
       builder: (context, state) => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             FitnessBackground(),
