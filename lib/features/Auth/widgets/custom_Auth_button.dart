@@ -1,4 +1,3 @@
-import 'package:final_project/core/color.dart';
 import 'package:final_project/core/utls/colors.dart';
 import 'package:flutter/material.dart';
 
