@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:final_project/core/utls/colors.dart';
 import 'package:final_project/features/Home/presentation/views/wedgits/custom_training_pic.dart';
 import 'package:final_project/features/Home/presentation/views/wedgits/custom_workoutview.dart';
+import 'package:final_project/features/Home/presentation/views/wedgits/loading_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -163,20 +164,26 @@ class _ChooseTrainingState extends State<ChooseTraining> {
       ),
 
       floatingActionButton: Container(
-       width: 85,
-       height: 85,
+        width: 85,
+        height: 85,
         margin: const EdgeInsets.only(top: 45),
         child: FloatingActionButton(
-          backgroundColor:Colorsapp.darkOrange,
+          backgroundColor: Colorsapp.darkOrange,
           autofocus: true,
           isExtended: true,
           shape: const CircleBorder(),
           onPressed: () {
-            // Handle FAB p ress
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const LoadingBar()));
           },
           child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child:  Text("Start",style:  TextStyle(color: Colorsapp.secondarycolor,fontSize: 20),)),
+              child: Text(
+                "Start",
+                style: TextStyle(color: Colorsapp.secondarycolor, fontSize: 20),
+              )),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -195,44 +202,23 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                     _onItemTapped(0);
                     // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> const CustomWorkoutview() ));
                   },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.home,
-                        color: _selectedIndex == 0 ? Colorsapp.darkOrange : Colorsapp.secondarycolor,
-                      ),
-                      // Text(
-                      //   'Home',
-                      //   style: TextStyle(
-                      //     color:
-                      //         _selectedIndex == 0 ?Colorsapp.darkOrange : Colors.grey,
-                      //   ),
-                      // ),
-                    ],
+                  child: Icon(
+                    Icons.home,
+                    color: _selectedIndex == 0
+                        ? Colorsapp.darkOrange
+                        : Colorsapp.secondarycolor,
                   ),
                 ),
-               
                 MaterialButton(
                   minWidth: 40,
                   onPressed: () {
                     _onItemTapped(3);
                   },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.person,
-                        color: _selectedIndex == 3 ?Colorsapp.darkOrange: Colorsapp.secondarycolor,
-                      ),
-                      // Text(
-                      //   'Profile',
-                      //   style: TextStyle(
-                      //     color:
-                      //         _selectedIndex == 3 ? Colorsapp.darkOrange : Colors.grey,
-                      //   ),
-                      // ),
-                    ],
+                  child: Icon(
+                    Icons.person,
+                    color: _selectedIndex == 3
+                        ? Colorsapp.darkOrange
+                        : Colorsapp.secondarycolor,
                   ),
                 ),
               ],
