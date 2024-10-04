@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:final_project/features/Home/presentation/views/wedgits/choose_training.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:video_player/video_player.dart';
 
 class CustomProgresstrain extends StatefulWidget {
+  final int trainTime;
   final String pic;
-  const CustomProgresstrain({super.key, required this.pic});
+  const CustomProgresstrain(
+      {super.key, required this.pic, required this.trainTime});
 
   @override
   _CustomProgresstrainState createState() => _CustomProgresstrainState();
@@ -16,11 +15,20 @@ class CustomProgresstrain extends StatefulWidget {
 
 class _CustomProgresstrainState extends State<CustomProgresstrain> {
   bool isRun = false;
-  Duration duration = const Duration(seconds: 60);
+  late Duration duration;
   Duration reverseDuration = const Duration(seconds: 0);
   Timer? repeated;
   bool isrestart = false;
   int completed = 0;
+  double percentage = 0.0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startcount();
+    duration = Duration(minutes: widget.trainTime);
+  }
+
   startcount() {
     isRun = true;
     repeated = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -31,25 +39,28 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
           timer.cancel();
           isrestart = true;
         }
-        if (revsec >= 60) {
+        Duration dd = Duration(minutes: widget.trainTime);
+        if (revsec >= dd.inSeconds) {
           timer.cancel();
           isrestart = true;
         }
         duration = Duration(seconds: newsec);
         reverseDuration = Duration(seconds: revsec);
-        if (newsec >= 0 && newsec <= 10) {
-          completed = 100;
-        } else if (newsec >= 10 && newsec <= 20) {
-          completed =83 ;
-        } else if (newsec >= 20 && newsec <= 30) {
-          completed =66 ;
-        } else if (newsec >= 30 && newsec <= 40) {
-          completed = 50;
-        } else if (newsec >= 40 && newsec <= 50) {
-          completed =33 ;
-        } else if (newsec >= 50 && newsec <= 60) {
-          completed =16 ;
-        }
+        // elapsedDuration += Duration(seconds: 1);
+        percentage = (reverseDuration.inSeconds / dd.inSeconds) * 100;
+        // if (newsec >= 0 && newsec <= dd.inSeconds / 6) {
+        //   completed = 100;
+        // } else if (newsec >= dd.inSeconds / 6 && newsec <= dd.inSeconds / 3) {
+        //   completed = 83;
+        // } else if (newsec >= dd.inSeconds / 3 && newsec <= dd.inSeconds / 2) {
+        //   completed = 66;
+        // } else if (newsec >= dd.inSeconds / 2 && newsec <= dd.inSeconds / .0025) {
+        //   completed = 50;
+        // } else if (newsec >= dd.inSeconds / .0025 && newsec <= dd.inSeconds / 1.2) {
+        //   completed = 33;
+        // } else if (newsec >= dd.inSeconds / 1.2 && newsec <= dd.inSeconds) {
+        //   completed = 16;
+        // }
       });
     });
   }
@@ -59,21 +70,17 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
       repeated!.cancel();
     }
     setState(() {
-      duration = const Duration(seconds: 60);
+      duration = Duration(minutes: widget.trainTime);
       reverseDuration = const Duration(seconds: 0);
     });
     startcount();
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    startcount();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Duration dd = Duration(minutes: widget.trainTime);
+    int totalSeconds = dd.inSeconds;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -83,13 +90,6 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
           IconButton(
             onPressed: () {
               Navigator.of(context).pop();
-              Navigator.of(context).pop();
-
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (BuildContext context) =>
-              //               ChooseTraining(pic: widget.pic,)));
             },
             icon: const Icon(Icons.close, color: Colors.black),
           ),
@@ -160,21 +160,21 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
                                 // animation: true,
                                 width: MediaQuery.of(context).size.width / 1.9,
                                 lineHeight: 4.0,
-                                percent: duration.inSeconds / 60,
+                                percent: duration.inSeconds / totalSeconds,
                                 backgroundColor: Colors.grey,
                                 progressColor: Colors.blue,
                               ),
-                                Column(
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "$completed%",
+                                    "${double.parse(percentage.toStringAsFixed(2))}%",
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 22,
                                     ),
                                   ),
-                                  Text(
+                                  const Text(
                                     "COMPLETED",
                                     style: TextStyle(
                                       color: Colors.white,
