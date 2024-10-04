@@ -35,73 +35,74 @@ class FitnessList extends StatelessWidget {
               itemCount: 5,
               itemBuilder: (BuildContext context, index) {
                  
-                return Card(
-                  color: Colorsapp.darkOrange,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(33),
-                  ),
-                  child: Container(
-                    width: 300,
-                    height: 150,
-                    padding: EdgeInsets.all(sizee.width / 26),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AspectRatio(
-                            aspectRatio: 1.8 / 1.8,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: const DecorationImage(
-                                    image: AssetImage("assets/images/wout.jpg"),
-                                    fit: BoxFit.fill),
-                              ),
-                            )),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'WORKOUT\n AT HOME',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  // color: Colors.white,
+                return InkWell(
+                  onTap: () {
+                      if (index == 0) {
+                                  context.read<AuthCubit>().bodyPartBack("push");
+                                } else if (index == 1) {
+                                  context.read<AuthCubit>().bodyPartBack("legs");
+                                } else if (index == 2) {
+                                  context.read<AuthCubit>().bodyPartBack("pull");
+                                } else if (index == 3) {
+                                  context
+                                      .read<AuthCubit>()
+                                      .bodyPartBack("triceps");
+                                }
+                  },
+                  child: Card(
+                    color: Colorsapp.darkOrange,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(33),
+                    ),
+                    child: Container(
+                      width: 300,
+                      height: 150,
+                      padding: EdgeInsets.all(sizee.width / 26),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AspectRatio(
+                              aspectRatio: 1.8 / 1.8,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: const DecorationImage(
+                                      image: AssetImage("assets/images/wout.jpg"),
+                                      fit: BoxFit.fill),
                                 ),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                "push",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
+                              )),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'WORKOUT\n AT HOME',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    // color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: 10),
+                                Text(
+                                  "push",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: sizee.width / 8,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              if (index == 0) {
-                                context.read<AuthCubit>().bodyPartBack("push");
-                              } else if (index == 1) {
-                                context.read<AuthCubit>().bodyPartBack("legs");
-                              } else if (index == 2) {
-                                context.read<AuthCubit>().bodyPartBack("pull");
-                              } else if (index == 3) {
-                                context
-                                    .read<AuthCubit>()
-                                    .bodyPartBack("triceps");
-                              }
-                            },
-                            icon: const Icon(Icons.arrow_forward))
-                      ],
+                          SizedBox(
+                            width: sizee.width / 8,
+                          ),
+                         const Icon(Icons.arrow_forward)
+                        ],
+                      ),
                     ),
                   ),
                 );

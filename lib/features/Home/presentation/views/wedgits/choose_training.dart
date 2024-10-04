@@ -1,26 +1,35 @@
-import 'dart:ui';
-
+import 'package:final_project/core/utls/caloriesadtrtime.dart';
 import 'package:final_project/core/utls/colors.dart';
+import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
+import 'package:final_project/features/Auth/cubit/auth_states.dart';
 import 'package:final_project/features/Home/presentation/views/wedgits/custom_training_pic.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/custom_workoutview.dart';
 import 'package:final_project/features/Home/presentation/views/wedgits/loading_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChooseTraining extends StatefulWidget {
-  final String pic;
-  const ChooseTraining({super.key, required this.pic});
+  int trainTime;
+  int traincalory;
+  String pic;
+  int ind;
+  ChooseTraining({
+    super.key,
+    required this.pic,
+    required this.ind,
+    required this.trainTime,
+    required this.traincalory,
+  });
 
   @override
   State<ChooseTraining> createState() => _ChooseTrainingState();
 }
 
-List<Widget> widgetPages = [
-  // HomeView(),
-  // TimerView(), // Assuming you have a TimerView widget
-  // CaloriesView(), // Assuming you have a CaloriesView widget
-  // ProfileView(), // Assuming you have a ProfileView widget
-];
+// List<Widget> widgetPages = [
+//   // HomeView(),
+//   // TimerView(), // Assuming you have a TimerView widget
+//   // CaloriesView(), // Assuming you have a CaloriesView widget
+//   // ProfileView(), // Assuming you have a ProfileView widget
+// ];
 
 class _ChooseTrainingState extends State<ChooseTraining> {
   int _selectedIndex = 0;
@@ -45,7 +54,9 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             const SizedBox(
               height: 30,
             ),
-              CustomTrainingPic(pic: widget.pic,),
+            CustomTrainingPic(
+              pic: widget.pic,
+            ),
             const SizedBox(
               height: 11,
             ),
@@ -64,27 +75,24 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                              // decoration: const BoxDecoration(
-                              //     color: Colors.orange, shape: BoxShape.circle),
-                              child: const Text(
-                            "Calories",
-                            style: TextStyle(fontSize: 17),
-                          )),
-                          const Icon(Icons.local_fire_department)
+                          Text(
+                                                      "Calories",
+                                                      style: TextStyle(fontSize: 17),
+                                                    ),
+                          Icon(Icons.local_fire_department)
                         ],
                       ),
                       const SizedBox(
                         height: 25,
                       ),
-                      const SizedBox(
+                      SizedBox(
                           width: 150,
                           child: Text(
-                            "156",
-                            style: TextStyle(
+                            widget.traincalory.toString(),
+                            style: const TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           )),
                       const SizedBox(
@@ -109,10 +117,10 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(33)),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -122,17 +130,17 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                           Icon(Icons.timer)
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 25,
                       ),
                       SizedBox(
                           width: 150,
                           child: Text(
-                            "40",
-                            style: TextStyle(
+                            widget.trainTime.toString(),
+                            style: const TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           )),
-                      SizedBox(
+                      const SizedBox(
                           width: double.infinity,
                           child: Text(
                             "min",
@@ -177,7 +185,10 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) =>   LoadingBar(pic: widget.pic,)));
+                    builder: (BuildContext context) => LoadingBar(
+                          trainTime: widget.trainTime,
+                          pic: widget.pic,
+                        )));
           },
           child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
@@ -188,45 +199,61 @@ class _ChooseTrainingState extends State<ChooseTraining> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(22), topRight: Radius.circular(22)),
-        child: BottomAppBar(
-          child: SizedBox(
-            height: 10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                MaterialButton(
-                  minWidth: 40,
-                  onPressed: () {
-                    _onItemTapped(0);
-                    // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> const CustomWorkoutview() ));
-                  },
-                  child: Icon(
-                    Icons.home,
-                    color: _selectedIndex == 0
-                        ? Colorsapp.darkOrange
-                        : Colorsapp.secondarycolor,
+      bottomNavigationBar:
+          BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+        return state is WorkoutSuccessful
+            ? ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(22),
+                    topRight: Radius.circular(22)),
+                child: BottomAppBar(
+                  child: SizedBox(
+                    height: 10,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        MaterialButton(
+                          minWidth: 40,
+                          onPressed: () {
+                            _onItemTapped(0);
+                            widget.ind--;
+                            widget.pic = state.workouts[widget.ind].gifUrl;
+                              widget.traincalory = pushlist[widget.ind].tCalory;
+                            widget.trainTime = pushlist[widget.ind].tTime;
+                            // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> const CustomWorkoutview() ));
+                          },
+                          child: Icon(
+                            size: 40,
+                            Icons.navigate_before,
+                            color: _selectedIndex == 0
+                                ? Colorsapp.darkOrange
+                                : Colorsapp.secondarycolor,
+                          ),
+                        ),
+                        MaterialButton(
+                          minWidth: 40,
+                          onPressed: () {
+                            _onItemTapped(3);
+                            widget.ind++;
+                            widget.pic = state.workouts[widget.ind].gifUrl;
+                            widget.traincalory = pushlist[widget.ind].tCalory;
+                            widget.trainTime = pushlist[widget.ind].tTime;
+                          },
+                          child: Icon(
+                            size: 40,
+                            Icons.navigate_next,
+                            color: _selectedIndex == 3
+                                ? Colorsapp.darkOrange
+                                : Colorsapp.secondarycolor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                MaterialButton(
-                  minWidth: 40,
-                  onPressed: () {
-                    _onItemTapped(3);
-                  },
-                  child: Icon(
-                    Icons.person,
-                    color: _selectedIndex == 3
-                        ? Colorsapp.darkOrange
-                        : Colorsapp.secondarycolor,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+              )
+            : Container();
+      }),
     );
   }
 }

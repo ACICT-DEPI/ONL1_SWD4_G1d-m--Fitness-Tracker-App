@@ -7,7 +7,8 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 
 class LoadingBar extends StatefulWidget {
   final String pic;
-  const LoadingBar({super.key, required this.pic});
+  final int trainTime;
+  const LoadingBar({super.key, required this.pic,required this.trainTime});
 
   @override
   State<LoadingBar> createState() => _LoadingBarState();
@@ -32,34 +33,17 @@ class _LoadingBarState extends State<LoadingBar> {
           currentValue = (currentValue + increment).clamp(0, 100);
         });
         _simulateProgress();
-       
-      }else{
-          Navigator.push(
+      } else {
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (BuildContext context) => CustomProgresstrain(pic: widget.pic,)));
+                builder: (BuildContext context) => CustomProgresstrain(
+                    trainTime:widget.trainTime,
+                      pic: widget.pic,
+                    )));
       }
-      
     });
   }
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Future.delayed(
-  //     const Duration(seconds: 5),
-  //     () {
-  //       if (currentValue < 100) {
-  //       setState(() {
-  //         currentValue += 10; // Increment progress
-  //       });
-  //        }
-  //       Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //               builder: (BuildContext context) => CustomProgresstrain(pic: widget.pic,)));
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

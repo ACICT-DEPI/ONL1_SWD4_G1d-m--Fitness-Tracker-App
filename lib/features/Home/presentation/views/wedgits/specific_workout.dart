@@ -1,3 +1,4 @@
+import 'package:final_project/core/utls/caloriesadtrtime.dart';
 import 'package:final_project/core/utls/colors.dart';
 import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
@@ -45,13 +46,17 @@ class SpecificWorkout extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: state.workouts.length,
                             itemBuilder: (context, index) {
+                                 
                               return InkWell(
-                                onTap: () {
+                                onTap:() {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               ChooseTraining(
+                                                traincalory: pushlist[index].tCalory,
+                                                trainTime: pushlist[index].tTime,
+                                                ind: index,
                                                 pic: state
                                                     .workouts[index].gifUrl,
                                               )));
@@ -85,7 +90,7 @@ class SpecificWorkout extends StatelessWidget {
                                               ),
                                             )),
                                         Padding(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 10),
                                           child: Column(
                                             crossAxisAlignment:
@@ -93,7 +98,7 @@ class SpecificWorkout extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'WORKOUT\n AT HOME',
                                                 style: TextStyle(
                                                   fontSize: 18,
@@ -101,10 +106,10 @@ class SpecificWorkout extends StatelessWidget {
                                                   // color: Colors.white,
                                                 ),
                                               ),
-                                              SizedBox(height: 10),
+                                              const SizedBox(height: 10),
                                               Text(
                                                 state.workouts[index].bodyPart,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -137,7 +142,7 @@ class SpecificWorkout extends StatelessWidget {
                       ],
                     ),
                   )
-                : Text("");
+                : const Text("");
           }),
     );
   }
