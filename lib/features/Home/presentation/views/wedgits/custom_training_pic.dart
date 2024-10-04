@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomTrainingPic extends StatelessWidget {
-  const CustomTrainingPic({super.key});
+  final String pic;
+  const CustomTrainingPic({super.key, required this.pic});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +41,8 @@ class CustomTrainingPic extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                        image: AssetImage("assets/images/wout.jpg"),
+                    image:   DecorationImage(
+                        image: NetworkImage(pic),
                         fit: BoxFit.fill),
                   ),
                 )),

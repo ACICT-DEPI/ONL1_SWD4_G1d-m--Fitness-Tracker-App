@@ -8,7 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChooseTraining extends StatefulWidget {
-  const ChooseTraining({super.key});
+  final String pic;
+  const ChooseTraining({super.key, required this.pic});
 
   @override
   State<ChooseTraining> createState() => _ChooseTrainingState();
@@ -44,7 +45,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             const SizedBox(
               height: 30,
             ),
-            const CustomTrainingPic(),
+              CustomTrainingPic(pic: widget.pic,),
             const SizedBox(
               height: 11,
             ),
@@ -176,7 +177,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => const LoadingBar()));
+                    builder: (BuildContext context) =>   LoadingBar(pic: widget.pic,)));
           },
           child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
