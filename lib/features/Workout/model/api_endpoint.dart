@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 
 class Endpoint {
   static String baseUrl = "https://exercisedb.p.rapidapi.com/exercises";

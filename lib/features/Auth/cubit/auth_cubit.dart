@@ -51,22 +51,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> checkIfUserExists() async {
-  try {
-    final signInMethods = await _auth.fetchSignInMethodsForEmail(email??"");
-    if (signInMethods.isNotEmpty) {
-      // User exists
-      userFound = true;
-    } else {
-      // User does not exist
-      userFound = false;
-    }
-  } catch (e) {
-    print('Error checking user: $e');
-    userFound = false;
-  }
-}
-
   Future<void> signInWithEmailAndPassword({
     required String email,
     required String password,

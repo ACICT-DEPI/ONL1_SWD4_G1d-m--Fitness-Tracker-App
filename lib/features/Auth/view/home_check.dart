@@ -14,7 +14,6 @@ class HomeCheck extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {},
         builder: (context, state) {
-          //AuthCubit.get(context).checkIfUserExists();
           return FutureBuilder<User?>(
             future: AuthCubit.get(context).checkUser(),
             builder: (context, snapshot) {
