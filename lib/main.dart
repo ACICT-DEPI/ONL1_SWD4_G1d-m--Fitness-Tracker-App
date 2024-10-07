@@ -1,11 +1,11 @@
+import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
 import 'package:final_project/features/lose_weight/cubit/lose_weight_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/utls/colors.dart';
+import 'core/custom_wedgits/custom_bottomnavigationbar.dart';
+import 'core/utils/colors.dart';
 import 'features/Auth/cubit/auth_cubit.dart';
-import 'features/Auth/view/first_screen.dart';
-import 'features/Auth/view/home_check.dart';
 import 'firebase_options.dart';
 // test
 void main() async {
@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => AuthCubit(),),
-          BlocProvider(create: (context) => LoseWeightCubit(),)
+          BlocProvider(create: (context) => AuthCubit()..getUserData(),),
+          BlocProvider(create: (context) => LoseWeightCubit(),),
+          BlocProvider(create: (context) => WorkoutCubit(),)
         ],
         child: MaterialApp(
         title: 'Flutter Demo',
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colorsapp.darkOrange),
           useMaterial3: true,
         ),
-        home: HomeCheck(),
+        home: FloatingNavBar(),
       ));
   }
 }

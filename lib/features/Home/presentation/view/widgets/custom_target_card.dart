@@ -1,6 +1,7 @@
+import 'package:final_project/features/Auth/view/home_check.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utls/colors.dart';
+import '../../../../../core/utils/colors.dart';
 
 class CustomTargetCard extends StatelessWidget {
   CustomTargetCard({
@@ -19,7 +20,8 @@ class CustomTargetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => route,));
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeCheck(route: route),));
       },
       child: Padding(
         padding: EdgeInsets.all(10.0),

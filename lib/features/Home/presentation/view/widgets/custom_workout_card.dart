@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utls/colors.dart';
+import '../../../../../core/utils/colors.dart';
 
 class CustomWorkoutCard extends StatelessWidget {
   CustomWorkoutCard({super.key, required this.title, required this.image});

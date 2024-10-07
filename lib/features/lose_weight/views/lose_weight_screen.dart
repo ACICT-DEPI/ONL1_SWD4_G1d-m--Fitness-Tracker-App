@@ -1,14 +1,8 @@
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/lose_weight/views/bmi_input_screen.dart';
-import 'package:final_project/features/lose_weight/views/bmr_input_screen.dart';
-import 'package:final_project/features/lose_weight/views/iw_input_screen.dart';
 import 'package:final_project/features/lose_weight/widgets/calc_list.dart';
 import 'package:final_project/features/lose_weight/widgets/meal_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../widgets/calc_card.dart';
-import 'bf_input_screen.dart';
 
 class LoseWeightScreen extends StatelessWidget {
   const LoseWeightScreen({super.key});

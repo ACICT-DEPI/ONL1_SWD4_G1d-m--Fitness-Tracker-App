@@ -1,8 +1,8 @@
-import 'package:final_project/core/utls/colors.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Target/presentation/view/home_screen.dart';
+import '../../Home/presentation/view/home_screen.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_states.dart';
 import '../widgets/custom_Auth_button.dart';
@@ -127,8 +127,10 @@ class SignUpScreen extends StatelessWidget {
                                 if (_formKey.currentState!.validate()) {
                                   AuthCubit.get(context)
                                       .signUpWithEmailAndPassword(
-                                          email: emailController.text,
-                                          password: passController.text);
+                                    email: emailController.text,
+                                    password: passController.text,
+                                    name: nameController.text,
+                                  );
                                 }
                               },
                             ),

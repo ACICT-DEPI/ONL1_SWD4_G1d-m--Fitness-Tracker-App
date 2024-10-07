@@ -1,4 +1,4 @@
-import 'package:final_project/core/utls/colors.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_cliper_shape.dart';

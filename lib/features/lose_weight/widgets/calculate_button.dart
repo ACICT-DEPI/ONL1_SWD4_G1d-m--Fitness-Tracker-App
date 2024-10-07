@@ -1,7 +1,5 @@
-import 'package:final_project/core/utls/colors.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/utls/constant_var.dart';
+import '../../../core/utils/constant_var.dart';
 
 class CalculateButton extends StatelessWidget {
 

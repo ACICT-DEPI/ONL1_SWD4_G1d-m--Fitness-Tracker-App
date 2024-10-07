@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utls/colors.dart';
-
 class CalcCard extends StatelessWidget {
   CalcCard({super.key, required this.route, required this.title});
 

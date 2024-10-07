@@ -1,9 +1,8 @@
 import 'dart:math';
-
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/custom_progresstrain.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+import 'custom_progresstrain.dart';
 
 class LoadingBar extends StatefulWidget {
   final String pic;

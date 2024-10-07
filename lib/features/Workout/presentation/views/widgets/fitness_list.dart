@@ -1,9 +1,9 @@
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/specific_workout.dart';
+import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/features/Workout/presentation/views/widgets/specific_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../cubit/workout_cubit.dart';
+import '../../../cubit/workout_states.dart';
 
 class FitnessList extends StatelessWidget {
   const FitnessList({super.key});
@@ -12,7 +12,7 @@ class FitnessList extends StatelessWidget {
   Widget build(BuildContext context) {
    
     var sizee = MediaQuery.of(context).size;
-    return BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
+    return BlocConsumer<WorkoutCubit, WorkoutState>(listener: (context, state) {
       if (state is WorkoutSuccessful) {
         Navigator.push(
             context,
@@ -38,14 +38,14 @@ class FitnessList extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                       if (index == 0) {
-                                  context.read<AuthCubit>().bodyPartBack("push");
+                                  context.read<WorkoutCubit>().bodyPartBack("push");
                                 } else if (index == 1) {
-                                  context.read<AuthCubit>().bodyPartBack("legs");
+                                  context.read<WorkoutCubit>().bodyPartBack("legs");
                                 } else if (index == 2) {
-                                  context.read<AuthCubit>().bodyPartBack("pull");
+                                  context.read<WorkoutCubit>().bodyPartBack("pull");
                                 } else if (index == 3) {
                                   context
-                                      .read<AuthCubit>()
+                                      .read<WorkoutCubit>()
                                       .bodyPartBack("triceps");
                                 }
                   },

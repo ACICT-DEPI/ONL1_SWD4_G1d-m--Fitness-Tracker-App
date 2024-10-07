@@ -1,10 +1,10 @@
-import 'package:final_project/core/utls/caloriesadtrtime.dart';
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/choose_training.dart';
+import 'package:final_project/core/utils/caloriesadtrtime.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../cubit/workout_cubit.dart';
+import '../../../cubit/workout_states.dart';
+import 'choose_training.dart';
 
 class SpecificWorkout extends StatelessWidget {
   const SpecificWorkout({super.key});
@@ -19,7 +19,7 @@ class SpecificWorkout extends StatelessWidget {
         foregroundColor: Colorsapp.darkOrange,
         backgroundColor: Colorsapp.secondarycolor,
       ),
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocConsumer<WorkoutCubit, WorkoutState>(
           listener: (context, state) {},
           builder: (context, state) {
             return state is WorkoutSuccessful

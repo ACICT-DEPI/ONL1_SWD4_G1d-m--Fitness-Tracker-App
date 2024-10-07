@@ -1,5 +1,5 @@
-import 'package:final_project/features/Home/presentation/views/wedgits/fitness_list.dart';
 import 'package:flutter/material.dart';
+import 'fitness_list.dart';
 
 class Customscrollview extends StatelessWidget {
   const Customscrollview({super.key});

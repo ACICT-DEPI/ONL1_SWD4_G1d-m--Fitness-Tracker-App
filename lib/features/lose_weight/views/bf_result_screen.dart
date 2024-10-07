@@ -1,11 +1,9 @@
-import 'package:final_project/core/utls/colors.dart';
 import 'package:final_project/features/lose_weight/cubit/lose_weight_cubit.dart';
 import 'package:final_project/features/lose_weight/cubit/lose_weight_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../core/utls/constant_var.dart';
+import '../../../core/utils/constant_var.dart';
 import '../widgets/calculate_button.dart';
 import '../widgets/reusable_card.dart';
 

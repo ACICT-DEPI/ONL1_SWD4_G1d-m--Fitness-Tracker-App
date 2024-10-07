@@ -1,7 +1,7 @@
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Home/presentation/views/home_view.dart';
-import 'package:final_project/features/Target/presentation/view/home_screen.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import '../../features/Home/presentation/view/home_screen.dart';
+import '../../features/Workout/presentation/views/workout_screen.dart';
 
 class FloatingNavBar extends StatefulWidget {
   const FloatingNavBar({super.key});
@@ -20,20 +20,20 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
     HomeScreen(),
-    HomeView(),
-    HomeView(),
+    WorkoutScreen(),
+    WorkoutScreen(),
   ];
   int mycurrentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       bottomNavigationBar: SafeArea(
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
           decoration: BoxDecoration(
-           
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
@@ -46,7 +46,6 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           ),
           height: 70, 
           child: ClipRRect(
-            
             borderRadius: BorderRadius.circular(22),
             child: BottomNavigationBar(
              elevation: 1,
@@ -55,8 +54,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               showUnselectedLabels: false,
               //backgroundColor: const Color.fromARGB(80, 0, 0, 0),
               ///Changes here: just these 2 lines
-              backgroundColor: Colors.white,
-              unselectedItemColor: Colorsapp.darkGrey,
+              backgroundColor:
+              //Colors.white,
+              Colors.black.withOpacity(.5),
+              unselectedItemColor: Colorsapp.liteGrey,
               ///*********************************
               selectedItemColor: Colorsapp.liteOrange,
               //unselectedItemColor: Colors.white,

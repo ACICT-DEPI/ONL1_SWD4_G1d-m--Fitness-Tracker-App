@@ -1,7 +1,7 @@
-import 'package:final_project/core/utls/colors.dart';
-import 'package:final_project/features/Home/presentation/views/wedgits/custom_appbar.dart';
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'custom_appbar.dart';
 
 class TopDesign extends StatelessWidget {
   const TopDesign({super.key});
