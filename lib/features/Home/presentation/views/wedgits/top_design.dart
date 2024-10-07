@@ -23,42 +23,43 @@ class TopDesign extends StatelessWidget {
                       child: Text(
                         'Hesham Mohamed',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white, // Ensure the text color is black
                         ),
                       ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colorsapp.secondarycolor,
-                              shape: BoxShape.circle),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                // color: Colorsapp.primarycolor,
-                              )),
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colorsapp.secondarycolor,
-                              shape: BoxShape.circle),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.settings,
-                                  color: Colors.white,
-                                // color: Colorsapp.primarycolor,
-                              )),
-                        )
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       decoration: BoxDecoration(
+                    //           color: Colorsapp.secondarycolor,
+                    //           shape: BoxShape.circle),
+                    //       child: IconButton(
+                    //           onPressed: () {},
+                    //           icon: Icon(
+                    //             Icons.person,
+                    //             color: Colors.white,
+                    //             // color: Colorsapp.primarycolor,
+                    //           )),
+                    //     ),
+                    //     const SizedBox(
+                    //       width: 12,
+                    //     ),
+                    //     Container(
+                    //       decoration: BoxDecoration(
+                    //           color: Colorsapp.secondarycolor,
+                    //           shape: BoxShape.circle),
+                    //       child: IconButton(
+                    //           onPressed: () {},
+                    //           icon: Icon(
+                    //             Icons.settings,
+                    //               color: Colors.white,
+                    //             // color: Colorsapp.primarycolor,
+                    //           )),
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(
@@ -66,8 +67,7 @@ class TopDesign extends StatelessWidget {
                   child: Text(
                     '22 male',
                     style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                       color: Colors.white, // Ensure the text color is black
                     ),
                   ),

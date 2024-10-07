@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/custom_wedgits/custom_bottomnavigationbar.dart';
 import '../../../core/utls/colors.dart';
-import '../../Target/presentation/view/target_screen.dart';
+import '../../Target/presentation/view/home_screen.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_states.dart';
 import '../widgets/custom_Auth_button.dart';

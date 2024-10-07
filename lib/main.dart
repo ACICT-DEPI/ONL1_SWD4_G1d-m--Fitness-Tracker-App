@@ -1,3 +1,4 @@
+import 'package:final_project/features/lose_weight/cubit/lose_weight_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,9 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: MaterialApp(
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => AuthCubit(),),
+          BlocProvider(create: (context) => LoseWeightCubit(),)
+        ],
+        child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -30,7 +34,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: HomeCheck(),
-      ),
-    );
+      ));
   }
 }

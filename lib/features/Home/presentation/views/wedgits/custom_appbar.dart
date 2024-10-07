@@ -7,7 +7,7 @@ const Widget customAppBar = Align(
     style: TextStyle(
         height: 2,
         color: Colors.white,
-        fontSize: 70,
+        fontSize: 30,
         fontWeight: FontWeight.bold,
         ),
     textAlign: TextAlign.left,

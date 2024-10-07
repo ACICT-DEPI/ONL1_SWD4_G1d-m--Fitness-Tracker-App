@@ -1,6 +1,6 @@
 import 'package:final_project/core/utls/colors.dart';
 import 'package:final_project/features/Home/presentation/views/home_view.dart';
-import 'package:final_project/features/Target/presentation/view/target_screen.dart';
+import 'package:final_project/features/Target/presentation/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class FloatingNavBar extends StatefulWidget {
@@ -19,8 +19,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 //   ];
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
+    HomeScreen(),
     HomeView(),
-    TargetScreen(),
     HomeView(),
   ];
   int mycurrentIndex = 0;

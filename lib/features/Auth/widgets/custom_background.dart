@@ -12,7 +12,7 @@ class FitnessBackground extends StatelessWidget {
         // Background container with gradient
         Container(
           decoration: BoxDecoration(
-            color: Colorsapp.darkGrey,
+            color: Colorsapp.liteGrey,
           ),
         ),
         // Adding shapes on the background
@@ -92,7 +92,9 @@ class FitnessBackground extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image(image: AssetImage("assets/images/Fitness.png")),
+              //Icon(Icons.fitness_center, color: Colors.white, size: 150,),
+              //Text("Fitness", style: TextStyle(color: Colors.white, fontSize: 40),),
+              Image(image: AssetImage("assets/images/Fitness.png"),),
             ],
           ),
         ),
