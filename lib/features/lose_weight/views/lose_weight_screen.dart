@@ -28,7 +28,7 @@ class LoseWeightScreen extends StatelessWidget {
               child: Text("Fitness and Health Calculators", style: TextStyle(color: Colors.deepOrangeAccent, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height/8,
+              height: MediaQuery.of(context).size.height/10,
               child: ListView.separated(
                 itemCount: calc.length,
                  separatorBuilder: (context, index) => SizedBox(width: 10,),

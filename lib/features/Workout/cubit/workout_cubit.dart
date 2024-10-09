@@ -12,7 +12,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   WorkoutModel? wk;
   String sss = '';
-  bodyPartBack(String exname) async {
+  bodyPartBack(String exName) async {
     try {
       String api = Endpoint.baseUrl;
       final option = Options(headers: {
@@ -21,7 +21,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
       });
       emit(WorkoutLoading());
       final response =
-          await Dio().get("$api/name/$exname?offset=0&limit=10", options: option);
+          await Dio().get("$api/name/$exName?offset=0&limit=10", options: option);
        List<dynamic> responseData = response.data;
       List<WorkoutModel> workouts = responseData.map((item) => WorkoutModel.fromJson(item)).toList();
       emit(WorkoutSuccessful(workouts: workouts));

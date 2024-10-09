@@ -7,7 +7,16 @@ import 'core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'core/utils/colors.dart';
 import 'features/Auth/cubit/auth_cubit.dart';
 import 'firebase_options.dart';
-// test
+import 'package:permission_handler/permission_handler.dart';
+
+Future<void> requestActivityRecognitionPermission() async {
+  var status = await Permission.activityRecognition.status;
+  if (status.isDenied) {
+    // We need to request permission
+    await Permission.activityRecognition.request();
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

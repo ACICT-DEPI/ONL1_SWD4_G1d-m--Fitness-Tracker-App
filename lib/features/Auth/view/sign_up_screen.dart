@@ -1,8 +1,7 @@
 import 'package:final_project/core/utils/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Home/presentation/view/home_screen.dart';
+import '../../Home/view/home_screen.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_states.dart';
 import '../widgets/custom_Auth_button.dart';

@@ -17,7 +17,7 @@ class CalcCard extends StatelessWidget {
       },
       child: Container(
         height: MediaQuery.of(context).size.height / 8,
-        width: MediaQuery.of(context).size.width / 3,
+        width: MediaQuery.of(context).size.width / 4,
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             Colors.green[100]!,

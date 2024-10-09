@@ -1,12 +1,13 @@
 import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
 import 'package:final_project/features/Auth/view/login_screen.dart';
-import 'package:final_project/features/Home/presentation/view/widgets/custom_target_card.dart';
 import 'package:final_project/features/lose_weight/views/lose_weight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/colors.dart';
-import '../../../Workout/presentation/views/workout_screen.dart';
+import '../../Steps/view/step_counter_screen.dart';
+import '../../Workout/presentation/views/workout_screen.dart';
+import '../widgets/custom_target_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   CustomTargetCard(
                     title: "Steps",
                     image: "assets/images/walk.png",
-                    route: WorkoutScreen(),
+                    route: StepCounterScreen(),
                     context: context,
                   ),
                   CustomTargetCard(

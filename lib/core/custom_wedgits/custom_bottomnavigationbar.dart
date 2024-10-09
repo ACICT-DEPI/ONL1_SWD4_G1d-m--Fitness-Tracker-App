@@ -1,6 +1,6 @@
 import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
-import '../../features/Home/presentation/view/home_screen.dart';
+import '../../features/Home/view/home_screen.dart';
 import '../../features/Workout/presentation/views/workout_screen.dart';
 
 class FloatingNavBar extends StatefulWidget {
