@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CalcCard extends StatelessWidget {
-  CalcCard({super.key, required this.route, required this.title});
+  CalcCard({super.key, required this.route, required this.image, required this.title});
 
   Widget route;
+  String image;
   String title;
   @override
   Widget build(BuildContext context) {
@@ -15,24 +16,22 @@ class CalcCard extends StatelessWidget {
               builder: (context) => route,
             ));
       },
-      child: Container(
-        height: MediaQuery.of(context).size.height / 8,
-        width: MediaQuery.of(context).size.width / 4,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.green[100]!,
-            Colors.green[200]!,
-            Colors.green[300]!,
-          ]),
-          //color: Colors.teal[200],//Colorsapp.darkOrange,
-          borderRadius: BorderRadius.all(Radius.circular(25)),
-        ),
-        child: Center(
-            child: Text(title,
-              style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold,
+      child: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 5,
+            width: MediaQuery.of(context).size.width / 1.5,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+            ),
+            child: Image(image: AssetImage(image), fit: BoxFit.fill,),
           ),
-        )),
+          SizedBox(height: 5,),
+          Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.teal[300]),),
+
+        ],
       ),
     );
   }
