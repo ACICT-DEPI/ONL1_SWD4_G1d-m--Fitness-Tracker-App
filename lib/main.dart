@@ -1,5 +1,7 @@
 import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
-import 'package:final_project/features/lose_weight/cubit/lose_weight_cubit.dart';
+import 'package:final_project/features/body_calc/cubit/body_calc_cubit.dart';
+import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
+import 'package:final_project/features/sleep/cubit/sleep_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +41,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AuthCubit()..getUserData(),),
-          BlocProvider(create: (context) => LoseWeightCubit(),),
-          BlocProvider(create: (context) => WorkoutCubit(),)
+          BlocProvider(create: (context) => WorkoutCubit(),),
+          BlocProvider(create: (context) => NutritionCubit(),),
+          BlocProvider(create: (context) => BodyCalcCubit(),),
+          BlocProvider(create: (context) => SleepCubit(),),
         ],
         child: MaterialApp(
         title: 'Flutter Demo',
@@ -49,7 +53,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colorsapp.darkOrange),
           useMaterial3: true,
         ),
-        home: FloatingNavBar(),
+        home: const FloatingNavBar(),
       )
     );
   }

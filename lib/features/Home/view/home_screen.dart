@@ -1,10 +1,11 @@
 import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
 import 'package:final_project/features/Auth/view/login_screen.dart';
-import 'package:final_project/features/lose_weight/views/lose_weight_screen.dart';
+import 'package:final_project/features/Home/widgets/custom_workout_card.dart';
+import 'package:final_project/features/nutrition/views/nutrition_screen.dart';
+import 'package:final_project/features/sleep/view/sleep_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/utils/colors.dart';
 import '../../Steps/view/step_screen.dart';
 import '../../Workout/presentation/views/workout_screen.dart';
@@ -25,25 +26,25 @@ class HomeScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  right: 15.0, left: 15, top: 30, bottom: 10),
+                  right: 15.0, left: 15, top: 60, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Home",
-                        style: TextStyle(
-                          color: Colorsapp.darkOrange,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 34,
-                        ),
-                      ),
+                      // Text(
+                      //   "Home",
+                      //   style: TextStyle(
+                      //     color: Colorsapp.darkOrange,
+                      //     fontWeight: FontWeight.bold,
+                      //     fontSize: 34,
+                      //   ),
+                      // ),
                       Text(
                         "hello, ${AuthCubit.get(context).name ?? ""}",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colorsapp.darkOrange,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -68,83 +69,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: MediaQuery.of(context).size.width / 1.1,
-                height: MediaQuery.of(context).size.height / 5,
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Image(
-                        image: AssetImage("assets/images/exer.png"),
-                        fit: BoxFit.fill,
-                      ),
-                      Spacer(),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Workout",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "Daily Challenge🔥",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => WorkoutScreen(),
-                                  ));
-                            },
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2,
-                              height: MediaQuery.of(context).size.height / 20,
-                              decoration: BoxDecoration(
-                                color: Colors.deepOrange[400],
-                                shape: BoxShape.rectangle,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(25)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Start",
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white
-                                    ),
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Icon(Icons.arrow_forward, color: Colors.white,),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            CustomWorkoutCard(),
             SizedBox(
               height: MediaQuery.of(context).size.height / 1.6,
               child: GridView.count(
@@ -152,16 +77,10 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 childAspectRatio: 1/1,
                 children: [
-                  // CustomTargetCard(
-                  //   title: "Workout",
-                  //   image: "assets/images/exer.png",
-                  //   route: WorkoutScreen(),
-                  //   context: context,
-                  // ),
                   CustomTargetCard(
-                    title: "Lose weight",
+                    title: "Nutrition",
                     image: "assets/images/loss_weight.png",
-                    route: LoseWeightScreen(),
+                    route: NutritionScreen(),
                     context: context,
                   ),
                   CustomTargetCard(
@@ -179,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                   CustomTargetCard(
                     title: "Sleep",
                     image: "assets/images/sleep.png",
-                    route: WorkoutScreen(),
+                    route: SleepScreen(),
                     context: context,
                   ),
                   // CustomTargetCard(),

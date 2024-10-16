@@ -30,7 +30,10 @@ class _StepsScreenState extends State<StepsScreen> {
     print("*******************$savedDate");
     _totalSteps = CachingHelper.instance?.readInteger('savedTotalSteps') ?? 0;
     print("////////////$_totalSteps");
-    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? 0;
+    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? _totalSteps;
+    if(lastSavedSteps == 0) {
+      CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
+    }
     print("////////////$lastSavedSteps");
 
     // Reset the steps if the saved date is not today's date
@@ -173,26 +176,25 @@ class _StepsScreenState extends State<StepsScreen> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'last steps: ',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  Text(
-                    CachingHelper.instance?.readInteger('lastSavedSteps').toString()??'',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colorsapp.darkOrange),
-              ),
-                ],
-              ),
-            ),
-
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text(
+            //         'last steps: ',
+            //         style: TextStyle(fontSize: 20, color: Colors.white),
+            //       ),
+            //       Text(
+            //         CachingHelper.instance?.readInteger('lastSavedSteps').toString()??'',
+            //     style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colorsapp.darkOrange),
+            //   ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

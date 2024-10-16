@@ -52,6 +52,8 @@ dependencies:
   flutter_local_notifications: ^17.2.3
   google_sign_in: ^6.2.1
   health: ^11.1.0
+  fl_chart: ^0.69.0
+  url_launcher: ^6.3.1
  
  
 
@@ -67,12 +69,12 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_launcher_icons: ^0.14.1
 
-flutter_launcher_icons:
-   android: "launcher_icon1"
-   ios: true
-   image_path: "assets/images/Fitness.png"
-   #adaptive_icon_foreground: "assets/images/fit.png"
-   #adaptive_icon_background: #BF5944
+flutter_icons:
+  image_path: "assets/icon/app_icon.png"
+  android: true
+  ios: true
+    #adaptive_icon_foreground: "assets/images/fit.png"
+    #adaptive_icon_background: #BF5944
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

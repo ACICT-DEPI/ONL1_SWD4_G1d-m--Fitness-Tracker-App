@@ -1,4 +1,5 @@
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/features/body_calc/views/body_calc_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/Home/view/home_screen.dart';
 import '../../features/Workout/presentation/views/workout_screen.dart';
@@ -20,7 +21,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
     HomeScreen(),
-    WorkoutScreen(),
+    BodyCalcScreen(),
     WorkoutScreen(),
   ];
   int mycurrentIndex = 0;
@@ -69,7 +70,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                 },
                 items:const [
                   BottomNavigationBarItem(icon: Icon(Icons.home,),label: "home"),
-                  BottomNavigationBarItem(icon: Icon(Icons.timer,),label: "home"),
+                  BottomNavigationBarItem(icon: Icon(Icons.calculate_outlined,),label: "home"),
                   BottomNavigationBarItem(icon: Icon(Icons.person,),label: "home"),
                 ]),
           ),

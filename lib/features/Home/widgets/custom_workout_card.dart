@@ -1,60 +1,90 @@
+import 'package:final_project/features/Workout/presentation/views/workout_screen.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/colors.dart';
 
 class CustomWorkoutCard extends StatelessWidget {
-  CustomWorkoutCard({super.key, required this.title, required this.image});
+  CustomWorkoutCard({super.key,});
 
-  String title;
-  String image;
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            width: MediaQuery.of(context).size.width / 2.8,
-            height: MediaQuery.of(context).size.height / 7,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: Colorsapp.darkOrange,
-              // gradient: LinearGradient(colors: [
-              //   Colorsapp.darkOrange,
-              //   Colorsapp.midOrange,
-              //   Colorsapp.liteOrange,
-              // ]),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            child: Stack(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Image(image: AssetImage(image), width: 70,
-                    //  color: Colors.white.withOpacity(.5),
-                    ),
-                  ],
+                Container(
+                  width: MediaQuery.of(context).size.width / 1,
+                  height: MediaQuery.of(context).size.height / 4,
+                  decoration: BoxDecoration(
+                    //color: Colors.grey[900],
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child:
+                    Image(image: AssetImage("assets/images/cover.jpg",), fit: BoxFit.cover,),
+                  ),
                 ),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Center(
-                      child: Text(title,
-                        style: TextStyle(
-                            fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),),
-                    ),
-                  ],
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30.0, top: 40),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Workout",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 5,),
+                          Text(
+                            "Daily Challenge🔥",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WorkoutScreen(),
+                                  ));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              height: MediaQuery.of(context).size.height / 20,
+                              decoration: BoxDecoration(
+                                color: Colors.deepOrange[400],
+                                shape: BoxShape.rectangle,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Start",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white
+                                    ),
+                                  ),
+                                   SizedBox(width: 10,),
+                                  Icon(Icons.arrow_forward, color: Colors.white,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ),
                 ),
               ],
-            ),
-          ),
-        ),
-      ],
-    );
+            );
   }
 }
