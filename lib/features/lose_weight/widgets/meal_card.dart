@@ -1,4 +1,4 @@
-import 'package:final_project/features/lose_weight/views/recipe_screen.dart';
+import 'package:final_project/features/lose_weight/views/category_recipes_screen.dart';
 import 'package:flutter/material.dart';
 import 'custom_meal_button.dart';
 
@@ -55,7 +55,7 @@ class MealCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: CustomMealButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeScreen(id: id),));}),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryRecipesScreen(id: id),));}),
               ),
             ],
           ),

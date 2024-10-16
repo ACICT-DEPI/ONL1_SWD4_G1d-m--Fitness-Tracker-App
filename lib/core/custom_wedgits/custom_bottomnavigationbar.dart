@@ -75,7 +75,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           ),
         ),
       ),
-    body:pages[mycurrentIndex] ,
+    body:pages[mycurrentIndex],
     );
   }
 }

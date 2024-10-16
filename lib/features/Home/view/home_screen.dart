@@ -4,8 +4,9 @@ import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:final_project/features/lose_weight/views/lose_weight_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/utils/colors.dart';
-import '../../Steps/view/step_counter_screen.dart';
+import '../../Steps/view/step_screen.dart';
 import '../../Workout/presentation/views/workout_screen.dart';
 import '../widgets/custom_target_card.dart';
 
@@ -23,8 +24,8 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.only(right: 15.0, left: 15, top: 30, bottom: 10),
+              padding: const EdgeInsets.only(
+                  right: 15.0, left: 15, top: 30, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "hello, ${AuthCubit.get(context).name??""}",
+                        "hello, ${AuthCubit.get(context).name ?? ""}",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -67,29 +68,96 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // SizedBox(
-            //   height: MediaQuery.of(context).size.height/7,
-            //   child: ListView(
-            //     scrollDirection: Axis.horizontal,
-            //     children: [
-            //       CustomWorkoutCard(title: "Workout", image: "assets/images/exer.png"),
-            //       CustomWorkoutCard(title: "Lose weight", image: "assets/images/loss_weight.png"),
-            //       CustomWorkoutCard(title: "Stretch", image: "assets/images/stretch.png"),
-            //     ],
-            //   ),
-            // ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 1.2,
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 2.5 / 3,
-                children: [
-                  CustomTargetCard(
-                    title: "Workout",
-                    image: "assets/images/exer.png",
-                    route: WorkoutScreen(),
-                    context: context,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width / 1.1,
+                height: MediaQuery.of(context).size.height / 5,
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Image(
+                        image: AssetImage("assets/images/exer.png"),
+                        fit: BoxFit.fill,
+                      ),
+                      Spacer(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Workout",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "Daily Challenge🔥",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WorkoutScreen(),
+                                  ));
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              height: MediaQuery.of(context).size.height / 20,
+                              decoration: BoxDecoration(
+                                color: Colors.deepOrange[400],
+                                shape: BoxShape.rectangle,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Start",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Icon(Icons.arrow_forward, color: Colors.white,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 1.6,
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                childAspectRatio: 1/1,
+                children: [
+                  // CustomTargetCard(
+                  //   title: "Workout",
+                  //   image: "assets/images/exer.png",
+                  //   route: WorkoutScreen(),
+                  //   context: context,
+                  // ),
                   CustomTargetCard(
                     title: "Lose weight",
                     image: "assets/images/loss_weight.png",
@@ -99,7 +167,7 @@ class HomeScreen extends StatelessWidget {
                   CustomTargetCard(
                     title: "Steps",
                     image: "assets/images/walk.png",
-                    route: StepCounterScreen(),
+                    route: StepsScreen(),
                     context: context,
                   ),
                   CustomTargetCard(

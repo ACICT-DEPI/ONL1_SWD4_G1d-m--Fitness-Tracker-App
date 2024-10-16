@@ -12,26 +12,31 @@ class CategoryRecipesScreen extends StatelessWidget {
     return BlocConsumer<LoseWeightCubit, LoseWeightStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        LoseWeightCubit.get(context).getAllCategories(this.id);
+        var cubit = LoseWeightCubit.get(context);
+        cubit.getAllCategories(this.id);
         return Scaffold(
-      appBar: AppBar(
-        title: Text("Recipes"),
-      ),
-      body: ListView.builder(
-        itemCount: LoseWeightCubit.get(context).recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = LoseWeightCubit.get(context).recipes[index];
-          return Card(
-            child: ListTile(
-              leading: Image.network(recipe.image, width: 50, height: 50, fit: BoxFit.cover),
-              title: Text(recipe.recipe),
-              subtitle: Text('Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}'),
-              trailing: Text(recipe.difficulty),
-            ),
-          );
-        },
-      ),
-    );;
+          appBar: AppBar(
+            title: Text("Recipes"),
+          ),
+          body: cubit.recipes.isEmpty
+              ? Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: LoseWeightCubit.get(context).recipes.length,
+                  itemBuilder: (context, index) {
+                    final recipe = LoseWeightCubit.get(context).recipes[index];
+                    return Card(
+                      child: ListTile(
+                        leading: Image.network(recipe.image,
+                            width: 50, height: 50, fit: BoxFit.cover),
+                        title: Text(recipe.recipe),
+                        subtitle: Text(
+                            'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}'),
+                        trailing: Text(recipe.difficulty),
+                      ),
+                    );
+                  },
+                ),
+        );
       },
     );
   }

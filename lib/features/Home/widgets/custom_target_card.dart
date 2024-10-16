@@ -57,29 +57,29 @@ class CustomTargetCard extends StatelessWidget {
                     //color: Colors.white.withOpacity(.5),
                   ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "500",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      " Cal",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,),
-                    ),
-                  ],
-                ),
-                Text(
-                  "last update 5m",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,),
-                ),
+                // Row(
+                //   children: [
+                //     Text(
+                //       "500",
+                //       style: TextStyle(
+                //           color: Colors.white,
+                //           fontSize: 18,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       " Cal",
+                //       style: TextStyle(
+                //           color: Colors.white,
+                //           fontSize: 14,),
+                //     ),
+                //   ],
+                // ),
+                // Text(
+                //   "last update 5m",
+                //   style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 14,),
+                // ),
               ],
             ),
           ),

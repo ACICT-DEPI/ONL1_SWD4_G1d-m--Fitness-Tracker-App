@@ -29,10 +29,10 @@ class Recipe {
   final int id;
   final String recipe;
   final CategoryModel category;
-  final int prepTimeInMinutes;
-  final int cookTimeInMinutes;
+  final int? prepTimeInMinutes;
+  final int? cookTimeInMinutes;
   final String difficulty;
-  final int serving;
+  final int? serving;
   final String image;
   final double calories;
   final double fatInGrams;
@@ -43,10 +43,10 @@ class Recipe {
     required this.id,
     required this.recipe,
     required this.category,
-    required this.prepTimeInMinutes,
-    required this.cookTimeInMinutes,
+    this.prepTimeInMinutes,
+    this.cookTimeInMinutes,
     required this.difficulty,
-    required this.serving,
+    this.serving,
     required this.image,
     required this.calories,
     required this.fatInGrams,

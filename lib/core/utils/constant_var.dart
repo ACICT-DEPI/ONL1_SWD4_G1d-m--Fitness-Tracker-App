@@ -49,6 +49,7 @@ const kResultsBodyTextStyle = TextStyle(
   fontSize: 22.0,
   color: Colors.white
 );
+const String ketoApiKey = "b6469b32aemsh32d9a234f097bd2p100733jsn283d5973a4b4";
 /*
 [
     {

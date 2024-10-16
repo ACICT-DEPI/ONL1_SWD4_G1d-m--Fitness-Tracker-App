@@ -1,9 +1,7 @@
 import 'package:final_project/features/lose_weight/cubit/lose_weight_cubit.dart';
 import 'package:final_project/features/lose_weight/cubit/lose_weight_states.dart';
-import 'package:final_project/features/lose_weight/views/recipe_screen.dart';
 import 'package:final_project/features/lose_weight/widgets/calc_list.dart';
 import 'package:final_project/features/lose_weight/widgets/meal_card.dart';
-import 'package:final_project/model/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,6 +13,7 @@ class LoseWeightScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = LoseWeightCubit.get(context);
+    //cubit.getCategories();
     return BlocConsumer<LoseWeightCubit, LoseWeightStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -35,10 +34,7 @@ class LoseWeightScreen extends StatelessWidget {
                   color: Colors.white,
                 )),
           ),
-          body:
-          cubit.categories.isEmpty?
-          Center(child: CircularProgressIndicator()):
-          SingleChildScrollView(
+          body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -84,20 +80,21 @@ class LoseWeightScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  width: MediaQuery.of(context).size.width * 1,
-                  child: ListView.builder(
-                    //scrollDirection: Axis.horizontal,
-                    itemCount: cubit.categories.length,
-                    itemBuilder: (context, index) =>
-                        MealCard(
-                          title: cubit.categories[index].category.toString(),
-                          image: cubit.categories[index].thumbnail.toString(),
-                          id: cubit.categories[index].id,
+                //cubit.categories.isEmpty
+                    //? Center(child: CircularProgressIndicator()):
+                     SizedBox(
+                        height: MediaQuery.of(context).size.height / 1.5,
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: ListView.builder(
+                          //scrollDirection: Axis.horizontal,
+                          itemCount: cubit.categories.length,
+                          itemBuilder: (context, index) => MealCard(
+                            title: cubit.categories[index].category.toString(),
+                            image: cubit.categories[index].thumbnail.toString(),
+                            id: cubit.categories[index].id,
+                          ),
                         ),
-                    ),
-                ),
+                      ),
               ],
             ),
           ),

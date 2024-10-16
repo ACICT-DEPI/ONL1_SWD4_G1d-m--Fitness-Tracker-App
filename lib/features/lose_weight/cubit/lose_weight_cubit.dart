@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:final_project/core/utils/constant_var.dart';
 import 'package:final_project/features/lose_weight/cubit/lose_weight_states.dart';
 import 'package:final_project/model/category.dart';
 import 'package:flutter/material.dart';
@@ -151,8 +152,10 @@ class LoseWeightCubit extends Cubit<LoseWeightStates> {
     emit(GetCategoriesLoadingState());
     try {
       var result = await NetworkHelper.instance.get(endPoint: EndPoints.categories,
-          host: "keto-diet.p.rapidapi.com",
-          apiKey: "44f3f861ccmshc044140944ff801p1e7238jsna57f89e73123",);
+          host: EndPoints.dietHost,
+          apiKey: ketoApiKey
+          //"44f3f861ccmshc044140944ff801p1e7238jsna57f89e73123",
+      );
       debugPrint(result.data.toString());
       List<dynamic> responseData = result.data;
       categories = responseData.map((item) => CategoryModel.fromJson(item)).toList();
@@ -170,7 +173,7 @@ List<Recipe> recipes = [];
     try {
       var result = await NetworkHelper.instance.get(endPoint: "${EndPoints.allCategories}${id.toString()}",
           host: EndPoints.dietHost,
-          apiKey: EndPoints.dietApiKey,);
+          apiKey: ketoApiKey,);
       debugPrint(result.data.toString());
       List<dynamic> responseData = result.data;
       recipes = responseData.map((item) => Recipe.fromJson(item)).toList();
