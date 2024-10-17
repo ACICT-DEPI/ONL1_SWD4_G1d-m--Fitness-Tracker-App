@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/caloriesadtrtime.dart';
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/core/utils/workout_photo_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cubit/workout_cubit.dart';
@@ -7,7 +8,8 @@ import '../../../cubit/workout_states.dart';
 import 'choose_training.dart';
 
 class SpecificWorkout extends StatelessWidget {
-  const SpecificWorkout({super.key});
+  final int ind;
+  const SpecificWorkout({super.key, required this.ind});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,10 @@ class SpecificWorkout extends StatelessWidget {
                         const SizedBox(
                           height: 12,
                         ),
-                        const Center(
+                          Center(
                           child: Text(
-                            "PUSH WORKOUT",
-                            style: TextStyle(color: Colors.white, fontSize: 30),
+                            "${allWorkoutPhoto[ind].tname} WORKOUT",
+                            style: const TextStyle(color: Colors.white, fontSize: 30),
                           ),
                         ),
                         const Center(
@@ -46,16 +48,18 @@ class SpecificWorkout extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: state.workouts.length,
                             itemBuilder: (context, index) {
-                                 
                               return InkWell(
-                                onTap:() {
+                                onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               ChooseTraining(
-                                                traincalory: pushlist[index].tCalory,
-                                                trainTime: pushlist[index].tTime,
+                                                trainInd: ind,
+                                                traincalory:allWorkoutTimeAndcalory[ind][index].tCalory,
+                                                    // pushlist[index].tCalory,
+                                                trainTime:
+                                                  allWorkoutTimeAndcalory[ind][index].tTime,
                                                 ind: index,
                                                 pic: state
                                                     .workouts[index].gifUrl,

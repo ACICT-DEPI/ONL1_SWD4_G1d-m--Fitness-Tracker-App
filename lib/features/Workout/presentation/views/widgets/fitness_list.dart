@@ -1,4 +1,5 @@
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/core/utils/workout_photo_main.dart';
 import 'package:final_project/features/Workout/presentation/views/widgets/specific_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ class FitnessList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
+    late int ind;
     var sizee = MediaQuery.of(context).size;
     return BlocConsumer<WorkoutCubit, WorkoutState>(listener: (context, state) {
       if (state is WorkoutSuccessful) {
@@ -18,7 +19,7 @@ class FitnessList extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (BuildContext context) => SpecificWorkout(
-                     
+                      ind: ind,
                     )));
       }
       if (state is WorkoutError) {
@@ -28,86 +29,222 @@ class FitnessList extends StatelessWidget {
         ));
       }
     }, builder: (context, state) {
-      return  
-          ListView.builder(
+      return 
+      state is WorkoutLoading?Center(
+        heightFactor: 20,
+        child: CircularProgressIndicator(
+          
+        ),
+      ):
+      state is WorkoutSuccessful
+          ? ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 5,
               itemBuilder: (BuildContext context, index) {
-                 
-                return InkWell(
-                  onTap: () {
-                      if (index == 0) {
-                                  context.read<WorkoutCubit>().bodyPartBack("push");
-                                } else if (index == 1) {
-                                  context.read<WorkoutCubit>().bodyPartBack("legs");
-                                } else if (index == 2) {
-                                  context.read<WorkoutCubit>().bodyPartBack("pull");
-                                } else if (index == 3) {
-                                  context
-                                      .read<WorkoutCubit>()
-                                      .bodyPartBack("triceps");
-                                }
-                  },
-                  child: Card(
-                    color: Colorsapp.darkOrange,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(33),
+                return AspectRatio(
+                  aspectRatio: sizee.width * 3.37 / sizee.height * 1.11,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                        vertical: 7, horizontal: sizee.width / 76),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage(allWorkoutPhoto[index].tphoto),
+                          fit: BoxFit.cover),
                     ),
-                    child: Container(
-                      width: 300,
-                      height: 150,
-                      padding: EdgeInsets.all(sizee.width / 26),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AspectRatio(
-                              aspectRatio: 1.8 / 1.8,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                      image: AssetImage("assets/images/wout.jpg"),
-                                      fit: BoxFit.fill),
+                    child: InkWell(
+                      onTap: () {
+                        if (index == 0) {
+                          context.read<WorkoutCubit>().bodyPartBack("push");
+                          ind = index;
+                        } else if (index == 1) {
+                          context.read<WorkoutCubit>().bodyPartBack("pull");
+                          ind = index;
+                        } else if (index == 2) {
+                          context.read<WorkoutCubit>().bodyPartBack("legs");
+                          ind = index;
+                        } else if (index == 3) {
+                          context.read<WorkoutCubit>().bodyPartBack("triceps");
+                          ind = index;
+                        } else if (index == 4) {
+                          context.read<WorkoutCubit>().bodyPartBack("biceps");
+                          ind = index;
+                        }
+                      },
+                      child: Card(
+                        color: Colors.transparent,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(33),
+                        ),
+                        child: Container(
+                          width: 300,
+                          height: 150,
+                          padding: EdgeInsets.all(sizee.width / 26),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // AspectRatio(
+                              //     aspectRatio: 1 / 1,
+                              //     child: Container(
+                              //       decoration: BoxDecoration(
+                              //         borderRadius: BorderRadius.circular(20),
+                              //         image:   DecorationImage(
+                              //           image: AssetImage(allWorkoutPhoto[index].tphoto),
+                              //         ),
+                              //       ),
+                              //     )),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: sizee.width / 2,
+                                      child: Text(
+                                        allWorkoutPhoto[index].descrip,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      allWorkoutPhoto[index].tname,
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              )),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'WORKOUT\n AT HOME',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    // color: Colors.white,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "push",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                width: sizee.width / 8,
+                              ),
+                              const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            width: sizee.width / 8,
-                          ),
-                         const Icon(Icons.arrow_forward)
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 );
               })
-           ;
+          : ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 5,
+              itemBuilder: (BuildContext context, index) {
+                return AspectRatio(
+                  aspectRatio: sizee.width * 3.37 / sizee.height * 1.11,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                        vertical: 7, horizontal: sizee.width / 76),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage(allWorkoutPhoto[index].tphoto),
+                          fit: BoxFit.cover),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        if (index == 0) {
+                          context.read<WorkoutCubit>().bodyPartBack("push");
+                          ind = index;
+                        } else if (index == 1) {
+                          context.read<WorkoutCubit>().bodyPartBack("pull");
+                          ind = index;
+                        } else if (index == 2) {
+                          context.read<WorkoutCubit>().bodyPartBack("legs");
+                          ind = index;
+                        } else if (index == 3) {
+                          context.read<WorkoutCubit>().bodyPartBack("triceps");
+                          ind = index;
+                        } else if (index == 4) {
+                          context.read<WorkoutCubit>().bodyPartBack("biceps");
+                          ind = index;
+                        }
+                      },
+                      child: Card(
+                        color: Colors.transparent,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(33),
+                        ),
+                        child: Container(
+                          width: 300,
+                          height: 150,
+                          padding: EdgeInsets.all(sizee.width / 26),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // AspectRatio(
+                              //     aspectRatio: 1 / 1,
+                              //     child: Container(
+                              //       decoration: BoxDecoration(
+                              //         borderRadius: BorderRadius.circular(20),
+                              //         image:   DecorationImage(
+                              //           image: AssetImage(allWorkoutPhoto[index].tphoto),
+                              //         ),
+                              //       ),
+                              //     )),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: sizee.width / 2,
+                                      child: Text(
+                                        allWorkoutPhoto[index].descrip,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      allWorkoutPhoto[index].tname,
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: sizee.width / 8,
+                              ),
+                              const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              });
     });
   }
 }

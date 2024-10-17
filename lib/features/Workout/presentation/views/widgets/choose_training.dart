@@ -1,5 +1,6 @@
 import 'package:final_project/core/utils/caloriesadtrtime.dart';
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/core/utils/workout_photo_main.dart';
 import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,12 +13,14 @@ class ChooseTraining extends StatefulWidget {
   int traincalory;
   String pic;
   int ind;
+  int trainInd;
   ChooseTraining({
     super.key,
     required this.pic,
     required this.ind,
     required this.trainTime,
     required this.traincalory,
+    required this.trainInd,
   });
 
   @override
@@ -79,9 +82,9 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                                                      "Calories",
-                                                      style: TextStyle(fontSize: 17),
-                                                    ),
+                            "Calories",
+                            style: TextStyle(fontSize: 17),
+                          ),
                           Icon(Icons.local_fire_department)
                         ],
                       ),
@@ -218,9 +221,14 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                             _onItemTapped(0);
                             widget.ind--;
                             widget.pic = state.workouts[widget.ind].gifUrl;
-                              widget.traincalory = pushlist[widget.ind].tCalory;
-                            widget.trainTime = pushlist[widget.ind].tTime;
-                            // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> const CustomWorkoutview() ));
+                            widget.traincalory =
+                                allWorkoutTimeAndcalory[widget.trainInd]
+                                        [widget.ind]
+                                    .tCalory;
+                            widget.trainTime =
+                                allWorkoutTimeAndcalory[widget.trainInd]
+                                        [widget.ind]
+                                    .tTime;
                           },
                           child: Icon(
                             size: 40,
@@ -236,8 +244,14 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                             _onItemTapped(3);
                             widget.ind++;
                             widget.pic = state.workouts[widget.ind].gifUrl;
-                            widget.traincalory = pushlist[widget.ind].tCalory;
-                            widget.trainTime = pushlist[widget.ind].tTime;
+                            widget.traincalory =
+                                allWorkoutTimeAndcalory[widget.trainInd]
+                                        [widget.ind]
+                                    .tCalory;
+                            widget.trainTime =
+                                allWorkoutTimeAndcalory[widget.trainInd]
+                                        [widget.ind]
+                                    .tTime;
                           },
                           child: Icon(
                             size: 40,
