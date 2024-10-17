@@ -1,38 +1,22 @@
-import 'package:final_project/core/utils/caloriesadtrtime.dart';
+import 'dart:ui';
 import 'package:final_project/core/utils/colors.dart';
-import 'package:final_project/core/utils/workout_photo_main.dart';
-import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
+import 'package:final_project/features/Workout/presentation/views/widgets/custom_training_pic.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubit/workout_states.dart';
-import 'custom_training_pic.dart';
-import 'loading_bar.dart';
 
 class ChooseTraining extends StatefulWidget {
-  int trainTime;
-  int traincalory;
-  String pic;
-  int ind;
-  int trainInd;
-  ChooseTraining({
-    super.key,
-    required this.pic,
-    required this.ind,
-    required this.trainTime,
-    required this.traincalory,
-    required this.trainInd,
-  });
+  const ChooseTraining({super.key});
 
   @override
   State<ChooseTraining> createState() => _ChooseTrainingState();
 }
 
-// List<Widget> widgetPages = [
-//   // HomeView(),
-//   // TimerView(), // Assuming you have a TimerView widget
-//   // CaloriesView(), // Assuming you have a CaloriesView widget
-//   // ProfileView(), // Assuming you have a ProfileView widget
-// ];
+List<Widget> widgetPages = [
+  // HomeView(),
+  // TimerView(), // Assuming you have a TimerView widget
+  // CaloriesView(), // Assuming you have a CaloriesView widget
+  // ProfileView(), // Assuming you have a ProfileView widget
+];
 
 class _ChooseTrainingState extends State<ChooseTraining> {
   int _selectedIndex = 0;
@@ -57,9 +41,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             const SizedBox(
               height: 30,
             ),
-            CustomTrainingPic(
-              pic: widget.pic,
-            ),
+              CustomTrainingPic(pic: '',),
             const SizedBox(
               height: 11,
             ),
@@ -78,24 +60,27 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          Container(
+                              // decoration: const BoxDecoration(
+                              //     color: Colors.orange, shape: BoxShape.circle),
+                              child: const Text(
                             "Calories",
                             style: TextStyle(fontSize: 17),
-                          ),
-                          Icon(Icons.local_fire_department)
+                          )),
+                          const Icon(Icons.local_fire_department)
                         ],
                       ),
                       const SizedBox(
                         height: 25,
                       ),
-                      SizedBox(
+                      const SizedBox(
                           width: 150,
                           child: Text(
-                            widget.traincalory.toString(),
-                            style: const TextStyle(
+                            "156",
+                            style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           )),
                       const SizedBox(
@@ -120,10 +105,10 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(33)),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -133,17 +118,17 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                           Icon(Icons.timer)
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 25,
                       ),
                       SizedBox(
                           width: 150,
                           child: Text(
-                            widget.trainTime.toString(),
-                            style: const TextStyle(
+                            "40",
+                            style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           )),
-                      const SizedBox(
+                      SizedBox(
                           width: double.infinity,
                           child: Text(
                             "min",
@@ -176,98 +161,83 @@ class _ChooseTrainingState extends State<ChooseTraining> {
       ),
 
       floatingActionButton: Container(
-        width: 85,
-        height: 85,
+       width: 85,
+       height: 85,
         margin: const EdgeInsets.only(top: 45),
         child: FloatingActionButton(
-          backgroundColor: Colorsapp.darkOrange,
+          backgroundColor:Colorsapp.darkOrange,
           autofocus: true,
           isExtended: true,
           shape: const CircleBorder(),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => LoadingBar(
-                          trainTime: widget.trainTime,
-                          pic: widget.pic,
-                        )));
+            // Handle FAB p ress
           },
           child: Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: Text(
-                "Start",
-                style: TextStyle(color: Colorsapp.secondarycolor, fontSize: 20),
-              )),
+              child:  Text("Start",style:  TextStyle(color: Colorsapp.secondarycolor,fontSize: 20),)),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar:
-          BlocBuilder<WorkoutCubit, WorkoutState>(builder: (context, state) {
-        return state is WorkoutSuccessful
-            ? ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(22),
-                    topRight: Radius.circular(22)),
-                child: BottomAppBar(
-                  child: SizedBox(
-                    height: 10,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        MaterialButton(
-                          minWidth: 40,
-                          onPressed: () {
-                            _onItemTapped(0);
-                            widget.ind--;
-                            widget.pic = state.workouts[widget.ind].gifUrl;
-                            widget.traincalory =
-                                allWorkoutTimeAndcalory[widget.trainInd]
-                                        [widget.ind]
-                                    .tCalory;
-                            widget.trainTime =
-                                allWorkoutTimeAndcalory[widget.trainInd]
-                                        [widget.ind]
-                                    .tTime;
-                          },
-                          child: Icon(
-                            size: 40,
-                            Icons.navigate_before,
-                            color: _selectedIndex == 0
-                                ? Colorsapp.darkOrange
-                                : Colorsapp.secondarycolor,
-                          ),
-                        ),
-                        MaterialButton(
-                          minWidth: 40,
-                          onPressed: () {
-                            _onItemTapped(3);
-                            widget.ind++;
-                            widget.pic = state.workouts[widget.ind].gifUrl;
-                            widget.traincalory =
-                                allWorkoutTimeAndcalory[widget.trainInd]
-                                        [widget.ind]
-                                    .tCalory;
-                            widget.trainTime =
-                                allWorkoutTimeAndcalory[widget.trainInd]
-                                        [widget.ind]
-                                    .tTime;
-                          },
-                          child: Icon(
-                            size: 40,
-                            Icons.navigate_next,
-                            color: _selectedIndex == 3
-                                ? Colorsapp.darkOrange
-                                : Colorsapp.secondarycolor,
-                          ),
-                        ),
-                      ],
-                    ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(22), topRight: Radius.circular(22)),
+        child: BottomAppBar(
+          child: SizedBox(
+            height: 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                MaterialButton(
+                  minWidth: 40,
+                  onPressed: () {
+                    _onItemTapped(0);
+                    // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> const CustomWorkoutview() ));
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.home,
+                        color: _selectedIndex == 0 ? Colorsapp.darkOrange : Colorsapp.secondarycolor,
+                      ),
+                      // Text(
+                      //   'Home',
+                      //   style: TextStyle(
+                      //     color:
+                      //         _selectedIndex == 0 ?Colorsapp.darkOrange : Colors.grey,
+                      //   ),
+                      // ),
+                    ],
                   ),
                 ),
-              )
-            : Container();
-      }),
+               
+                MaterialButton(
+                  minWidth: 40,
+                  onPressed: () {
+                    _onItemTapped(3);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: _selectedIndex == 3 ?Colorsapp.darkOrange: Colorsapp.secondarycolor,
+                      ),
+                      // Text(
+                      //   'Profile',
+                      //   style: TextStyle(
+                      //     color:
+                      //         _selectedIndex == 3 ? Colorsapp.darkOrange : Colors.grey,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
