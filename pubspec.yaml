@@ -69,10 +69,11 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_launcher_icons: ^0.14.1
 
-flutter_icons:
-  image_path: "assets/icon/app_icon.png"
-  android: true
-  ios: true
+#flutter_icons:
+  #image_path: "assets/icon/app_icon.png"
+  #android: true
+  #ios: true
+
     #adaptive_icon_foreground: "assets/images/fit.png"
     #adaptive_icon_background: #BF5944
 

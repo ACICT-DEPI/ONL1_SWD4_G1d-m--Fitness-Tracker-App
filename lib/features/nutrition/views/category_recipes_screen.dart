@@ -31,7 +31,7 @@ class CategoryRecipesScreen extends StatelessWidget {
                         title: Text(recipe.recipe),
                         subtitle: Text(
                             'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}'),
-                        trailing: Text(recipe.difficulty),
+                        trailing: Text(recipe.difficulty??""),
                       ),
                     );
                   },

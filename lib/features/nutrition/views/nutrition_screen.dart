@@ -11,7 +11,7 @@ class NutritionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = NutritionCubit.get(context);
-    //cubit.getCategories();
+    cubit.getCategories();
     return BlocConsumer<NutritionCubit, NutritionStates>(
       listener: (context, state) {},
       builder: (context, state) {
