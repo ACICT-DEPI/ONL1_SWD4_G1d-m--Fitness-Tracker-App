@@ -17,8 +17,9 @@ class NutritionCubit extends Cubit<NutritionStates> {
     try {
       var result = await NetworkHelper.instance.get(endPoint: EndPoints.categories,
           host: EndPoints.dietHost,
-          apiKey: ketoApiKey
-          //"44f3f861ccmshc044140944ff801p1e7238jsna57f89e73123",
+          apiKey: //ketoApiKey
+        //"554a02e03dmshd886ff48681c04dp19af10jsna2f57238ab4d"
+          "44f3f861ccmshc044140944ff801p1e7238jsna57f89e73123",
       );
       debugPrint(result.data.toString());
       List<dynamic> responseData = result.data;
@@ -37,7 +38,8 @@ List<Recipe> recipes = [];
     try {
       var result = await NetworkHelper.instance.get(endPoint: "${EndPoints.allCategories}${id.toString()}",
           host: EndPoints.dietHost,
-          apiKey: ketoApiKey,);
+          apiKey:          EndPoints.dietApiKey,
+      );
       debugPrint(result.data.toString());
       List<dynamic> responseData = result.data;
       recipes = responseData.map((item) => Recipe.fromJson(item)).toList();
