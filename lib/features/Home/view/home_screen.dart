@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 14,
                           ),
                         ),
-                      ],
+                      ], 
                     ),
                     Row(
                       children: [
