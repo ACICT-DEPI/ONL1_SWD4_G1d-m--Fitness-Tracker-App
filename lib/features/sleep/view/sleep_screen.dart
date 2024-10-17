@@ -1,5 +1,6 @@
 import 'package:final_project/features/sleep/cubit/sleep_cubit.dart';
 import 'package:final_project/features/sleep/cubit/sleep_states.dart';
+import 'package:final_project/features/sleep/view/sleep_tracker_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,113 +11,118 @@ class SleepScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SleepCubit, SleepStates>(
-        listener: (context, state) {},
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = SleepCubit.get(context);
         return Scaffold(
-      backgroundColor: Colors.black87,
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(
-            //backgroundImage: AssetImage('assets/avatar.jpg'), // Add your own avatar image
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Sleep Tracking",
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+          backgroundColor: Colors.black87,
+          appBar: AppBar(
+            backgroundColor: Colors.black87,
+            elevation: 0,
+            leading: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                  //backgroundImage: AssetImage('assets/avatar.jpg'), // Add your own avatar image
+                  ),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.notifications, color: Colors.white),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _SleepCard(
-                  color: Colors.purple,
-                  time: '22:25',
-                  label: 'Went to sleep',
-                  icon: Icons.bedtime,
+                const Text(
+                  "Sleep Tracking",
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                GestureDetector(
-                  onTap: (){
-                    //cubit.openAlarm();
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _SleepCard(
+                      color: Colors.purple,
+                      time: '22:25',
+                      label: 'Went to sleep',
+                      icon: Icons.bedtime,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        //cubit.openAlarm();
+                      },
+                      child: _SleepCard(
+                        color: Colors.teal,
+                        time: '07:00',
+                        label: 'Woke up',
+                        icon: Icons.alarm,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Sleep Timing",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 200,
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: LineChart(
+                    LineChartData(
+                      gridData: const FlGridData(show: false),
+                      titlesData: const FlTitlesData(show: true),
+                      borderData: FlBorderData(show: false),
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: [
+                            const FlSpot(1, 1),
+                            const FlSpot(2, 1.5),
+                            const FlSpot(3, 1),
+                            const FlSpot(4, 2),
+                            const FlSpot(5, 1.8),
+                          ],
+                          isCurved: true,
+                          color: Colors.white,
+                          barWidth: 4,
+                          isStrokeCapRound: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => SleepTrackerScreen()));
                   },
-                  child: _SleepCard(
-                    color: Colors.teal,
-                    time: '07:00',
-                    label: 'Woke up',
-                    icon: Icons.alarm,
+                  icon: const Icon(
+                    Icons.nightlight,
+                    size: 50,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
-              "Sleep Timing",
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              height: 200,
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: LineChart(
-                LineChartData(
-                  gridData: FlGridData(show: false),
-                  titlesData: FlTitlesData(show: true),
-                  borderData: FlBorderData(show: false),
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: [
-                        FlSpot(1, 1),
-                        FlSpot(2, 1.5),
-                        FlSpot(3, 1),
-                        FlSpot(4, 2),
-                        FlSpot(5, 1.8),
-                      ],
-                      isCurved: true,
-                      color:Colors.white,
-                      barWidth: 4,
-                      isStrokeCapRound: true,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Spacer(),
-            IconButton(
-                onPressed: (){
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),))
-                },
-                icon: Icon(Icons.nightlight, size: 50,),),
-          ],
-        ),
-      ),
-    );
+          ),
+        );
       },
     );
   }
@@ -150,19 +156,19 @@ class _SleepCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(icon, size: 40, color: Colors.white),
-            Spacer(),
+            const Spacer(),
             Text(
               time,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.white70,
               ),
