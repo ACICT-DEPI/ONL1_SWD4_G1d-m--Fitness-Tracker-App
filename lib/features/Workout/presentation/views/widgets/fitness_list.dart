@@ -20,6 +20,7 @@ class FitnessList extends StatelessWidget {
             MaterialPageRoute(
                 builder: (BuildContext context) => SpecificWorkout(
                       ind: ind,
+                     
                     )));
       }
       if (state is WorkoutError) {

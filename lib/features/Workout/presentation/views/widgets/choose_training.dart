@@ -9,18 +9,20 @@ import 'custom_training_pic.dart';
 import 'loading_bar.dart';
 
 class ChooseTraining extends StatefulWidget {
+  bool isfavorite;
   int trainTime;
   int traincalory;
   String pic;
   int ind;
   int trainInd;
-  ChooseTraining({
+   ChooseTraining({
     super.key,
     required this.pic,
     required this.ind,
     required this.trainTime,
     required this.traincalory,
     required this.trainInd,
+    required this.isfavorite,
   });
 
   @override
@@ -59,6 +61,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
             ),
             CustomTrainingPic(
               pic: widget.pic,
+              isfavorite: widget.isfavorite,
             ),
             const SizedBox(
               height: 11,
@@ -130,7 +133,9 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                             "TrainingTime",
                             style: TextStyle(fontSize: 17),
                           ),
-                          Icon(Icons.timer)
+                          Icon(
+                            Icons.timer,
+                          )
                         ],
                       ),
                       const SizedBox(

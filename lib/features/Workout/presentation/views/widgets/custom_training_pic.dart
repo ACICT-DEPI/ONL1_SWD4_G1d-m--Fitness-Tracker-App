@@ -1,10 +1,10 @@
- 
+import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTrainingPic extends StatelessWidget {
   final String pic;
-     
-    CustomTrainingPic({super.key, required this.pic});
+  final bool isfavorite;
+const  CustomTrainingPic({super.key, required this.pic, required this.isfavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +26,19 @@ class CustomTrainingPic extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(Icons.arrow_back)),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colorsapp.darkOrange,
+                    )),
               ),
               Container(
                 decoration: BoxDecoration(
                     color: Colors.grey[200], shape: BoxShape.circle),
                 child: IconButton(
                     onPressed: () {},
-                    icon: const Icon(
-                      Icons.favorite,
+                    icon: Icon(
+                      Icons.favorite, 
+                      color:isfavorite? Colorsapp.darkOrange:Colors.white,
                     )),
               ),
             ],
