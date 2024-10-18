@@ -11,6 +11,7 @@ import 'core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'core/notification/notification_service.dart';
 import 'core/utils/colors.dart';
 import 'features/Auth/cubit/auth_cubit.dart';
+import 'features/Steps/cubit/steps_cubit.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => WorkoutCubit(),),
           BlocProvider(create: (context) => NutritionCubit(),),
           BlocProvider(create: (context) => BodyCalcCubit(),),
+          BlocProvider(create: (context) => StepsCubit(),),
           BlocProvider(create: (context) => SleepCubit(),),
         ],
         child: MaterialApp(

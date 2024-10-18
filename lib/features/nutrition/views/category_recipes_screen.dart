@@ -14,13 +14,13 @@ class CategoryRecipesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = NutritionCubit.get(context);
-        cubit.getAllCategories(this.id);
+        //cubit.getAllCategories(id);
         return Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
-              cubit.recipes[id].category.category,
+            title: Text("",
+              //cubit.recipes[id].category.category,
               style: const TextStyle(color: Colors.white),
             ),
             leading: InkWell(
@@ -33,24 +33,30 @@ class CategoryRecipesScreen extends StatelessWidget {
                 )),
           ),
           body: cubit.recipes.isEmpty
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
-                child: ListView.builder(
-                    itemCount: cubit.recipes.length,
-                    itemBuilder: (context, index) {
-                      final recipe = cubit.recipes[index];
-                      return Card(
-                        child: ListTile(
-                          leading: Image.network(recipe.image,
-                              width: 50, height: 50, fit: BoxFit.cover),
-                          title: Text(recipe.recipe),
-                          subtitle: Text(
-                              'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}'),
-                          trailing: Text(recipe.difficulty??""),
-                        ),
-                      );
-                    },
-                  ),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height/1,
+                  child: ListView.builder(
+                      itemCount: cubit.recipes.length,
+                      itemBuilder: (context, index) {
+                        final recipe = cubit.recipes[index];
+                        return Card(
+                          color: Colors.deepOrange[300],
+                          child: ListTile(
+                            leading: Image.network(recipe.image,
+                                width: 50, height: 50, fit: BoxFit.cover),
+                            title: Text(recipe.recipe, style: TextStyle(color: Colors.white),),
+                            subtitle: Text(
+                                'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            trailing: Text(recipe.difficulty??"", style: TextStyle(color: Colors.white),),
+                          ),
+                        );
+                      },
+                    ),
+                ),
               ),
         );
       },
