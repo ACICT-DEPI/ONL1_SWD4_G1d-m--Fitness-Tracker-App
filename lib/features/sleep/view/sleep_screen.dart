@@ -4,10 +4,25 @@ import 'package:final_project/features/sleep/view/sleep_tracker_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SleepScreen extends StatelessWidget {
+import '../../../core/caching/caching_helper.dart';
+import '../../../core/utils/colors.dart';
+import '../widgets/sleep_card.dart';
+
+class SleepScreen extends StatefulWidget {
   const SleepScreen({super.key});
 
+  @override
+  State<SleepScreen> createState() => _SleepScreenState();
+}
+
+class _SleepScreenState extends State<SleepScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SleepCubit.get(context).initSleep();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SleepCubit, SleepStates>(
@@ -15,53 +30,67 @@ class SleepScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = SleepCubit.get(context);
         return Scaffold(
-          backgroundColor: Colors.black87,
+          backgroundColor: Colors.black,
           appBar: AppBar(
-            backgroundColor: Colors.black87,
-            elevation: 0,
-            leading: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                  //backgroundImage: AssetImage('assets/avatar.jpg'), // Add your own avatar image
-                  ),
+            backgroundColor: Colors.black,
+            title: Text(
+              'Sleep Tracker',
+              style: TextStyle(color: Colors.white),
             ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.notifications, color: Colors.white),
-                onPressed: () {},
-              ),
-            ],
+            leading: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: Colors.white,
+                )),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Sleep Tracking",
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _SleepCard(
-                      color: Colors.purple,
-                      time: '22:25',
-                      label: 'Went to sleep',
-                      icon: Icons.bedtime,
+                    GestureDetector(
+                      onTap: ()async{
+                        final TimeOfDay? pickedTime = await showTimePicker(context: context,
+                          initialTime: cubit.selectedSleepTime ?? TimeOfDay.now(),
+                        );
+                        if (pickedTime != null && pickedTime != cubit.selectedSleepTime) {
+                          setState(() {
+                            print(pickedTime);
+                            cubit.selectedSleepTime = pickedTime;
+                            CachingHelper.instance?.writeData('savedSleepTime', pickedTime.toString());
+                            print(CachingHelper.instance?.readString('savedSleepTime'));
+                          });
+                        }
+                      },
+                      child: SleepCard(
+                        color: cubit.selectedSleepTime != null ?Colorsapp.darkOrange: Colorsapp.darkGrey,
+                        time: cubit.selectedSleepTime != null ?cubit.selectedSleepTime!.format(context):"6:00 AM",
+                        label: 'Went to sleep',
+                        icon: Icons.bedtime,
+                      ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        //cubit.openAlarm();
+                      onTap: ()async {
+                        final TimeOfDay? picked = await showTimePicker(
+                          context: context, initialTime: TimeOfDay.now(),);
+                        if (picked != null) {
+                          setState(() {
+                            cubit.selectedAlarmTime = picked;
+                            CachingHelper.instance?.writeData('savedAlarmTime', picked.toString());
+                            cubit.setAlarm();
+                          });
+                        }
                       },
-                      child: _SleepCard(
-                        color: Colors.teal,
-                        time: '07:00',
+                      child: SleepCard(
+                        color: cubit.selectedAlarmTime != null ?Colors.teal: Colorsapp.darkGrey,
+                        time: cubit.selectedAlarmTime != null ?cubit.selectedAlarmTime!.format(context):"No Alarm",
                         label: 'Woke up',
                         icon: Icons.alarm,
                       ),
@@ -112,7 +141,9 @@ class SleepScreen extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => SleepTrackerScreen()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SleepTrackerScreen()));
                   },
                   icon: const Icon(
                     Icons.nightlight,
@@ -128,54 +159,4 @@ class SleepScreen extends StatelessWidget {
   }
 }
 
-class _SleepCard extends StatelessWidget {
-  final Color color;
-  final String time;
-  final String label;
-  final IconData icon;
 
-  _SleepCard({
-    required this.color,
-    required this.time,
-    required this.label,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: MediaQuery.of(context).size.width * 0.4,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, size: 40, color: Colors.white),
-            const Spacer(),
-            Text(
-              time,
-              style: const TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white70,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

@@ -22,24 +22,20 @@ class NotificationService {
   }
 
   Future<void> scheduleNotification(
+      String channelId, String channelName, String channelDescription,
       String title, String body, DateTime scheduledTime,
        DateTime start, DateTime end) async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'medication_channel_id',
-      'Medication Reminders',
-      channelDescription: 'Channel for medication reminders',
+      channelId,channelName,
+      channelDescription: channelDescription,
       importance: Importance.max,
       priority: Priority.high,
-      showWhen: false,
       ticker: 'ticker',
-      //playSound: true,
+      playSound: true,
       //sound: RawResourceAndroidNotificationSound('assets/sound.mp3'),
     );
 
     final platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
-    if(!start.isAfter(DateTime.now())
-        //&& !end.isBefore(DateTime.now())
-        && !scheduledTime.isBefore(DateTime.now())){
       await _flutterLocalNotificationsPlugin.zonedSchedule(
         0,
         title,
@@ -51,7 +47,27 @@ class NotificationService {
         matchDateTimeComponents: DateTimeComponents.time,
       ).then((value){print("DONE");print(scheduledTime);});
     }
-  }
+
+  Future<void> showNotification(
+      String channelId, String channelName, String channelDescription,
+      String title, String body,) async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      channelId,channelName,
+      channelDescription: channelDescription,
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+      playSound: true,
+      sound: const RawResourceAndroidNotificationSound('alarm_sound'),
+    );
+    final platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
+      await _flutterLocalNotificationsPlugin.show(
+        0,
+        title,
+        body,
+        platformChannelSpecifics,
+      ).then((value){print("DONE");});
+    }
 
 
 

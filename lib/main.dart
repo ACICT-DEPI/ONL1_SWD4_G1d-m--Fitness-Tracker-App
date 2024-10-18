@@ -1,3 +1,4 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
 import 'package:final_project/features/body_calc/cubit/body_calc_cubit.dart';
 import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
@@ -29,6 +30,7 @@ void main() async {
   final NotificationService notificationService = NotificationService();
   notificationService.init();
   await CachingHelper.init();
+  await AndroidAlarmManager.initialize();
 
   runApp(const MyApp());
 }

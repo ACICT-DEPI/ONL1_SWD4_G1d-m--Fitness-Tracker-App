@@ -49,10 +49,10 @@ class NutritionScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                //cubit.categories.isEmpty
-                    //? Center(child: CircularProgressIndicator()):
+                cubit.categories.isEmpty
+                    ? Center(child: CircularProgressIndicator()):
                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 1.5,
+                        height: MediaQuery.of(context).size.height / 1,
                         width: MediaQuery.of(context).size.width * 1,
                         child: ListView.builder(
                           //scrollDirection: Axis.horizontal,
