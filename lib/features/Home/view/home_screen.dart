@@ -2,6 +2,7 @@ import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
 import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:final_project/features/Home/widgets/custom_workout_card.dart';
+import 'package:final_project/features/Workout/presentation/views/widgets/favorite_screen.dart';
 import 'package:final_project/features/nutrition/views/nutrition_screen.dart';
 import 'package:final_project/features/sleep/view/sleep_screen.dart';
 import 'package:flutter/material.dart';
@@ -50,14 +51,22 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 14,
                           ),
                         ),
-                      ], 
+                      ],
                     ),
                     Row(
                       children: [
                         IconButton(
                             onPressed: () {
-                             
-                            }, icon: Icon(Icons.favorite)),
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((BuildContext context) =>
+                                          FavoritesScreen())));
+                            },
+                            icon: Icon(
+                              Icons.favorite,
+                              size: 55,
+                            )),
                         GestureDetector(
                             onTap: () {
                               AuthCubit.get(context).signOut().then((value) {
@@ -71,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                             child: Icon(
                               Icons.exit_to_app,
                               color: Colorsapp.liteGrey,
-                              size: 30,
+                              size: 77,
                             )),
                       ],
                     ),
