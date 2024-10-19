@@ -65,7 +65,8 @@ class HomeScreen extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.favorite,
-                              size: 55,
+                              size: 33,
+                              color: Colorsapp.darkOrange,
                             )),
                         GestureDetector(
                             onTap: () {
@@ -80,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                             child: Icon(
                               Icons.exit_to_app,
                               color: Colorsapp.liteGrey,
-                              size: 77,
+                              size: 33,
                             )),
                       ],
                     ),
