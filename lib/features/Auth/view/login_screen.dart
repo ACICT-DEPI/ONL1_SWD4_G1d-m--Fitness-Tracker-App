@@ -21,10 +21,10 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => FloatingNavBar(),
+                builder: (context) => const FloatingNavBar(),
               ));
         }
       },
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width * .8,
                     height: MediaQuery.of(context).size.height * .5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width * .8,
                     height: MediaQuery.of(context).size.height * .5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
