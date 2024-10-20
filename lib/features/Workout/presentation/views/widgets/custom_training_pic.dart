@@ -8,9 +8,12 @@ const  CustomTrainingPic({super.key, required this.pic, required this.isfavorite
 
   @override
   Widget build(BuildContext context) {
+    var sizee = MediaQuery.of(context).size;
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-      height: 400,
+      padding: EdgeInsets.symmetric(
+        vertical: sizee.height/45, horizontal:sizee.width/30),
+      height: sizee.height/1.9,
       // margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 22),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(22)),

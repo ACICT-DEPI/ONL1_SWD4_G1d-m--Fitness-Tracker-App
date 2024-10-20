@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/core/utils/caloriesadtrtime.dart';
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/core/utils/share_snackbar.dart';
 import 'package:final_project/core/utils/workout_photo_main.dart';
 import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class SpecificWorkout extends StatefulWidget {
 }
 
 class _SpecificWorkoutState extends State<SpecificWorkout> {
-    List<bool> isFavoriteList=[]; // List to hold favorite states for workouts
+  List<bool> isFavoriteList = []; // List to hold favorite states for workouts
 
   @override
   void initState() {
     super.initState();
-    isFavoriteList = List<bool>.filled(100, false); // Initialize with a size; update dynamically in builder
+    isFavoriteList = List<bool>.filled(
+        100, false); // Initialize with a size; update dynamically in builder
   }
 
   @override
@@ -75,11 +77,15 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                             MaterialPageRoute(
                               builder: (BuildContext context) => ChooseTraining(
                                 trainInd: widget.ind,
-                                traincalory: allWorkoutTimeAndcalory[widget.ind][index].tCalory,
-                                trainTime: allWorkoutTimeAndcalory[widget.ind][index].tTime,
+                                traincalory: allWorkoutTimeAndcalory[widget.ind]
+                                        [index]
+                                    .tCalory,
+                                trainTime: allWorkoutTimeAndcalory[widget.ind]
+                                        [index]
+                                    .tTime,
                                 ind: index,
                                 pic: state.workouts[index].gifUrl,
-                                isfavorite:isFavoriteList[index],
+                                isfavorite: isFavoriteList[index],
                               ),
                             ),
                           );
@@ -91,7 +97,7 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                             borderRadius: BorderRadius.circular(33),
                           ),
                           child: Container(
-                            width: 300,
+                            width: 100,
                             height: 150,
                             padding: EdgeInsets.all(sizee.width / 26),
                             child: Row(
@@ -103,17 +109,21 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       image: DecorationImage(
-                                        image: NetworkImage(state.workouts[index].gifUrl),
+                                        image: NetworkImage(
+                                            state.workouts[index].gifUrl),
                                         fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         width: 100,
@@ -137,55 +147,75 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                                   ),
                                 ),
                                 SizedBox(width: sizee.width / 8),
-                                IconButton(
-                                  onPressed: () async {
-                                    String image = state.workouts[index].gifUrl;
-                                    String eq = state.workouts[index].equipment;
-                                    String exname = state.workouts[index].bodyPart;
-                                    String indexx = widget.ind.toString();
+                                Padding(
+                                  padding:
+                                      EdgeInsets.only(right: sizee.width / 26),
+                                  child: IconButton(
+                                    onPressed: () async {
+                                      String image =
+                                          state.workouts[index].gifUrl;
+                                      String eq =
+                                          state.workouts[index].equipment;
+                                      String exname =
+                                          state.workouts[index].bodyPart;
+                                      String indexx = widget.ind.toString();
 
-                                    // Check if the item already exists in Firestore
-                                    QuerySnapshot querySnapshot = await AuthCubit.get(context).checkIfExists(
-                                      image: image,
-                                      eq: eq,
-                                      exname: exname,
-                                      indexx: indexx,
-                                    );
-
-                                    bool isCurrentlyFavorite = querySnapshot.docs.isNotEmpty;
-
-                                    if (!isCurrentlyFavorite) {
-                                      // Item doesn't exist, so add it
-                                      await AuthCubit.get(context).addData(
+                                      // Check if the item already exists in Firestore
+                                      QuerySnapshot querySnapshot =
+                                          await AuthCubit.get(context)
+                                              .checkIfExists(
                                         image: image,
                                         eq: eq,
                                         exname: exname,
                                         indexx: indexx,
                                       );
-                                      print("Exercise added to favorites.");
-                                      setState(() {
-                                        isFavoriteList[index] = true; // Set to true for this index
-                                      });
-                                    } else {
-                                      // Item exists, so remove it
-                                      await AuthCubit.get(context).removeData(
-                                        image: image,
-                                        eq: eq,
-                                        exname: exname,
-                                        indexx: indexx,
-                                      );
-                                      print("Exercise removed from favorites.");
-                                      setState(() {
-                                        isFavoriteList[index] = false; // Set to false for this index
-                                      });
-                                    }
-                                  },
-                                  icon:isFavoriteList[index] ? const Icon(
-                                    Icons.favorite,
-                                    color:  Colors.white, // Toggle color based on state
-                                  ): const Icon(
-                                    Icons.favorite_border_outlined,
-                                    color:  Colors.white, // Toggle color based on state
+
+                                      bool isCurrentlyFavorite =
+                                          querySnapshot.docs.isNotEmpty;
+
+                                      if (!isCurrentlyFavorite) {
+                                        // Item doesn't exist, so add it
+                                        await AuthCubit.get(context).addData(
+                                          image: image,
+                                          eq: eq,
+                                          exname: exname,
+                                          indexx: indexx,
+                                        );
+                                        snackbarshare(context,
+                                            "Exercise added to favorites.");
+
+                                        setState(() {
+                                          isFavoriteList[index] =
+                                              true; // Set to true for this index
+                                        });
+                                      } else {
+                                        // Item exists, so remove it
+                                        await AuthCubit.get(context).removeData(
+                                          image: image,
+                                          eq: eq,
+                                          exname: exname,
+                                          indexx: indexx,
+                                        );
+                                        snackbarshare(context,
+                                            "Exercise removed from favorites.");
+
+                                        setState(() {
+                                          isFavoriteList[index] =
+                                              false; // Set to false for this index
+                                        });
+                                      }
+                                    },
+                                    icon: isFavoriteList[index]
+                                        ? const Icon(
+                                            Icons.favorite,
+                                            color: Colors
+                                                .white, // Toggle color based on state
+                                          )
+                                        : const Icon(
+                                            Icons.favorite_border_outlined,
+                                            color: Colors
+                                                .white, // Toggle color based on state
+                                          ),
                                   ),
                                 ),
                               ],
