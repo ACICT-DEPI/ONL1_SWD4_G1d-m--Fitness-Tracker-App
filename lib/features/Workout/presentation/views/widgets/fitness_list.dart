@@ -31,7 +31,7 @@ class FitnessList extends StatelessWidget {
       }
     }, builder: (context, state) {
       return 
-      state is WorkoutLoading?Center(
+      state is WorkoutLoading?const Center(
         heightFactor: 20,
         child: CircularProgressIndicator(
           
@@ -98,7 +98,7 @@ class FitnessList extends StatelessWidget {
                               //       ),
                               //     )),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
@@ -108,17 +108,17 @@ class FitnessList extends StatelessWidget {
                                       width: sizee.width / 2,
                                       child: Text(
                                         allWorkoutPhoto[index].descrip,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Text(
                                       allWorkoutPhoto[index].tname,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -202,7 +202,7 @@ class FitnessList extends StatelessWidget {
                               //       ),
                               //     )),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
@@ -212,17 +212,17 @@ class FitnessList extends StatelessWidget {
                                       width: sizee.width / 2,
                                       child: Text(
                                         allWorkoutPhoto[index].descrip,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Text(
                                       allWorkoutPhoto[index].tname,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
