@@ -1,3 +1,4 @@
+import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
 import 'package:final_project/features/nutrition/views/category_recipes_screen.dart';
 import 'package:flutter/material.dart';
 import 'custom_meal_button.dart';
@@ -18,7 +19,7 @@ class MealCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Container(
         height: MediaQuery.of(context).size.height / 5,
-        width: MediaQuery.of(context).size.width / 1.1,
+        width: MediaQuery.of(context).size.width / 1.2,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           color: Colors.orange[50],
@@ -55,7 +56,10 @@ class MealCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: CustomMealButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryRecipesScreen(id: id),));}),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    NutritionCubit.get(context).getAllCategories(id);
+                    return CategoryRecipesScreen(id: id);
+                  }));}),
               ),
             ],
           ),

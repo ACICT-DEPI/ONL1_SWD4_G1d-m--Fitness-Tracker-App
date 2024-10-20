@@ -40,9 +40,9 @@ class NutritionScreen extends StatelessWidget {
                 //Text("Follow the steps to lose weight using healthy ways", style: TextStyle(color: Colors.teal[100], fontSize: 18),),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
+                      const EdgeInsets.all(10.0,),
                   child: Text(
-                    "Healthy Meals",
+                    "Healthy Meal Categories",
                     style: TextStyle(
                         color: Colors.deepOrangeAccent,
                         fontSize: 20,
@@ -52,7 +52,7 @@ class NutritionScreen extends StatelessWidget {
                 cubit.categories.isEmpty
                     ? Center(child: CircularProgressIndicator()):
                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 1,
+                        height: MediaQuery.of(context).size.height / 1.3,
                         width: MediaQuery.of(context).size.width * 1,
                         child: ListView.builder(
                           //scrollDirection: Axis.horizontal,

@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:final_project/core/notification/notification_service.dart';
 import 'package:final_project/features/sleep/cubit/sleep_states.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -19,6 +22,15 @@ class SleepCubit extends Cubit<SleepStates> {
         stringToTimeOfDay(CachingHelper.instance?.readString('savedSleepTime'));
     selectedAlarmTime =
         stringToTimeOfDay(CachingHelper.instance?.readString('savedAlarmTime'));
+    print("hello***********************");
+    startTime = emptyStartTime? DateTime.now(): DateTime.parse(
+        CachingHelper.instance!.readString("SleepStartTime"));
+    print(startTime);
+    print("************************");
+    print(DateTime.now());
+    if (isTracking) {
+      resumeSleepTracking(); // Stop tracking on swipe up
+    }
   }
 
   Future<void> setAlarm() async {
@@ -54,7 +66,7 @@ class SleepCubit extends Cubit<SleepStates> {
   }
 
 // The callback function that triggers the notification
-  static void alarmCallback() async {
+   static void alarmCallback() async {
     await NotificationService()
         .showNotification(
       'alarm_channel',
@@ -99,5 +111,85 @@ class SleepCubit extends Cubit<SleepStates> {
       }
     }
     return null;
+  }
+
+  bool emptyStartTime = CachingHelper.instance?.readString("SleepStartTime")==null;
+  late DateTime startTime;  // Initialized with current time
+  Duration elapsedTime = const Duration();
+  Timer? timer;  // Made nullable
+  bool isTracking = CachingHelper.instance?.readBoolean("isTrackingSleep")??false;
+
+  // Dummy alarm time
+  String alarmTime = "07:00 AM";
+
+  // To store quality of sleep
+  int sleepQuality = 80; // This could be calculated or randomized
+
+  List<FlSpot> durations = [];
+  void addDuration()
+  {
+    int index = durations.length;
+    double dur = elapsedTime.inHours.toDouble();
+    //if(dur<0)dur = 0;
+    durations.add(FlSpot(index+1, dur));
+  }
+
+  // Simulate sleep quality calculation (example logic)
+  int calculateSleepQuality(int durationInMinutes) {
+    if (durationInMinutes > 60) {
+      return 90;
+    } else if (durationInMinutes > 30) {
+      return 80;
+    } else {
+      return 60;
+    }
+  }
+
+  // Format Duration to a readable format
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+  }
+
+
+
+  void startSleepTracking() {
+    //DateTime startTime = DateTime.now();
+    emit(SleepLoadingState());
+      isTracking = true;
+      CachingHelper.instance?.writeData("isTrackingSleep", true);
+      CachingHelper.instance?.writeData("SleepStartTime", DateTime.now().toIso8601String());
+      startTime = DateTime.now();
+      emit(SleepStartTrackingState());
+    // Timer to update the sleep duration every second
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        elapsedTime = DateTime.now().difference(startTime);
+        emit(SleepIncrementTrackingState());
+    });
+  }
+
+  void resumeSleepTracking() {
+    emit(SleepResumeTrackingState());
+    // Timer to update the sleep duration every second
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        elapsedTime = DateTime.now().difference(startTime);
+        emit(SleepIncrementTrackingState());
+    });
+  }
+
+  void stopSleepTracking() {
+    emit(SleepLoadingState());
+    if (timer != null) {
+      timer!.cancel();  // Use null-aware operator
+    }
+
+      isTracking = false;
+      CachingHelper.instance?.writeData("isTrackingSleep", false);
+      addDuration();
+      // You can also add logic here to calculate sleep quality based on _elapsedTime.
+      sleepQuality = calculateSleepQuality(elapsedTime.inMinutes); // Example logic
+    emit(SleepEndTrackingState());
   }
 }

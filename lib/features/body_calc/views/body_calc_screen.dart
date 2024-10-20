@@ -21,17 +21,9 @@ class BodyCalcScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.black,
             title: Text(
-              'Lose weight',
+              'Body Calculators',
               style: TextStyle(color: Colors.white),
             ),
-            // leading: InkWell(
-            //     onTap: () {
-            //       Navigator.pop(context);
-            //     },
-            //     child: Icon(
-            //       FontAwesomeIcons.arrowLeft,
-            //       color: Colors.white,
-            //     )),
           ),
           body: SingleChildScrollView(
             child: Column(
