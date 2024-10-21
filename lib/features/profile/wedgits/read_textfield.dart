@@ -1,18 +1,18 @@
 import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-class ReadTextfield extends StatelessWidget {
+class ReadTextField extends StatelessWidget {
   final String hint;
-  final String fieldcontent;
-  const ReadTextfield({super.key, required this.hint, required this.fieldcontent});
+  final String fieldContent;
+  const ReadTextField({super.key, required this.hint, required this.fieldContent});
 
   @override
   Widget build(BuildContext context) {
-    var sizee = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return TextField(
       readOnly: true, // Make the TextField read-only
-      controller: TextEditingController(text: fieldcontent),
+      controller: TextEditingController(text: fieldContent),
       decoration: InputDecoration(
         labelText: hint, // Constant label at the top
         labelStyle: const TextStyle(

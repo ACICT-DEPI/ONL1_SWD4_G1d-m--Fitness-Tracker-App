@@ -41,16 +41,16 @@ class ProfileView extends StatelessWidget {
                             const SizedBox(
                               height: 100,
                             ),
-                            ReadTextfield(
-                              fieldcontent: cubit.name ?? '',
+                            ReadTextField(
+                              fieldContent: cubit.name ?? '',
                               hint: "Name",
                             ),
                             SizedBox(
                               height: size.height / 30,
                             ),
-                            ReadTextfield(
+                            ReadTextField(
                               hint: "Email",
-                              fieldcontent: cubit.email ?? '',
+                              fieldContent: cubit.email ?? '',
                             ),
                             // SizedBox(height: size.height/30,),
                             Divider(
