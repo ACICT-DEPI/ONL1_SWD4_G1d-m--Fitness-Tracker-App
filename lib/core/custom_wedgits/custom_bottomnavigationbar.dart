@@ -1,8 +1,8 @@
 import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/features/body_calc/views/body_calc_screen.dart';
-import 'package:final_project/features/workout/views/workout_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/Home/view/home_screen.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
 
 class FloatingNavBar extends StatefulWidget {
   const FloatingNavBar({super.key});
@@ -20,9 +20,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 //   ];
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
-    HomeScreen(),
-    BodyCalcScreen(),
-    WorkoutScreen(),
+    const HomeScreen(),
+    const BodyCalcScreen(),
+    const ProfileView(),
   ];
   int mycurrentIndex = 0;
 
@@ -33,7 +33,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
       extendBody: true,
       bottomNavigationBar: SafeArea(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
@@ -41,7 +41,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                 color: Colors.black12.withOpacity(0.5),
                 blurRadius: 10,
                 spreadRadius: 1,
-                offset:Offset(0, 20) 
+                offset:const Offset(0, 20) 
               ),
             ],
           ),

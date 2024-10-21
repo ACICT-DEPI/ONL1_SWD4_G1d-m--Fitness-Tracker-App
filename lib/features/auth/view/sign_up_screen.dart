@@ -1,7 +1,7 @@
+import 'package:final_project/core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Home/view/home_screen.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_states.dart';
 import '../widgets/custom_Auth_button.dart';
@@ -23,10 +23,10 @@ class SignUpScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+                builder: (context) => const FloatingNavBar(),
               ));
         }
       },
