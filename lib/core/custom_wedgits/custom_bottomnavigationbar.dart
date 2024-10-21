@@ -1,8 +1,8 @@
 import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/features/body_calc/views/body_calc_screen.dart';
+import 'package:final_project/features/workout/views/workout_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/Home/view/home_screen.dart';
-import '../../features/Workout/presentation/views/workout_screen.dart';
 
 class FloatingNavBar extends StatefulWidget {
   const FloatingNavBar({super.key});

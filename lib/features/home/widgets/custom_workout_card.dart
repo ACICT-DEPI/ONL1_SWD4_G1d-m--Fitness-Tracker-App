@@ -1,4 +1,4 @@
-import 'package:final_project/features/Workout/presentation/views/workout_screen.dart';
+import 'package:final_project/features/workout/views/workout_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomWorkoutCard extends StatelessWidget {

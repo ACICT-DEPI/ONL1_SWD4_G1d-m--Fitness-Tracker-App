@@ -2,14 +2,14 @@ import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
 import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:final_project/features/Home/widgets/custom_workout_card.dart';
-import 'package:final_project/features/Workout/presentation/views/widgets/favorite_screen.dart';
 import 'package:final_project/features/nutrition/views/nutrition_screen.dart';
 import 'package:final_project/features/sleep/view/sleep_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/colors.dart';
 import '../../Steps/view/step_screen.dart';
-import '../../Workout/presentation/views/workout_screen.dart';
+import '../../workout/views/workout_screen.dart';
+import '../../workout/widgets/favorite_screen.dart';
 import '../widgets/custom_target_card.dart';
 
 class HomeScreen extends StatelessWidget {
