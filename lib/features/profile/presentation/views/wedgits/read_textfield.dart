@@ -2,16 +2,18 @@ import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ReadTextfield extends StatelessWidget {
+  final bool? isreadonly;
   final String hint;
   final String fieldcontent;
-  const ReadTextfield({super.key, required this.hint, required this.fieldcontent});
+  const ReadTextfield(
+      {super.key, required this.hint, required this.fieldcontent, this.isreadonly});
 
   @override
   Widget build(BuildContext context) {
     var sizee = MediaQuery.of(context).size;
 
     return TextField(
-      readOnly: true, // Make the TextField read-only
+      readOnly: isreadonly??true, // Make the TextField read-only
       controller: TextEditingController(text: fieldcontent),
       decoration: InputDecoration(
         labelText: hint, // Constant label at the top

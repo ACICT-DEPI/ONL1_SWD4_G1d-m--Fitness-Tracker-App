@@ -5,17 +5,19 @@ class ProfileButton extends StatelessWidget {
   final Icon ic;
   final Color? bgcolor;
   final Color? textcolor;
+  final Function pressed;
   const ProfileButton(
       {super.key,
       required this.title,
       required this.ic,
       this.bgcolor,
-      this.textcolor});
+      this.textcolor,
+       required this.pressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () => pressed(),
         iconAlignment: IconAlignment.end,
         icon: ic,
         style: ButtonStyle(

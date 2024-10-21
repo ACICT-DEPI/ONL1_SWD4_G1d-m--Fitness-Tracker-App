@@ -72,6 +72,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: () {
                               AuthCubit.get(context).signOut().then((value) {
                                 Navigator.push(
+                                    // ignore: use_build_context_synchronously
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => LoginScreen(),
@@ -81,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                             child: Icon(
                               Icons.exit_to_app,
                               color: Colorsapp.liteGrey,
-                              size: 33,
+                              size: 77,
                             )),
                       ],
                     ),
@@ -92,14 +93,14 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 1.7,
                 child: GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   childAspectRatio: 1 / 1.1,
                   children: [
                     CustomTargetCard(
                       title: "Nutrition",
                       image: "assets/images/salad.png",
-                      route: NutritionScreen(),
+                      route: const NutritionScreen(),
                       context: context,
                       des: "Keep fit with healthy recipes",
                     ),
@@ -113,14 +114,14 @@ class HomeScreen extends StatelessWidget {
                     CustomTargetCard(
                       title: "Water",
                       image: "assets/images/water.png",
-                      route: WorkoutScreen(),
+                      route: const WorkoutScreen(),
                       context: context,
                       des: "Take 9800 steps per day",
                     ),
                     CustomTargetCard(
                       title: "Sleep",
                       image: "assets/images/sleep.png",
-                      route: SleepScreen(),
+                      route: const SleepScreen(),
                       context: context,
                       des: "Sleep 8 Hours per day",
                     ),

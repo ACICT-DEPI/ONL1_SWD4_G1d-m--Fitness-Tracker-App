@@ -1,7 +1,11 @@
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/features/auth/cubit/auth_cubit.dart';
+import 'package:final_project/features/auth/view/login_screen.dart';
 import 'package:final_project/features/profile/presentation/views/wedgits/profile_button.dart';
 import 'package:final_project/features/profile/presentation/views/wedgits/read_textfield.dart';
+import 'package:final_project/features/profile/presentation/views/wedgits/update_profile.dart';
 import 'package:final_project/features/profile/presentation/views/wedgits/user_picture.dart';
+import 'package:final_project/features/workout/widgets/favorite_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileviewBody extends StatelessWidget {
@@ -33,7 +37,7 @@ class ProfileviewBody extends StatelessWidget {
                         height: 100,
                       ),
                       const ReadTextfield(
-                        fieldcontent: "Sophia Patel",
+                        fieldcontent: "",
                         hint: "Name",
                       ),
                       SizedBox(
@@ -70,7 +74,13 @@ class ProfileviewBody extends StatelessWidget {
                         height: sizee.height / 30,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((BuildContext context) =>
+                                      FavoritesScreen())));
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -88,20 +98,36 @@ class ProfileviewBody extends StatelessWidget {
                       SizedBox(
                         height: sizee.height / 10,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ProfileButton(
+                              pressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((BuildContext context) =>
+                                            const UpdateProfile())));
+                              },
                               title: "Edit Profile",
-                              ic: Icon(
+                              ic: const Icon(
                                 Icons.edit_document,
                                 color: Colors.white,
                               )),
                           ProfileButton(
+                            pressed: () {
+                              AuthCubit.get(context).signOut().then((value) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            LoginScreen()));
+                              });
+                            },
                             title: "Log Out",
                             bgcolor: Colors.white,
                             textcolor: Colors.red,
-                            ic: Icon(
+                            ic: const Icon(
                               Icons.logout_rounded,
                               color: Colors.red,
                             ),
