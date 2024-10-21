@@ -74,6 +74,7 @@ class _StepsScreenState extends State<StepsScreen> {
     setState(() {
       _totalSteps = stepsSinceBoot;
       _todaySteps = _totalSteps - lastSavedSteps; // Calculate today's steps
+      CachingHelper.instance?.writeData('savedTodaySteps', _todaySteps);
       if(_todaySteps == 9800) {
         StepsCubit.get(context).sendNotification();
       }

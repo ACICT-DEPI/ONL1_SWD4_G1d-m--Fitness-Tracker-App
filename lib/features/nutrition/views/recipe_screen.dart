@@ -1,8 +1,8 @@
 import 'package:final_project/features/nutrition/cubit/nutrition_states.dart';
+import 'package:final_project/features/nutrition/model/category.dart';
 import 'package:final_project/features/nutrition/widgets/ingredients_list.dart';
 import 'package:final_project/features/nutrition/widgets/instructions_list.dart';
 import 'package:final_project/features/nutrition/widgets/recipe_details.dart';
-import 'package:final_project/model/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

@@ -90,35 +90,39 @@ class HomeScreen extends StatelessWidget {
               ),
               CustomWorkoutCard(),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 1.6,
+                height: MediaQuery.of(context).size.height / 1.7,
                 child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
-                  childAspectRatio: 1 / 1,
+                  childAspectRatio: 1 / 1.1,
                   children: [
                     CustomTargetCard(
                       title: "Nutrition",
-                      image: "assets/images/loss_weight.png",
+                      image: "assets/images/salad.png",
                       route: NutritionScreen(),
                       context: context,
+                      des: "Keep fit with healthy recipes",
                     ),
                     CustomTargetCard(
                       title: "Steps",
                       image: "assets/images/walk.png",
                       route: StepsScreen(),
                       context: context,
+                      des: "Take 9800 steps per day",
                     ),
                     CustomTargetCard(
                       title: "Water",
                       image: "assets/images/water.png",
                       route: WorkoutScreen(),
                       context: context,
+                      des: "Take 9800 steps per day",
                     ),
                     CustomTargetCard(
                       title: "Sleep",
                       image: "assets/images/sleep.png",
                       route: SleepScreen(),
                       context: context,
+                      des: "Sleep 8 Hours per day",
                     ),
                     // CustomTargetCard(),
                     // CustomTargetCard(),

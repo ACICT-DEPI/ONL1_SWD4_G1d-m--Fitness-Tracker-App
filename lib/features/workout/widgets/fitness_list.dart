@@ -1,10 +1,9 @@
-import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/core/utils/workout_photo_main.dart';
 import 'package:final_project/features/Workout/presentation/views/widgets/specific_workout.dart';
+import 'package:final_project/features/workout/cubit/workout_cubit.dart';
+import 'package:final_project/features/workout/cubit/workout_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubit/workout_cubit.dart';
-import '../../../cubit/workout_states.dart';
 
 class FitnessList extends StatelessWidget {
   const FitnessList({super.key});

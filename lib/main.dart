@@ -1,22 +1,16 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:final_project/StreamBuilderWidget.dart';
-import 'package:final_project/core/utils/share_snackbar.dart';
-import 'package:final_project/features/Auth/view/login_screen.dart';
-import 'package:final_project/features/Auth/view/sign_up_screen.dart';
 import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
 import 'package:final_project/features/body_calc/cubit/body_calc_cubit.dart';
 import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
 import 'package:final_project/features/sleep/cubit/sleep_cubit.dart';
-import 'package:final_project/features/splash/presentation/views/splash_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/caching/caching_helper.dart';
-import 'core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'core/notification/notification_service.dart';
 import 'core/utils/colors.dart';
 import 'features/Auth/cubit/auth_cubit.dart';
+import 'features/splash/views/splash_view.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
 

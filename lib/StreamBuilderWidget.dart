@@ -1,5 +1,4 @@
 import 'package:final_project/core/custom_wedgits/custom_bottomnavigationbar.dart';
-import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/core/utils/share_snackbar.dart';
 import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

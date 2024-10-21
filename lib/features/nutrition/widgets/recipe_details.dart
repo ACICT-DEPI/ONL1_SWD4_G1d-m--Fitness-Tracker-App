@@ -1,5 +1,5 @@
+import 'package:final_project/features/nutrition/model/category.dart';
 import 'package:final_project/features/nutrition/widgets/divider.dart';
-import 'package:final_project/model/category.dart';
 import 'package:flutter/material.dart';
 
 class RecipeDetails extends StatelessWidget {
