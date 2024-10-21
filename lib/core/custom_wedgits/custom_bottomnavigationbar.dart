@@ -2,6 +2,7 @@ import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/features/body_calc/views/body_calc_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/Home/view/home_screen.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
 
 class FloatingNavBar extends StatefulWidget {
   const FloatingNavBar({super.key});
@@ -19,9 +20,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 //   ];
 // List of screens or widgets for each navigation item
   List<Widget> pages = [
-    const ProfileView(),
     const HomeScreen(),
     const BodyCalcScreen(),
+    const ProfileView(),
   ];
   int mycurrentIndex = 0;
 
