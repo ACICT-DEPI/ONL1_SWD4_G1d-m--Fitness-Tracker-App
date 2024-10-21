@@ -47,6 +47,7 @@ class _LoadingBarState extends State<LoadingBar> {
   @override
   Widget build(BuildContext context) {
     var cwidth = MediaQuery.of(context).size.width;
+    var sizee = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colorsapp.secondarycolor,
       body: Padding(

@@ -133,7 +133,7 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
 
                         // Progress indicators (total time, completed percentage)
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -162,7 +162,7 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
                                 lineHeight: 4.0,
                                 percent: duration.inSeconds / totalSeconds,
                                 backgroundColor: Colors.grey,
-                                progressColor: Colors.blue,
+                                progressColor: Colors.deepOrange,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,7 +206,7 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
                                     startcount();
                                   }
                                 },
-                                backgroundColor: Colors.cyan,
+                                backgroundColor: Colors.deepOrange[400],
                                 child: Icon(
                                   isrestart
                                       ? Icons.restart_alt
@@ -226,7 +226,7 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
                                       onPressed: () {
                                         resetTimer();
                                       },
-                                      backgroundColor: Colors.cyan,
+                                      backgroundColor: Colors.deepOrange[400],
                                       child: const Icon(
                                         Icons.restart_alt,
                                         color: Colors.white,

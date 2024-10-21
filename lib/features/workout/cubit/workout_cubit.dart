@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:final_project/features/workout/cubit/workout_states.dart';
+import 'package:final_project/features/workout/model/api_endpoint.dart';
+import 'package:final_project/features/workout/model/workout_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../model/api_endpoint.dart';
-import '../model/workout_model.dart';
-import 'workout_states.dart';
+
 
 class WorkoutCubit extends Cubit<WorkoutState> {
 

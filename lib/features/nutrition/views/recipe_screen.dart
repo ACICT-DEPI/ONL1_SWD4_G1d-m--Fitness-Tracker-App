@@ -1,12 +1,18 @@
 import 'package:final_project/features/nutrition/cubit/nutrition_states.dart';
+import 'package:final_project/features/nutrition/model/category.dart';
+import 'package:final_project/features/nutrition/widgets/ingredients_list.dart';
+import 'package:final_project/features/nutrition/widgets/instructions_list.dart';
+import 'package:final_project/features/nutrition/widgets/recipe_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../cubit/nutrition_cubit.dart';
 
 class RecipeScreen extends StatelessWidget {
-  RecipeScreen({super.key, required this.id});
-  int id;
+  RecipeScreen({super.key, required this.recipe});
+  //int id;
+  Recipe recipe;
 
   String? _recipeName;
 
@@ -19,52 +25,78 @@ class RecipeScreen extends StatelessWidget {
     return BlocConsumer<NutritionCubit, NutritionStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        NutritionCubit.get(context).getAllCategories(this.id);
+        //NutritionCubit.get(context).getAllCategories(this.id);
         return Scaffold(
+          backgroundColor: Colors.black,
           appBar: AppBar(
-            title: Text('Recipe Details'),
+            backgroundColor: Colors.black,
+            title: Text(
+              'Recipe Details',
+              style: const TextStyle(color: Colors.white),
+            ),
+            leading: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: Colors.white,
+                )),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  recipe.difficulty,
+                  style: TextStyle(color: Colors.deepOrange[300]),),
+              ),
+            ],
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (_recipeName != null)
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    _recipeName!,
+                    recipe.recipe,
                     style: TextStyle(
                       fontSize: 24,
+                      color: Colors.deepOrange[400],
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                SizedBox(height: 16),
-                if (_ingredients != null)
+                  SizedBox(height: 15),
+                  Container(
+                    height: 250,
+                    width: double.infinity,
+                    child: Image.network(
+                      recipe.image ?? '',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  RecipeDetails(recipe: recipe),
                   Text(
                     'Ingredients:',
                     style: TextStyle(
                       fontSize: 18,
+                      color: Colors.deepOrange[300],
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                if (_ingredients != null)
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _ingredients!.length,
-                    itemBuilder: (context, index) {
-                      return Text('- ${_ingredients![index]}');
-                    },
-                  ),
-                SizedBox(height: 16),
-                if (_instructions != null)
+                  IngredientsList(recipe: recipe),
+                  SizedBox(height: 16),
                   Text(
-                    'Instructions:',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      'Instructions:',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.deepOrange[300],
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                if (_instructions != null) Text(_instructions!),
-              ],
+                  InstructionsList(recipe: recipe),
+                ],
+              ),
             ),
           ),
         );

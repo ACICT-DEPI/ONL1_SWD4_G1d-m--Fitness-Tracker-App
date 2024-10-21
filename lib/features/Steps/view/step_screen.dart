@@ -1,8 +1,11 @@
 import 'package:final_project/core/caching/caching_helper.dart';
+import 'package:final_project/features/Steps/cubit/steps_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pedometer/pedometer.dart';
 import '../../../core/utils/colors.dart';
+import '../cubit/steps_state.dart';
 import '../widgets/steps_circular_indicator.dart';
 
 class StepsScreen extends StatefulWidget {
@@ -14,7 +17,7 @@ class _StepsScreenState extends State<StepsScreen> {
     late Stream<StepCount> _stepCountStream;
   int _totalSteps = 0; // Tracks total steps from pedometer
   int _todaySteps = 0; // Tracks today's steps
-  String _todayDate = ''; // Tracks current date
+  String _todayDate = '';// Tracks current date
 
   @override
   void initState() {
@@ -29,11 +32,12 @@ class _StepsScreenState extends State<StepsScreen> {
     String savedDate = CachingHelper.instance?.readString('savedDateForSteps') ?? '';
     print("*******************$savedDate");
     _totalSteps = CachingHelper.instance?.readInteger('savedTotalSteps') ?? 0;
+    _todaySteps = CachingHelper.instance?.readInteger('savedTodaySteps') ?? 0;
     print("////////////$_totalSteps");
     int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? _totalSteps;
-    if(lastSavedSteps == 0) {
-      CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
-    }
+    // if(lastSavedSteps == 0) {
+    //   CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
+    // }
     print("////////////$lastSavedSteps");
 
     // Reset the steps if the saved date is not today's date
@@ -61,13 +65,20 @@ class _StepsScreenState extends State<StepsScreen> {
   void _onStepCount(StepCount event) {
     _initTodaySteps();
     int stepsSinceBoot = event.steps; // Total steps from pedometer
-    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? 0;
+    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps')??0;
+    if(lastSavedSteps == 0) {
+       CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
+    }
+    lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? 0;
 
     setState(() {
       _totalSteps = stepsSinceBoot;
       _todaySteps = _totalSteps - lastSavedSteps; // Calculate today's steps
+      CachingHelper.instance?.writeData('savedTodaySteps', _todaySteps);
+      if(_todaySteps == 9800) {
+        StepsCubit.get(context).sendNotification();
+      }
       CachingHelper.instance?.writeData('savedTotalSteps', _totalSteps);
-
       print("*********************** ALL = $stepsSinceBoot");
       print("*********************** LAST = $lastSavedSteps");
       print("*********************** TODAY = $_todaySteps");
@@ -104,10 +115,13 @@ class _StepsScreenState extends State<StepsScreen> {
     CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocConsumer<StepsCubit, StepsStates>(
+        listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = StepsCubit.get(context);
+        return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -176,28 +190,23 @@ class _StepsScreenState extends State<StepsScreen> {
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Text(
-            //         'last steps: ',
-            //         style: TextStyle(fontSize: 20, color: Colors.white),
-            //       ),
-            //       Text(
-            //         CachingHelper.instance?.readInteger('lastSavedSteps').toString()??'',
-            //     style: TextStyle(
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colorsapp.darkOrange),
-            //   ),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'burned calories: ${_todaySteps/20} 🔥',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
+    );
+      },
     );
   }
 }

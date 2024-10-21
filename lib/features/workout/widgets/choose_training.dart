@@ -1,10 +1,9 @@
 import 'package:final_project/core/utils/caloriesadtrtime.dart';
 import 'package:final_project/core/utils/colors.dart';
-import 'package:final_project/core/utils/workout_photo_main.dart';
-import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
+import 'package:final_project/features/workout/cubit/workout_states.dart';
+import 'package:final_project/features/workout/cubit/workout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubit/workout_states.dart';
 import 'custom_training_pic.dart';
 import 'loading_bar.dart';
 
@@ -51,8 +50,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
       backgroundColor: Colorsapp.secondarycolor,
       // appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: sizee.width / 45, vertical: sizee.height / 22),
+        padding: EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -73,7 +71,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   height: 160,
-                  width: sizee.width / 2.1,
+                  width: sizee.width / 2.2,
                   // margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 22),
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -112,13 +110,13 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                   ),
                 ),
                 const SizedBox(
-                  width: 1,
+                  width: 10,
                 ),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   height: 160,
-                  width: sizee.width / 2.1,
+                  width: sizee.width / 2.2,
                   // margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 22),
                   decoration: BoxDecoration(
                       color: Colors.white,
