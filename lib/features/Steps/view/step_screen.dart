@@ -123,7 +123,6 @@ class _StepsScreenState extends State<StepsScreen> {
     return BlocConsumer<StepsCubit, StepsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = StepsCubit.get(context);
         return Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(

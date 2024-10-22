@@ -1,6 +1,5 @@
 import 'package:final_project/features/Auth/view/home_check.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/colors.dart';
 
 class CustomTargetCard extends StatelessWidget {
   CustomTargetCard({
