@@ -11,12 +11,13 @@ class CustomWorkoutCard extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1,
                   height: MediaQuery.of(context).size.height / 4,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                     //color: Colors.grey[900],
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(5.0),
                     child:
                     Image(image: AssetImage("assets/images/cover.jpg",), fit: BoxFit.cover,),
                   ),
@@ -29,7 +30,7 @@ class CustomWorkoutCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
+                          const Text(
                             "Workout",
                             style: TextStyle(
                               color: Colors.white,
@@ -37,21 +38,21 @@ class CustomWorkoutCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 5,),
-                          Text(
+                          const SizedBox(height: 5,),
+                          const Text(
                             "Daily Challenge🔥",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           InkWell(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => WorkoutScreen(),
+                                    builder: (context) => const WorkoutScreen(),
                                   ));
                             },
                             child: Container(
@@ -61,9 +62,9 @@ class CustomWorkoutCard extends StatelessWidget {
                                 color: Colors.deepOrange[400],
                                 shape: BoxShape.rectangle,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(25)),
+                                    const BorderRadius.all(Radius.circular(25)),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
