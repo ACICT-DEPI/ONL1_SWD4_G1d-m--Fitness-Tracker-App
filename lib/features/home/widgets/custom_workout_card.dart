@@ -11,12 +11,13 @@ class CustomWorkoutCard extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1,
                   height: MediaQuery.of(context).size.height / 4,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                     //color: Colors.grey[900],
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(5.0),
                     child:
                     Image(image: AssetImage("assets/images/cover.jpg",), fit: BoxFit.cover,),
                   ),

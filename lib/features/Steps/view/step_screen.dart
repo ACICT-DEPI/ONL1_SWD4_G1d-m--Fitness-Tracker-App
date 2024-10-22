@@ -14,10 +14,10 @@ class StepsScreen extends StatefulWidget {
 }
 
 class _StepsScreenState extends State<StepsScreen> {
-    late Stream<StepCount> _stepCountStream;
+  late Stream<StepCount> _stepCountStream;
   int _totalSteps = 0; // Tracks total steps from pedometer
   int _todaySteps = 0; // Tracks today's steps
-  String _todayDate = '';// Tracks current date
+  String _todayDate = ''; // Tracks current date
 
   @override
   void initState() {
@@ -29,12 +29,14 @@ class _StepsScreenState extends State<StepsScreen> {
   // Initialize step data for the current day
   Future<void> _initTodaySteps() async {
     String todayDate = _getFormattedDate(DateTime.now());
-    String savedDate = CachingHelper.instance?.readString('savedDateForSteps') ?? '';
+    String savedDate =
+        CachingHelper.instance?.readString('savedDateForSteps') ?? '';
     print("*******************$savedDate");
     _totalSteps = CachingHelper.instance?.readInteger('savedTotalSteps') ?? 0;
     _todaySteps = CachingHelper.instance?.readInteger('savedTodaySteps') ?? 0;
     print("////////////$_totalSteps");
-    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? _totalSteps;
+    int lastSavedSteps =
+        CachingHelper.instance?.readInteger('lastSavedSteps') ?? _totalSteps;
     // if(lastSavedSteps == 0) {
     //   CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
     // }
@@ -65,9 +67,10 @@ class _StepsScreenState extends State<StepsScreen> {
   void _onStepCount(StepCount event) {
     _initTodaySteps();
     int stepsSinceBoot = event.steps; // Total steps from pedometer
-    int lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps')??0;
-    if(lastSavedSteps == 0) {
-       CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
+    int lastSavedSteps =
+        CachingHelper.instance?.readInteger('lastSavedSteps') ?? 0;
+    if (lastSavedSteps == 0) {
+      CachingHelper.instance?.writeData('lastSavedSteps', _totalSteps);
     }
     lastSavedSteps = CachingHelper.instance?.readInteger('lastSavedSteps') ?? 0;
 
@@ -75,7 +78,7 @@ class _StepsScreenState extends State<StepsScreen> {
       _totalSteps = stepsSinceBoot;
       _todaySteps = _totalSteps - lastSavedSteps; // Calculate today's steps
       CachingHelper.instance?.writeData('savedTodaySteps', _todaySteps);
-      if(_todaySteps == 9800) {
+      if (_todaySteps == 9800) {
         StepsCubit.get(context).sendNotification();
       }
       CachingHelper.instance?.writeData('savedTotalSteps', _totalSteps);
@@ -118,94 +121,94 @@ class _StepsScreenState extends State<StepsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<StepsCubit, StepsStates>(
-        listener: (context, state) {},
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = StepsCubit.get(context);
         return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          'Steps Tracker',
-          style: TextStyle(color: Colors.white),
-        ),
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              FontAwesomeIcons.arrowLeft,
-              color: Colors.white,
-            )),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.directions_walk,
-              size: 100,
-              color: Colorsapp.darkOrange,
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              'Steps Tracker',
+              style: TextStyle(color: Colors.white),
             ),
-            SizedBox(
-              height: 70,
-            ),
-            StepsCircularIndicator(
-              steps: _todaySteps, // Replace with actual steps value
-              stepGoal: 9800, // Replace with actual step goal value
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Text(
-              'Steps Taken Today',
-              style: TextStyle(fontSize: 24, color: Colors.white),
-            ),
-            Text(
-              '$_todaySteps',
-              style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colorsapp.darkOrange),
-            ),
-             SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'All your steps: ',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+            leading: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: Colors.white,
+                )),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.directions_walk,
+                  size: 100,
+                  color: Colorsapp.darkOrange,
+                ),
+                SizedBox(
+                  height: 70,
+                ),
+                StepsCircularIndicator(
+                  steps: _todaySteps, // Replace with actual steps value
+                  stepGoal: 9800, // Replace with actual step goal value
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'Steps Taken Today',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                Text(
+                  '$_todaySteps',
+                  style: TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: Colorsapp.darkOrange),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'All your steps: ',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      Text(
+                        '$_totalSteps',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colorsapp.darkOrange),
+                      ),
+                    ],
                   ),
-                  Text(
-                '$_totalSteps',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colorsapp.darkOrange),
-              ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'burned calories: ${_todaySteps/20} 🔥',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'burned calories: ${_todaySteps / 20} 🔥',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        );
       },
     );
   }

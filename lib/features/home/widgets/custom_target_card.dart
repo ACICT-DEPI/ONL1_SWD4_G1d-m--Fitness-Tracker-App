@@ -33,12 +33,12 @@ class CustomTargetCard extends StatelessWidget {
             child: Container(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Colorsapp.darkOrange,
-                    Colorsapp.midOrange,
-                    Colorsapp.liteOrange,
-                  ]),
-                  //color: Colorsapp.liteOrange,
+                  // gradient: LinearGradient(colors: [
+                  //   Colorsapp.darkOrange,
+                  //   Colorsapp.midOrange,
+                  //   Colorsapp.liteOrange,
+                  // ]),
+                  color: Colors.grey[900],
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: Padding(
@@ -49,7 +49,7 @@ class CustomTargetCard extends StatelessWidget {
                         Text(
                           title,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.deepOrange[400],
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
@@ -68,7 +68,7 @@ class CustomTargetCard extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,
-                              fontWeight: FontWeight.bold),
+                              ),
                         ),
                       ]),
                 ))));

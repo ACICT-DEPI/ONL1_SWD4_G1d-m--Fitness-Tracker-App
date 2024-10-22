@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    right: 15.0, left: 15, top: 60, bottom: 10),
+                    right: 15.0, left: 15, top: 60, bottom: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -44,11 +44,11 @@ class HomeScreen extends StatelessWidget {
                         //   ),
                         // ),
                         Text(
-                          "hello, ${AuthCubit.get(context).name ?? ""}",
+                          "Hello, ${AuthCubit.get(context).name ?? ""}",
                           style: TextStyle(
                             color: Colorsapp.darkOrange,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: 18,
                           ),
                         ),
                       ],
@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
               ),
               CustomWorkoutCard(),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 1.7,
+                height: MediaQuery.of(context).size.height / 1.5,
                 child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     CustomTargetCard(
                       title: "Sleep",
-                      image: "assets/images/sleep.png",
+                      image: "assets/images/sleep_blue.png",
                       route: SleepScreen(),
                       context: context,
                       des: "Sleep 8 Hours per day",

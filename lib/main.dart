@@ -1,5 +1,6 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:final_project/features/Workout/cubit/workout_cubit.dart';
+import 'package:final_project/features/Steps/cubit/steps_cubit.dart';
+import 'package:final_project/features/workout/cubit/workout_cubit.dart';
 import 'package:final_project/features/body_calc/cubit/body_calc_cubit.dart';
 import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
 import 'package:final_project/features/sleep/cubit/sleep_cubit.dart';
@@ -11,6 +12,7 @@ import 'core/notification/notification_service.dart';
 import 'core/utils/colors.dart';
 import 'features/Auth/cubit/auth_cubit.dart';
 import 'features/splash/views/splash_view.dart';
+import 'features/water/cubit/water_cubit.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -56,6 +58,12 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => SleepCubit(),
+          ),
+          BlocProvider(
+            create: (context) => StepsCubit(),
+          ),
+          BlocProvider(
+            create: (context) => WaterCubit(),
           ),
         ],
         child:
