@@ -30,7 +30,7 @@ class CustomWorkoutCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
+                          const Text(
                             "Workout",
                             style: TextStyle(
                               color: Colors.white,
@@ -38,21 +38,21 @@ class CustomWorkoutCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 5,),
-                          Text(
+                          const SizedBox(height: 5,),
+                          const Text(
                             "Daily Challenge🔥",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           InkWell(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => WorkoutScreen(),
+                                    builder: (context) => const WorkoutScreen(),
                                   ));
                             },
                             child: Container(
@@ -62,9 +62,9 @@ class CustomWorkoutCard extends StatelessWidget {
                                 color: Colors.deepOrange[400],
                                 shape: BoxShape.rectangle,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(25)),
+                                    const BorderRadius.all(Radius.circular(25)),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(

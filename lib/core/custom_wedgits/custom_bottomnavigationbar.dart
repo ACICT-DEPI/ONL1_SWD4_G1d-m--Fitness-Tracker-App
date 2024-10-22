@@ -58,9 +58,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               backgroundColor:
               //Colors.white,
               Colors.black.withOpacity(.5),
-              unselectedItemColor: Colorsapp.liteGrey,
+              unselectedItemColor: Colors.white,
               ///*********************************
-              selectedItemColor: Colorsapp.liteOrange,
+              selectedItemColor: Colorsapp.darkOrange,
               //unselectedItemColor: Colors.white,
                 currentIndex: mycurrentIndex,
                 onTap: (index) {

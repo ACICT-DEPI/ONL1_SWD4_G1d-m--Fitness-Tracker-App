@@ -14,10 +14,9 @@ class _WorkoutScreenBodyState extends State<WorkoutScreenBody> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        //Colorsapp.secondarycolor,
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text(
+          title: const Text(
             'Workout',
             style: TextStyle(color: Colors.white),
           ),
@@ -25,7 +24,7 @@ class _WorkoutScreenBodyState extends State<WorkoutScreenBody> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(
+              child: const Icon(
                 FontAwesomeIcons.arrowLeft,
                 color: Colors.white,
               )),
