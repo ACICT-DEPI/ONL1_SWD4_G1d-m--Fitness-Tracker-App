@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/colors.dart';
 import '../../Steps/view/step_screen.dart';
-import '../../workout/views/workout_screen.dart';
+import '../../water/view/water_screen.dart';
 import '../../workout/widgets/favorite_screen.dart';
 import '../widgets/custom_target_card.dart';
 
@@ -114,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                     CustomTargetCard(
                       title: "Water",
                       image: "assets/images/water.png",
-                      route: const WorkoutScreen(),
+                      route: const WaterScreen(),
                       context: context,
                       des: "Take 9800 steps per day",
                     ),
