@@ -17,7 +17,28 @@ class SleepCubit extends Cubit<SleepStates> {
   TimeOfDay? selectedSleepTime;
   TimeOfDay? selectedAlarmTime;
 
+  late int totalSleepHours;
+  String savedDate = '';
+  String todayDate = '';
+
   Future<void> initSleep() async {
+    todayDate = getFormattedDate(DateTime.now());
+    if(CachingHelper.instance?.readString('savedDateForSleep')==null ||
+    CachingHelper.instance?.readString('savedDateForSleep')== ''
+    ) {
+      CachingHelper.instance?.writeData('savedDateForSleep', todayDate);
+    }
+    savedDate = CachingHelper.instance?.readString('savedDateForSleep') ?? todayDate;
+    if(savedDate == todayDate) {
+      totalSleepHours = CachingHelper.instance?.readInteger('savedSleepHours') ?? 0;
+    }else{
+      totalSleepHours = 0;
+      CachingHelper.instance?.writeData('savedDateForWater', todayDate);
+    }
+    if(CachingHelper.instance?.readInteger('savedSleepQuality') == null){
+      CachingHelper.instance?.writeData('savedSleepQuality', 0);
+    }
+    sleepQuality = CachingHelper.instance?.readInteger('savedSleepQuality')??0;
     selectedSleepTime =
         stringToTimeOfDay(CachingHelper.instance?.readString('savedSleepTime'));
     selectedAlarmTime =
@@ -128,6 +149,10 @@ class SleepCubit extends Cubit<SleepStates> {
   List<FlSpot> durations = [];
   void addDuration()
   {
+    totalSleepHours += elapsedTime.inMinutes;
+    print(totalSleepHours);
+    print('totalSleepHours');
+    CachingHelper.instance?.writeData('savedSleepHours', totalSleepHours);
     int index = durations.length;
     double dur = elapsedTime.inHours.toDouble();
     //if(dur<0)dur = 0;
@@ -184,12 +209,15 @@ class SleepCubit extends Cubit<SleepStates> {
     if (timer != null) {
       timer!.cancel();  // Use null-aware operator
     }
-
       isTracking = false;
       CachingHelper.instance?.writeData("isTrackingSleep", false);
       addDuration();
       // You can also add logic here to calculate sleep quality based on _elapsedTime.
       sleepQuality = calculateSleepQuality(elapsedTime.inMinutes); // Example logic
+    CachingHelper.instance?.writeData('savedSleepQuality', sleepQuality);
     emit(SleepEndTrackingState());
+  }
+  String getFormattedDate(DateTime date) {
+    return '${date.year}-${date.month}-${date.day}';
   }
 }

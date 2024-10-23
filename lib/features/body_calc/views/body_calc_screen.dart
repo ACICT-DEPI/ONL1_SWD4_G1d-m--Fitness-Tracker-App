@@ -1,8 +1,6 @@
-import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/features/body_calc/cubit/body_calc_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../cubit/body_calc_cubit.dart';
 import '../widgets/calc_card.dart';
 import '../widgets/calc_list.dart';

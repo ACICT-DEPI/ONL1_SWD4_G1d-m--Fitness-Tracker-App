@@ -16,7 +16,7 @@ class StepsCubit extends Cubit<StepsStates> {
       'You reaches',
       'Channel for Steps Notifications',
       'Steps',
-      'You achieved your goal 9800 Steps for today👏',
+      'You achieved your goal 8000 Steps for today👏',
     ).then((val) {
       print("SUCCESS SEND");
     });

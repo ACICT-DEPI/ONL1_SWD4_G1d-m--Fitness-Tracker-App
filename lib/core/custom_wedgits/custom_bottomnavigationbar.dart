@@ -33,7 +33,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
       extendBody: true,
       bottomNavigationBar: SafeArea(
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+          margin: const EdgeInsets.symmetric(vertical: 0,horizontal: 0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
@@ -45,7 +45,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               ),
             ],
           ),
-          height: 70, 
+          height: 60,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(22),
             child: BottomNavigationBar(
@@ -70,8 +70,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                 },
                 items:const [
                   BottomNavigationBarItem(icon: Icon(Icons.home,),label: "home"),
-                  BottomNavigationBarItem(icon: Icon(Icons.calculate_outlined,),label: "home"),
-                  BottomNavigationBarItem(icon: Icon(Icons.person,),label: "home"),
+                  BottomNavigationBarItem(icon: Icon(Icons.calculate_outlined,),label: "body calc"),
+                  BottomNavigationBarItem(icon: Icon(Icons.person,),label: "profile"),
                 ]),
           ),
         ),

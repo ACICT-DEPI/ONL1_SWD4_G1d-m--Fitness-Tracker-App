@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/caching/caching_helper.dart';
 import 'auth_states.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -46,6 +47,9 @@ class AuthCubit extends Cubit<AuthState> {
       email = user?.email??"";
       userFound = true;
       print(name);
+      CachingHelper.instance?.writeData("firstTime", "yes");
+      CachingHelper.instance?.writeData("stepsCalories", 0);
+      CachingHelper.instance?.writeData("workoutCalories", 0);
       emit(AuthSuccess());
     } on FirebaseAuthException catch (e) {
       emit(AuthError(e.message ?? 'An unknown error occurred'));
@@ -77,6 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(e.message ?? 'An unknown error occurred'));
     }
   }
+
   // Future<void> addData({
   //   required String image,
   //   required String eq,
@@ -89,7 +94,7 @@ class AuthCubit extends Cubit<AuthState> {
   //     "equip": eq,
   //     "exName": exname
   //   };
-
+  //
   //   db.collection("uuser").doc(user?.uid).collection("fav").add(exercise);
   // }
  
@@ -197,7 +202,7 @@ Future<QuerySnapshot> checkIfExists({
       .where("exName", isEqualTo: exname)
       .where("index", isEqualTo: indexx)
       .get();
-     
+
 }
 
 
@@ -224,5 +229,24 @@ Future<QuerySnapshot> checkIfExists({
       // String token = await user.getIdToken();
     }
     return user;
+  }
+
+
+  ///profile part
+  late int steps;
+  late int water;
+  late int sleepHours;
+  late int sleepQuality;
+  late double stepsCalories;
+  late double workoutCalories;
+
+  void initProfile() {
+    steps = CachingHelper.instance?.readInteger("savedTodaySteps") ?? 0;
+    water = CachingHelper.instance?.readInteger('savedDrunkWater') ?? 0;
+    sleepHours = CachingHelper.instance?.readInteger('savedSleepHours') ?? 0;
+    sleepQuality = CachingHelper.instance?.readInteger('savedSleepQuality') ?? 0;
+    stepsCalories = CachingHelper.instance?.readDouble('stepsCalories') ?? 0;
+    workoutCalories = CachingHelper.instance?.readDouble('workoutCalories') ?? 0;
+    emit(ProfileLoading());
   }
 }

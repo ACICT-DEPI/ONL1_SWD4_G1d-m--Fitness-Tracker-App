@@ -23,115 +23,98 @@ class HomeScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.black,
         //Colorsapp.darkGrey,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    right: 15.0, left: 15, top: 60, bottom: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Text(
-                        //   "Home",
-                        //   style: TextStyle(
-                        //     color: Colorsapp.darkOrange,
-                        //     fontWeight: FontWeight.bold,
-                        //     fontSize: 34,
-                        //   ),
-                        // ),
-                        Text(
-                          "Hello, ${AuthCubit.get(context).name ?? ""}",
-                          style: TextStyle(
-                            color: Colorsapp.darkOrange,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 15.0, left: 15, top: 60, bottom: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Text(
+                      //   "Home",
+                      //   style: TextStyle(
+                      //     color: Colorsapp.darkOrange,
+                      //     fontWeight: FontWeight.bold,
+                      //     fontSize: 34,
+                      //   ),
+                      // ),
+                      Text(
+                        "Hello, ${AuthCubit.get(context).name ?? ""}",
+                        style: TextStyle(
+                          color: Colorsapp.darkOrange,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((BuildContext context) =>
-                                          FavoritesScreen())));
-                            },
-                            icon: Icon(
-                              Icons.favorite,
-                              size: 33,
-                              color: Colorsapp.darkOrange,
-                            )),
-                        GestureDetector(
-                            onTap: () {
-                              AuthCubit.get(context).signOut().then((value) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginScreen(),
-                                    ));
-                              });
-                            },
-                            child: Icon(
-                              Icons.exit_to_app,
-                              color: Colorsapp.liteGrey,
-                              size: 33,
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        AuthCubit.get(context).signOut().then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ));
+                        });
+                      },
+                      child: Icon(
+                        Icons.exit_to_app,
+                        color: Colorsapp.liteGrey,
+                        size: 30,
+                      )
+                  ),
+                ],
               ),
-              CustomWorkoutCard(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 1.5,
-                child: GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.1,
-                  children: [
-                    CustomTargetCard(
-                      title: "Nutrition",
-                      image: "assets/images/salad.png",
-                      route: NutritionScreen(),
-                      context: context,
-                      des: "Keep fit with healthy recipes",
-                    ),
-                    CustomTargetCard(
-                      title: "Steps",
-                      image: "assets/images/walk.png",
-                      route: StepsScreen(),
-                      context: context,
-                      des: "Take 9800 steps per day",
-                    ),
-                    CustomTargetCard(
-                      title: "Water",
-                      image: "assets/images/water.png",
-                      route: WaterScreen(),
-                      context: context,
-                      des: "Take 9800 steps per day",
-                    ),
-                    CustomTargetCard(
-                      title: "Sleep",
-                      image: "assets/images/sleep_blue.png",
-                      route: SleepScreen(),
-                      context: context,
-                      des: "Sleep 8 Hours per day",
-                    ),
-                    // CustomTargetCard(),
-                    // CustomTargetCard(),
-                    // CustomTargetCard(),
-                  ],
-                ),
+            ),
+            SizedBox(height: 30,),
+            CustomWorkoutCard(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 1.8,
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.1,
+                children: [
+                  CustomTargetCard(
+                    title: "Nutrition",
+                    image: "assets/images/salad.png",
+                    route: NutritionScreen(),
+                    context: context,
+                    des: "Keep fit with healthy recipes",
+                  ),
+                  CustomTargetCard(
+                    title: "Steps",
+                    image: "assets/images/walk.png",
+                    route: StepsScreen(),
+                    context: context,
+                    des: "Take 8000 steps per day",
+                  ),
+                  CustomTargetCard(
+                    title: "Water",
+                    image: "assets/images/water.png",
+                    route: WaterScreen(),
+                    context: context,
+                    des: "Drink 8 glasses of water per day",
+                  ),
+                  CustomTargetCard(
+                    title: "Sleep",
+                    image: "assets/images/sleep_blue.png",
+                    route: SleepScreen(),
+                    context: context,
+                    des: "Sleep 8 Hours per day",
+                  ),
+                  // CustomTargetCard(),
+                  // CustomTargetCard(),
+                  // CustomTargetCard(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -78,7 +78,8 @@ class _StepsScreenState extends State<StepsScreen> {
       _totalSteps = stepsSinceBoot;
       _todaySteps = _totalSteps - lastSavedSteps; // Calculate today's steps
       CachingHelper.instance?.writeData('savedTodaySteps', _todaySteps);
-      if (_todaySteps == 9800) {
+      CachingHelper.instance?.writeData('stepsCalories', (_todaySteps/20));
+      if (_todaySteps == 8000) {
         StepsCubit.get(context).sendNotification();
       }
       CachingHelper.instance?.writeData('savedTotalSteps', _totalSteps);
@@ -154,7 +155,7 @@ class _StepsScreenState extends State<StepsScreen> {
                 ),
                 StepsCircularIndicator(
                   steps: _todaySteps, // Replace with actual steps value
-                  stepGoal: 9800, // Replace with actual step goal value
+                  stepGoal: 8000, // Replace with actual step goal value
                 ),
                 SizedBox(
                   height: 50,

@@ -14,4 +14,6 @@ class AuthError extends AuthState {
   List<Object> get props => [message];
 }
 
+class ProfileLoading extends AuthState {}
+
 class AuthSignedOut extends AuthState {}

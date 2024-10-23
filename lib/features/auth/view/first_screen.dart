@@ -92,19 +92,20 @@ class _FirstScreenState extends State<FirstScreen> {
                 ),
               ],
             )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Permission not granted!',
-                  style: TextStyle(fontSize: 24, color: Colors.red),
-                ),
-                ElevatedButton(
-                  onPressed: requestPermissions,
-                  child: Text('Grant Permission'),
-                ),
-              ],
-            ),
+          : Container(),
+      // Column(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Text(
+      //             'Permission not granted!',
+      //             style: TextStyle(fontSize: 24, color: Colors.red),
+      //           ),
+      //           ElevatedButton(
+      //             onPressed: requestPermissions,
+      //             child: Text('Grant Permission'),
+      //           ),
+      //         ],
+      //       ),
     );
   }
 }

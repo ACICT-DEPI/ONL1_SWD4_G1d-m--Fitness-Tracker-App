@@ -24,7 +24,7 @@ class CustomTargetCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeCheck(route: route),
+                builder: (context) => route,
               ));
         },
         child: Padding(

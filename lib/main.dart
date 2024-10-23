@@ -75,23 +75,6 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: const SplashView(),
-          // home: StreamBuilder(
-          //     stream: FirebaseAuth.instance.authStateChanges(),
-          //     builder: (context, snapshot){
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return const Center(
-          //           child: CircularProgressIndicator(
-          //         color: Colors.white, 
-          //       ));
-          //     } else if (snapshot.hasError) {
-          //       return snackbarshare(context, "Something went wrong");
-          //     } else if (snapshot.hasData) {
-          //       // if (mounted) return;
-          //       return const FloatingNavBar(); // home() OR verify email
-          //     } else {
-          //       return  LoginScreen();
-          //     }
-          //     }),
         ));
   }
 }

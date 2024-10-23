@@ -25,6 +25,7 @@ class WaterCubit extends Cubit<WaterStates> {
     CachingHelper.instance?.readString('savedDateForWater')== ''
     ) {
       CachingHelper.instance?.writeData('savedDateForWater', todayDate);
+      //print(CachingHelper.instance?.readString('savedDateForWater'));
     }
     savedDate = CachingHelper.instance?.readString('savedDateForWater') ?? todayDate;
     if(savedDate == todayDate) {
@@ -43,6 +44,7 @@ class WaterCubit extends Cubit<WaterStates> {
     totalWater += 1;
     progress = totalWater / waterGoal;
     CachingHelper.instance?.writeData('savedDrunkWater', totalWater);
+    print(CachingHelper.instance?.readInteger('savedDrunkWater'));
     if(totalWater == 8){
       sendNotification();
     }

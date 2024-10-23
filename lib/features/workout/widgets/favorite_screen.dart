@@ -64,25 +64,22 @@ class FavoritesScreen extends StatelessWidget {
                 return InkWell(
                   onTap: () {
                     int indd = int.parse(ind);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              ChooseTraining(
-                                                trainInd: indd,
-                                                traincalory:
-                                                    allWorkoutTimeAndcalory[indd]
-                                                            [index]
-                                                        .tCalory,
-                                                // pushlist[index].tCalory,
-                                                trainTime:
-                                                    allWorkoutTimeAndcalory[indd]
-                                                            [index]
-                                                        .tTime,
-                                                ind: index,
-                                                pic: image,
-                                                isfavorite: true,
-                                              )));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => ChooseTraining(
+                                  trainInd: indd,
+                                  traincalory: allWorkoutTimeAndcalory[indd]
+                                          [index]
+                                      .tCalory,
+                                  // pushlist[index].tCalory,
+                                  trainTime: allWorkoutTimeAndcalory[indd]
+                                          [index]
+                                      .tTime,
+                                  ind: index,
+                                  pic: image,
+                                  isfavorite: true,
+                                )));
                   },
                   child: Card(
                     color: Colorsapp.darkOrange,
@@ -140,47 +137,49 @@ class FavoritesScreen extends StatelessWidget {
                             width: sizee.width / 8,
                           ),
                           IconButton(
-                              onPressed: () async{
-                                  // String image = state.workouts[index].gifUrl;
-                                  //   String eq = state.workouts[index].equipment;
-                                  //   String exname = state.workouts[index].bodyPart;
-                                  //   String indexx = widget.ind.toString();
+                              onPressed: () async {
+                                // String image = state.workouts[index].gifUrl;
+                                //   String eq = state.workouts[index].equipment;
+                                //   String exname = state.workouts[index].bodyPart;
+                                //   String indexx = widget.ind.toString();
 
-                                    // Check if the item already exists in Firestore
-                                    QuerySnapshot querySnapshot = await AuthCubit.get(context).checkIfExists(
-                                      image: image,
-                                      eq: equip,
-                                      exname: exName,
-                                      indexx: ind,
-                                    );
+                                // Check if the item already exists in Firestore
+                                QuerySnapshot querySnapshot =
+                                    await AuthCubit.get(context).checkIfExists(
+                                  image: image,
+                                  eq: equip,
+                                  exname: exName,
+                                  indexx: ind,
+                                );
 
-                                    bool isCurrentlyFavorite = querySnapshot.docs.isNotEmpty;
+                                bool isCurrentlyFavorite =
+                                    querySnapshot.docs.isNotEmpty;
 
-                                    if (!isCurrentlyFavorite) {
-                                      // Item doesn't exist, so add it
-                                      await AuthCubit.get(context).addData(
-                                          image: image,
-                                      eq: equip,
-                                      exname: exName,
-                                      indexx: ind,
-                                      );
-                                      print("Exercise added to favorites.");
-                                      // setState(() {
-                                      //   isFavoriteList[index] = true; // Set to true for this index
-                                      // });
-                                    } else {
-                                      // Item exists, so remove it
-                                      await AuthCubit.get(context).removeData(
-                                          image: image,
-                                      eq: equip,
-                                      exname: exName,
-                                      indexx: ind,
-                                      );
-                                      print("Exercise removed from favorites.");
-                                      // setState(() {
-                                      //   isFavoriteList[index] = false; // Set to false for this index
-                                      // });
-                                    }
+                                if (!isCurrentlyFavorite) {
+                                  // Item doesn't exist, so add it
+                                  await AuthCubit.get(context).addData(
+                                    image: image,
+                                    eq: equip,
+                                    exname: exName,
+                                    indexx: ind,
+                                  );
+                                  print("Exercise added to favorites.");
+                                  // setState(() {
+                                  //   isFavoriteList[index] = true; // Set to true for this index
+                                  // });
+                                } else {
+                                  // Item exists, so remove it
+                                  await AuthCubit.get(context).removeData(
+                                    image: image,
+                                    eq: equip,
+                                    exname: exName,
+                                    indexx: ind,
+                                  );
+                                  print("Exercise removed from favorites.");
+                                  // setState(() {
+                                  //   isFavoriteList[index] = false; // Set to false for this index
+                                  // });
+                                }
                               },
                               icon: const Icon(
                                 Icons.favorite,

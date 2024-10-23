@@ -1,11 +1,16 @@
 import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
 import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/profile/wedgits/profile_button.dart';
-import 'package:final_project/features/profile/wedgits/read_textfield.dart';
+import 'package:final_project/features/Auth/view/login_screen.dart';
+import 'package:final_project/features/Steps/view/step_screen.dart';
+import 'package:final_project/features/profile/wedgits/custom_Auth_button.dart';
+import 'package:final_project/features/profile/wedgits/progress_item.dart';
+import 'package:final_project/features/sleep/view/sleep_screen.dart';
+import 'package:final_project/features/water/view/water_screen.dart';
+import 'package:final_project/features/workout/views/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/utils/colors.dart';
-import '../wedgits/user_picture.dart';
+
+import '../../workout/widgets/favorite_screen.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -17,115 +22,99 @@ class ProfileView extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = AuthCubit.get(context);
+        cubit.initProfile();
         return Scaffold(
-          backgroundColor: Colorsapp.darkOrange,
-          body: Stack(
-            children: [
-              Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              'Profile',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => FavoritesScreen(),));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      width: double.infinity,
-                      height: size.height / 1.25,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40))),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width / 65),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 100,
-                            ),
-                            ReadTextField(
-                              fieldContent: cubit.name ?? '',
-                              hint: "Name",
-                            ),
-                            SizedBox(
-                              height: size.height / 30,
-                            ),
-                            ReadTextField(
-                              hint: "Email",
-                              fieldContent: cubit.email ?? '',
-                            ),
-                            // SizedBox(height: size.height/30,),
-                            Divider(
-                              indent: 15,
-                              thickness: 2,
-                              endIndent: 15,
-                              height: size.height / 13,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Notification",
-                                    style: TextStyle(fontSize: 22),
-                                  ),
-                                  SizedBox(
-                                    width: size.width / 1.8,
-                                  ),
-                                  const Icon(Icons.arrow_forward_ios)
-                                ],
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[400],
+                        //Color(0xff518d74),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Continue Your Workout', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),),
+                          SizedBox(height: 20,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    decoration: BoxDecoration(
+                                      //color: Colors.grey[300],
+                                      borderRadius: BorderRadius.all(Radius.circular(15))
+                                    ),
+                                  child: Image(image: AssetImage("assets/images/workout.jpeg"), width: 90,)),
+                              const Text(
+                                "Favorites Excercises",
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                               ),
-                            ),
-                            SizedBox(
-                              height: size.height / 30,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Favorites",
-                                    style: TextStyle(fontSize: 22),
-                                  ),
-                                  SizedBox(
-                                    width: size.width / 1.6,
-                                  ),
-                                  const Icon(Icons.arrow_forward_ios)
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: size.height / 10,
-                            ),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ProfileButton(
-                                    title: "Edit Profile",
-                                    ic: Icon(
-                                      Icons.edit_document,
-                                      color: Colors.white,
-                                    )),
-                                ProfileButton(
-                                  title: "Log Out",
-                                  bgcolor: Colors.white,
-                                  textcolor: Colors.red,
-                                  ic: Icon(
-                                    Icons.logout_rounded,
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              const Icon(Icons.play_circle_outline, size: 30,)
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  const UserPicture(),
-                ],
-              ),
-            ],
+                ),
+                ProgressItem(
+                  title: "Drink Water",
+                  subTitle: 'You drunk ${cubit.water} gl today 💧',
+                  percent: ((cubit.water / 8) * 100).toInt(),
+                  route: WaterScreen(),
+                ),
+                ProgressItem(
+                  title: "Steps Taken",
+                  subTitle: 'Yoy took ${cubit.steps} steps today 👣',
+                  percent: ((cubit.steps / 8000) * 100).toInt(),
+                  route: StepsScreen(),
+                ),
+                ProgressItem(
+                  title: "Sleep Quality",
+                  subTitle: 'you slept ${cubit.sleepHours} hours today 💤',
+                  percent: cubit.sleepQuality,
+                  route: SleepScreen(),
+                ),
+                ProgressItem(
+                  title: "Calories Burned",
+                  subTitle: 'you burned ${cubit.stepsCalories+ cubit.workoutCalories} hours today 🔥',
+                  percent: (cubit.stepsCalories+ cubit.workoutCalories).toInt(),
+                  route: WorkoutScreen(),
+                ),
+                LogOutButton(text: "Log out",
+                    onPressed: () {
+                  cubit.signOut().then((value){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                  });
+                }),
+              ],
+            ),
           ),
         );
       },
