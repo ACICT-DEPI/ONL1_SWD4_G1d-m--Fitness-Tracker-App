@@ -1,6 +1,6 @@
 import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/features/body_calc/views/body_calc_screen.dart';
-import 'package:final_project/features/profile/views/profile_view.dart';
+import 'package:final_project/features/profile/views/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/Home/view/home_screen.dart';
 
@@ -22,7 +22,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   List<Widget> pages = [
     const HomeScreen(),
     const BodyCalcScreen(),
-    const ProfileView(),
+    const ProfileScreen(),
   ];
   int mycurrentIndex = 0;
 

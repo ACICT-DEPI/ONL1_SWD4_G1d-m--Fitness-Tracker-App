@@ -16,17 +16,18 @@ class BodyCalcScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.black,
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            title: Text(
-              'Body Calculators',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50.0, left: 10),
+                      child: Text("Body Calculators", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),),
+                    ),
+                  ],
+                ),
                 CalcCard(
                       title: calc[0].title,
                       image: calc[0].image,
