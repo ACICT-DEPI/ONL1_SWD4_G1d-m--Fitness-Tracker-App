@@ -11,7 +11,7 @@ class UserPicture extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         margin: EdgeInsets.symmetric(vertical: sizee.height / 8),
         height: sizee.height / 7,
         width: sizee.width / 3.6,
