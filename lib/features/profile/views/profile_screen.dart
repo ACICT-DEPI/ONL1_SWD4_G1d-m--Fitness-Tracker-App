@@ -1,7 +1,7 @@
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:final_project/features/Steps/view/step_screen.dart';
+import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
+import 'package:final_project/features/authentication/cubit/auth_states.dart';
+import 'package:final_project/features/authentication/view/login_screen.dart';
 import 'package:final_project/features/profile/wedgits/custom_Auth_button.dart';
 import 'package:final_project/features/profile/wedgits/progress_item.dart';
 import 'package:final_project/features/sleep/view/sleep_screen.dart';

@@ -1,6 +1,4 @@
 import 'package:final_project/StreamBuilderWidget.dart';
-import 'package:final_project/core/utils/colors.dart';
-import 'package:final_project/features/Auth/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 

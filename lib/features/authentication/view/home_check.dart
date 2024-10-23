@@ -1,6 +1,6 @@
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/Auth/view/first_screen.dart';
+import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
+import 'package:final_project/features/authentication/cubit/auth_states.dart';
+import 'package:final_project/features/authentication/view/first_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

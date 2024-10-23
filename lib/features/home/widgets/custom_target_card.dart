@@ -1,4 +1,3 @@
-import 'package:final_project/features/Auth/view/home_check.dart';
 import 'package:flutter/material.dart';
 
 class CustomTargetCard extends StatelessWidget {
@@ -32,11 +31,6 @@ class CustomTargetCard extends StatelessWidget {
             child: Container(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
-                  // gradient: LinearGradient(colors: [
-                  //   Colorsapp.darkOrange,
-                  //   Colorsapp.midOrange,
-                  //   Colorsapp.liteOrange,
-                  // ]),
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),

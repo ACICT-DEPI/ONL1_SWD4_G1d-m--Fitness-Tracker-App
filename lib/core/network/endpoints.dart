@@ -1,6 +1,6 @@
 part of 'network.dart';
 
-String BASE_URL = "http://192.168.253.45:3000/";
+String BASE_URL = "http://192.168.1.7:3000/";
     //"https://keto-diet.p.rapidapi.com/";
 class EndPoints {
   //Lose weight end points

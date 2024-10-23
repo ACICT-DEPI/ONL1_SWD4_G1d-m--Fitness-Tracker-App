@@ -3,7 +3,7 @@ import 'package:final_project/core/utils/caloriesadtrtime.dart';
 import 'package:final_project/core/utils/colors.dart';
 import 'package:final_project/core/utils/share_snackbar.dart';
 import 'package:final_project/core/utils/workout_photo_main.dart';
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
+import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
 import 'package:final_project/features/workout/cubit/workout_cubit.dart';
 import 'package:final_project/features/workout/cubit/workout_states.dart';
 import 'package:flutter/material.dart';

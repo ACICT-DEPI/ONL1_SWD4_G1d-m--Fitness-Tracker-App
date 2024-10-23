@@ -1,13 +1,13 @@
 import 'package:final_project/core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'package:final_project/core/utils/colors.dart';
+import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
+import 'package:final_project/features/authentication/cubit/auth_states.dart';
+import 'package:final_project/features/authentication/widgets/custom_Auth_button.dart';
+import 'package:final_project/features/authentication/widgets/custom_auth_title.dart';
+import 'package:final_project/features/authentication/widgets/custom_background.dart';
+import 'package:final_project/features/authentication/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/auth_cubit.dart';
-import '../cubit/auth_states.dart';
-import '../widgets/custom_Auth_button.dart';
-import '../widgets/custom_auth_title.dart';
-import '../widgets/custom_background.dart';
-import '../widgets/custom_text_form_field.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {

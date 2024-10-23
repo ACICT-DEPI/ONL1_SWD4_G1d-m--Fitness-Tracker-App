@@ -1,4 +1,4 @@
-import 'package:final_project/features/Auth/view/sign_up_screen.dart';
+import 'package:final_project/features/authentication/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../widgets/custom_Auth_button.dart';

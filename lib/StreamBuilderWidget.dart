@@ -1,10 +1,10 @@
 import 'package:final_project/core/caching/caching_helper.dart';
 import 'package:final_project/core/custom_wedgits/custom_bottomnavigationbar.dart';
 import 'package:final_project/core/utils/share_snackbar.dart';
-import 'package:final_project/features/Auth/cubit/auth_cubit.dart';
-import 'package:final_project/features/Auth/cubit/auth_states.dart';
-import 'package:final_project/features/Auth/view/first_screen.dart';
-import 'package:final_project/features/Auth/view/login_screen.dart';
+import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
+import 'package:final_project/features/authentication/cubit/auth_states.dart';
+import 'package:final_project/features/authentication/view/first_screen.dart';
+import 'package:final_project/features/authentication/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
