@@ -9,7 +9,6 @@ import 'package:final_project/features/water/view/water_screen.dart';
 import 'package:final_project/features/workout/views/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../workout/widgets/favorite_screen.dart';
 
 class ProfileView extends StatelessWidget {

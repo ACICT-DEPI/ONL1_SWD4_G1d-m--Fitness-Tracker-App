@@ -48,16 +48,16 @@ class CategoryRecipesScreen extends StatelessWidget {
                               return RecipeScreen(recipe: cubit.recipes[index]);}));
                           },
                           child: Card(
-                            color: Colors.deepOrange[200],
+                            color: Colors.grey[900],
                             child: ListTile(
                               leading: Image.network(recipe.image??'',
                                   width: 50, height: 50, fit: BoxFit.cover),
-                              title: Text(recipe.recipe, style: TextStyle(color: Colors.white),),
+                              title: Text(recipe.recipe, style: TextStyle(color: Colors.deepOrange),),
                               subtitle: Text(
                                   'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}',
                                 style: TextStyle(color: Colors.white),
                               ),
-                              trailing: Text(recipe.difficulty??"", style: TextStyle(color: Colors.white),),
+                              trailing: Text(recipe.difficulty??"", style: TextStyle(color: Colors.deepOrange),),
                             ),
                           ),
                         );

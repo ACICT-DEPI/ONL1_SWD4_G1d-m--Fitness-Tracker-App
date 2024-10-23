@@ -22,7 +22,7 @@ class MealCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 1.2,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
-          color: Colors.orange[50],
+          color: Colors.grey[900],
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
         child: Padding(
@@ -45,7 +45,7 @@ class MealCard extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
                             title,
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.teal[300]),
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrange),
                           ),
                         ),
                       )
