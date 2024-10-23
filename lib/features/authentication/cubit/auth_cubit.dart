@@ -231,22 +231,4 @@ Future<QuerySnapshot> checkIfExists({
     return user;
   }
 
-
-  ///profile part
-  late int steps;
-  late int water;
-  late int sleepHours;
-  late int sleepQuality;
-  late double stepsCalories;
-  late double workoutCalories;
-
-  void initProfile() {
-    steps = CachingHelper.instance?.readInteger("savedTodaySteps") ?? 0;
-    water = CachingHelper.instance?.readInteger('savedDrunkWater') ?? 0;
-    sleepHours = CachingHelper.instance?.readInteger('savedSleepHours') ?? 0;
-    sleepQuality = CachingHelper.instance?.readInteger('savedSleepQuality') ?? 0;
-    stepsCalories = CachingHelper.instance?.readDouble('stepsCalories') ?? 0;
-    workoutCalories = CachingHelper.instance?.readDouble('workoutCalories') ?? 0;
-    emit(ProfileLoading());
-  }
 }

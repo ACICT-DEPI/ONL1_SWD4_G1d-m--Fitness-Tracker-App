@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/caching/caching_helper.dart';
 import 'core/notification/notification_service.dart';
 import 'core/utils/colors.dart';
+import 'features/profile/cubit/profile_cubit.dart';
 import 'features/splash/views/splash_view.dart';
 import 'features/water/cubit/water_cubit.dart';
 import 'firebase_options.dart';
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => AuthCubit()..getUserData(),
+          ),
+          BlocProvider(
+            create: (context) => ProfileCubit(),
           ),
           BlocProvider(
             create: (context) => WorkoutCubit(),

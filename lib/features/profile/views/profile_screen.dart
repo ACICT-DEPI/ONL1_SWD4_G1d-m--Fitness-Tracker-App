@@ -1,7 +1,8 @@
 import 'package:final_project/features/Steps/view/step_screen.dart';
 import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
-import 'package:final_project/features/authentication/cubit/auth_states.dart';
 import 'package:final_project/features/authentication/view/login_screen.dart';
+import 'package:final_project/features/profile/cubit/profile_cubit.dart';
+import 'package:final_project/features/profile/cubit/profile_states.dart';
 import 'package:final_project/features/profile/wedgits/custom_Auth_button.dart';
 import 'package:final_project/features/profile/wedgits/progress_item.dart';
 import 'package:final_project/features/sleep/view/sleep_screen.dart';
@@ -11,17 +12,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../workout/widgets/favorite_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    ProfileCubit.get(context).initProfile();
+  }
+  @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<ProfileCubit, ProfileStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = AuthCubit.get(context);
-        cubit.initProfile();
+        var cubit = ProfileCubit.get(context);
         return Scaffold(
           backgroundColor: Colors.black,
           body: Padding(
@@ -109,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 LogOutButton(text: "Log out",
                     onPressed: () {
-                  cubit.signOut().then((value){
+                  AuthCubit.get(context).signOut().then((value){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
                   });
                 }),
