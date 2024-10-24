@@ -30,9 +30,9 @@ class RecipeScreen extends StatelessWidget {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
+            title: const Text(
               'Recipe Details',
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white),
             ),
             leading: InkWell(
                 onTap: () {
@@ -65,8 +65,8 @@ class RecipeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 15),
-                  Container(
+                  const SizedBox(height: 15),
+                  SizedBox(
                     height: 250,
                     width: double.infinity,
                     child: Image.network(
@@ -85,7 +85,7 @@ class RecipeScreen extends StatelessWidget {
                     ),
                   ),
                   IngredientsList(recipe: recipe),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                       'Instructions:',
                       style: TextStyle(

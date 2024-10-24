@@ -18,12 +18,12 @@ class HomeCheck extends StatelessWidget {
             future: AuthCubit.get(context).checkUser(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator(); // Show loading indicator while checking
+                return const CircularProgressIndicator(); // Show loading indicator while checking
               } else if (snapshot.hasData && snapshot.data != null
               && AuthCubit.get(context).userFound) {
                 return route; // User is logged in, navigate to Home
               } else {
-                return FirstScreen(); // User is not logged in, show Login
+                return const FirstScreen(); // User is not logged in, show Login
               }
             },
           );

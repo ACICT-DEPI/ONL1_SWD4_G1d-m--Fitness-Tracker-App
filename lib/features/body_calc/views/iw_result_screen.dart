@@ -8,6 +8,8 @@ import '../widgets/calculate_button.dart';
 import '../widgets/reusable_card.dart';
 
 class IwResultsPage extends StatelessWidget {
+  const IwResultsPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,9 @@ class IwResultsPage extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('IBW CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('IBW CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,7 +31,7 @@ class IwResultsPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
@@ -49,9 +51,9 @@ class IwResultsPage extends StatelessWidget {
                     style: kResultsTextStyle,
                   ),
                   Text("${cubit.minWeight} : ${cubit.maxWeight}",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: const TextStyle(fontSize: 40, color: Colors.white),
                   ),
-                  Text("This your ideal Body weight range in kg",
+                  const Text("This your ideal Body weight range in kg",
                     style: kResultsBodyTextStyle,),
                 ],
               ),

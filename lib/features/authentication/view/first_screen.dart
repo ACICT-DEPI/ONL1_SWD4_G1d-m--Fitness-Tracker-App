@@ -51,8 +51,8 @@ class _FirstScreenState extends State<FirstScreen> {
       _isPermissionGranted ?
       Stack(
               children: [
-                FitnessBackground(),
-                Container(
+                const FitnessBackground(),
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: Column(
@@ -67,8 +67,8 @@ class _FirstScreenState extends State<FirstScreen> {
                                   builder: (context) => SignUpScreen(),
                                 ));
                           }),
-                      SizedBox(height: 10),
-                      Text(
+                      const SizedBox(height: 10),
+                      const Text(
                         "or",
                       ),
                       TextButton(
@@ -79,14 +79,14 @@ class _FirstScreenState extends State<FirstScreen> {
                                 builder: (context) => LoginScreen(),
                               ));
                         },
-                        child: Text("Log in",
+                        child: const Text("Log in",
                             style: TextStyle(
                                 fontSize: 18,
                                 decoration: TextDecoration.underline,
                                 decorationColor: Colors.white,
                                 color: Colors.white)),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),

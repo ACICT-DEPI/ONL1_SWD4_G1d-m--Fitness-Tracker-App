@@ -12,10 +12,11 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
   String selectedGender = "male";
 
   String changeGender() {
-    if (isMale)
+    if (isMale) {
       return selectedGender = "male";
-    else
+    } else {
       return selectedGender = "female";
+    }
   }
 
   ///********************BMI*******************************
@@ -29,18 +30,18 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
   }
 
   String getResult() {
-    if (bmi >= 25)
+    if (bmi >= 25) {
       return "Overweight";
-    else if (bmi > 18.5)
+    } else if (bmi > 18.5)
       return "Normal";
     else
       return "Underweight";
   }
 
   String getInterpretation() {
-    if (bmi >= 25)
+    if (bmi >= 25) {
       return "Your body weight is currently higher than the recommended weight. Consider some small changes such as taking the stairs over the elevator.";
-    else if (bmi > 18.5)
+    } else if (bmi > 18.5)
       return "Your body weight is exactly where it should be, keep on keeping on!";
     else
       return "Your body weight is a bit lower than the recommended weight, treat yourself to your favorite food or try lifting weights to gain muscle mass.";
@@ -51,19 +52,20 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
   String calculateBFP() {
     // gender: 1 for male, 0 for female
     int gender;
-    if (isMale)
+    if (isMale) {
       gender = 1;
-    else
+    } else {
       gender = 0;
+    }
     bfp = (1.20 * bmi) + (0.23 * age) - (10.8 * gender) - 5.4;
     return bfp.toStringAsFixed(1);
   }
 
   String getResultBf() {
     if (isMale) {
-      if (bfp <= 5)
+      if (bfp <= 5) {
         return "Essential";
-      else if (bfp <= 13)
+      } else if (bfp <= 13)
         return "Athletes";
       else if (bfp <= 17)
         return "Fitness";
@@ -72,9 +74,9 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
       else
         return "Obese";
     } else {
-      if (bfp <= 13)
+      if (bfp <= 13) {
         return "Essential";
-      else if (bfp <= 20)
+      } else if (bfp <= 20)
         return "Athletes";
       else if (bfp <= 24)
         return "Fitness";
@@ -87,9 +89,9 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
 
   String getInterpretationBf() {
     if (isMale) {
-      if (bfp <= 5)
+      if (bfp <= 5) {
         return "This is the minimum amount of fat required for normal physiological functioning.";
-      else if (bfp <= 13)
+      } else if (bfp <= 13)
         return "Men in this range are generally very lean, and this is typical for athletes or those with highly active lifestyles.";
       else if (bfp <= 17)
         return "Healthy range for individuals with good physical fitness. This range is common for recreationally active people.";
@@ -98,9 +100,9 @@ class BodyCalcCubit extends Cubit<BodyCalcStates> {
       else
         return "A BFP of 25% or higher is considered obese and can indicate increased health risks like cardiovascular disease, type 2 diabetes, and hypertension.";
     } else {
-      if (bfp <= 13)
+      if (bfp <= 13) {
         return "Women need a higher amount of essential fat for reproductive health and other physiological functions.";
-      else if (bfp <= 20)
+      } else if (bfp <= 20)
         return "Typical for highly active women or athletes with very lean body compositions.";
       else if (bfp <= 24)
         return "A healthy range for individuals who engage in regular exercise and maintain good fitness levels.";

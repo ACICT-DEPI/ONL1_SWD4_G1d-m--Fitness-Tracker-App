@@ -29,8 +29,8 @@ class NetworkHelper {
 
   Future<Response> get({
     required String endPoint,
-    // required String host,
-    // required String apiKey,
+     //required String host,
+     //required String apiKey,
     Map<String, dynamic>? params,
     bool withToken = true,
   }) async {
@@ -40,7 +40,7 @@ class NetworkHelper {
           // "Host": "localhost:3000",
           // "User-agent": "curl/8.9.0"
           // "x-rapidapi-host": host,
-          // "x-rapidapi-key": apiKey,
+           //"x-rapidapi-key": apiKey,
         }),
         queryParameters: params,
         //options: await _configureOptions(withToken)

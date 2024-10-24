@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/utils/constant_var.dart';
 
 class BmrResultScreen extends StatelessWidget {
+  const BmrResultScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,9 @@ class BmrResultScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('BMR CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('BMR CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,7 +31,7 @@ class BmrResultScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
@@ -53,7 +55,7 @@ class BmrResultScreen extends StatelessWidget {
                     cubit.calculateBMR().toString(),
                     style: kBMITextStyle,
                   ),
-                  Text(
+                  const Text(
                     "This is the number of calories your body needs to maintain basic physiological functions while at rest.",
                     textAlign: TextAlign.center,
                     style: kResultsBodyTextStyle,

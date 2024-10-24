@@ -14,6 +14,7 @@ class ChooseTraining extends StatefulWidget {
   String pic;
   int ind;
   int trainInd;
+  double cal;
    ChooseTraining({
     super.key,
     required this.pic,
@@ -22,6 +23,7 @@ class ChooseTraining extends StatefulWidget {
     required this.traincalory,
     required this.trainInd,
     required this.isfavorite,
+    required this.cal,
   });
 
   @override
@@ -50,7 +52,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
       backgroundColor: Colorsapp.secondarycolor,
       // appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -194,6 +196,7 @@ class _ChooseTrainingState extends State<ChooseTraining> {
                     builder: (BuildContext context) => LoadingBar(
                           trainTime: widget.trainTime,
                           pic: widget.pic,
+                      cal: widget.cal,
                         )));
           },
           child: Container(

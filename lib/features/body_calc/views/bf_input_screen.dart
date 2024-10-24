@@ -12,6 +12,8 @@ import '../widgets/round_icon_button.dart';
 import 'bf_result_screen.dart';
 
 class BfInputScreen extends StatefulWidget {
+  const BfInputScreen({super.key});
+
   @override
   _BfInputScreenState createState() => _BfInputScreenState();
 }
@@ -27,7 +29,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
+            title: const Text(
               'BFP CALCULATOR',
               style: TextStyle(color: Colors.white),
             ),
@@ -35,7 +37,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   FontAwesomeIcons.arrowLeft,
                   color: Colors.white,
                 )),
@@ -58,7 +60,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                         colour: cubit.isMale
                             ? kChosenGenderColor
                             : kReusableCardColor,
-                        cardChild: GenderCardContent(
+                        cardChild: const GenderCardContent(
                             icon: FontAwesomeIcons.mars, label: 'MALE'),
                       ),
                     ),
@@ -73,7 +75,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                         colour: cubit.isMale
                             ? kReusableCardColor
                             : kChosenGenderColor,
-                        cardChild: GenderCardContent(
+                        cardChild: const GenderCardContent(
                             icon: FontAwesomeIcons.venus, label: 'FEMALE'),
                       ),
                     ),
@@ -87,7 +89,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'BMI',
                         style: kLabelTextStyle,
                       ),
@@ -107,13 +109,13 @@ class _BfInputScreenState extends State<BfInputScreen> {
                         data: SliderTheme.of(context).copyWith(
                           // use context and get theme of nearest slider to modify
                           thumbShape:
-                              RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                              const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                           overlayShape:
-                              RoundSliderOverlayShape(overlayRadius: 30.0),
+                              const RoundSliderOverlayShape(overlayRadius: 30.0),
                           thumbColor: Colors.deepOrange[500],
                           activeTrackColor: Colors.white,
                           overlayColor: Colorsapp.liteOrange.withOpacity(0.2),
-                          inactiveTrackColor: Color(0xFF8D8E98),
+                          inactiveTrackColor: const Color(0xFF8D8E98),
                         ),
                         child: Slider(
                           value: double.parse(cubit
@@ -142,7 +144,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'AGE',
                         style: kLabelTextStyle,
                       ),
@@ -157,20 +159,22 @@ class _BfInputScreenState extends State<BfInputScreen> {
                             icon: FontAwesomeIcons.minus,
                             onPressed: () {
                               setState(() {
-                                if (cubit.age > 1)
+                                if (cubit.age > 1) {
                                   cubit.age--;
+                                }
                               });
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           RoundIconButton(
                             icon: FontAwesomeIcons.plus,
                             onPressed: () {
                               setState(() {
-                                if (cubit.age < 120)
+                                if (cubit.age < 120) {
                                   cubit.age++;
+                                }
                               });
                             },
                           ),
@@ -187,7 +191,7 @@ class _BfInputScreenState extends State<BfInputScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BfResultScreen(),
+                        builder: (context) => const BfResultScreen(),
                       ));
                 },
               ),

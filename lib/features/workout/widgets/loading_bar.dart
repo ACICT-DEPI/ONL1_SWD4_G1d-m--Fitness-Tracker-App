@@ -7,7 +7,8 @@ import 'custom_progresstrain.dart';
 class LoadingBar extends StatefulWidget {
   final String pic;
   final int trainTime;
-  const LoadingBar({super.key, required this.pic,required this.trainTime});
+  final double cal;
+  const LoadingBar({super.key, required this.pic,required this.trainTime, required this.cal});
 
   @override
   State<LoadingBar> createState() => _LoadingBarState();
@@ -39,6 +40,7 @@ class _LoadingBarState extends State<LoadingBar> {
                 builder: (BuildContext context) => CustomProgresstrain(
                     trainTime:widget.trainTime,
                       pic: widget.pic,
+                  cal: widget.cal,
                     )));
       }
     });

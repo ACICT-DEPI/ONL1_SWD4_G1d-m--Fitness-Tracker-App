@@ -103,7 +103,7 @@ class FitnessList extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: sizee.width / 2,
                                       child: Text(
                                         allWorkoutPhoto[index].descrip,
@@ -207,7 +207,7 @@ class FitnessList extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: sizee.width / 2,
                                       child: Text(
                                         allWorkoutPhoto[index].descrip,

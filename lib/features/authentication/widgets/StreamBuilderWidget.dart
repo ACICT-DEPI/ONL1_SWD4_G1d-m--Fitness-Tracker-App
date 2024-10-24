@@ -33,7 +33,7 @@ class StreamBuilderWidget extends StatelessWidget {
             return const FloatingNavBar(); // home() OR verify email
           } else {
             bool start = CachingHelper.instance?.readString("firstTime") == "";
-               return start?FirstScreen():
+               return start?const FirstScreen():
               LoginScreen();
           }
         });

@@ -25,15 +25,15 @@ class CalcCard extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 5,
               width: MediaQuery.of(context).size.width / 1,
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(0)),
               ),
               child: Image(image: AssetImage(image), fit: BoxFit.fill,),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             Text(title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepOrange[400]),),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 1,
             ),

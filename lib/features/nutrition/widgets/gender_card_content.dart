@@ -3,7 +3,7 @@ import '../../../core/utils/constant_var.dart';
 
 class GenderCardContent extends StatelessWidget {
 
-  GenderCardContent({required this.icon, required this.label});
+  const GenderCardContent({super.key, required this.icon, required this.label});
 
   final IconData icon;
   final String label;
@@ -18,7 +18,7 @@ class GenderCardContent extends StatelessWidget {
           size: 80.0,
           color: Colors.white,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15.0,
         ),
         Text(

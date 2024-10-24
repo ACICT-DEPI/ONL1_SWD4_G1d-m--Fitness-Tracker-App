@@ -35,25 +35,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return Scaffold(
           backgroundColor: Colors.black,
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               children: [
-                Row(
+                const Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 50.0, left: 10),
+                      padding: EdgeInsets.only(top: 50.0, left: 10),
                       child: Text("Profile", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),),
                     ),
                   ],
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => FavoritesScreen(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritesScreen(),));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         color: Colors.grey[400],
                         //Color(0xff518d74),
@@ -69,18 +69,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Continue Your Workout', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),),
-                          SizedBox(height: 20,),
+                          const Text('Continue Your Workout', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),),
+                          const SizedBox(height: 20,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       //color: Colors.grey[300],
                                       borderRadius: BorderRadius.all(Radius.circular(15))
                                     ),
-                                  child: Image(image: AssetImage("assets/images/workout.jpeg"), width: 90,)),
+                                  child: const Image(image: AssetImage("assets/images/workout.jpeg"), width: 90,)),
                               const Text(
                                 "Favorites Excercises",
                                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
@@ -97,25 +97,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: "Drink Water",
                   subTitle: 'You drunk ${cubit.water} gl today 💧',
                   percent: ((cubit.water / 8) * 100).toInt(),
-                  route: WaterScreen(),
+                  route: const WaterScreen(),
                 ),
                 ProgressItem(
                   title: "Steps Taken",
                   subTitle: 'Yoy took ${cubit.steps} steps today 👣',
                   percent: ((cubit.steps / 8000) * 100).toInt(),
-                  route: StepsScreen(),
+                  route: const StepsScreen(),
                 ),
                 ProgressItem(
                   title: "Sleep Quality",
                   subTitle: 'you slept ${cubit.sleepHours} hours today 💤',
                   percent: cubit.sleepQuality,
-                  route: SleepScreen(),
+                  route: const SleepScreen(),
                 ),
                 ProgressItem(
                   title: "Calories Burned",
-                  subTitle: 'you burned ${cubit.stepsCalories+ cubit.workoutCalories} hours today 🔥',
-                  percent: (cubit.stepsCalories+ cubit.workoutCalories).toInt(),
-                  route: WorkoutScreen(),
+                  subTitle: 'you burned ${cubit.calories} Cal today 🔥',
+                  percent: cubit.totalCalories.toInt(),
+                  route: const WorkoutScreen(),
                 ),
                 LogOutButton(text: "Log out",
                     onPressed: () {

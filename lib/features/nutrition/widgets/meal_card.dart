@@ -16,14 +16,14 @@ class MealCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Container(
         height: MediaQuery.of(context).size.height / 5,
         width: MediaQuery.of(context).size.width / 1.2,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           color: Colors.grey[900],
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderRadius: const BorderRadius.all(Radius.circular(25)),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -45,7 +45,7 @@ class MealCard extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
                             title,
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrange),
+                            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrange),
                           ),
                         ),
                       )

@@ -8,6 +8,8 @@ import '../widgets/calculate_button.dart';
 import '../widgets/reusable_card.dart';
 
 class BmiResultScreen extends StatelessWidget {
+  const BmiResultScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class BmiResultScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('BMI CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('BMI CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,7 +34,7 @@ class BmiResultScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',

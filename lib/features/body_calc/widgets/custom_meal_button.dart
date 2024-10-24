@@ -1,6 +1,4 @@
-import 'package:final_project/core/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomMealButton extends StatelessWidget {
   const CustomMealButton(
@@ -21,14 +19,14 @@ class CustomMealButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "recipes",
-                style: const TextStyle(color: Colors.white, fontSize: 14),
+                style: TextStyle(color: Colors.white, fontSize: 14),
               ),
               Icon(Icons.arrow_forward, color: Colors.white,)
             ],

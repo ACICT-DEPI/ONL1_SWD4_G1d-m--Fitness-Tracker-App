@@ -1,6 +1,5 @@
 import 'package:final_project/features/sleep/cubit/sleep_cubit.dart';
 import 'package:final_project/features/sleep/cubit/sleep_states.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,7 +41,7 @@ class _SleepScreenState extends State<SleepScreen> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
+            title: const Text(
               'Sleep Tracker',
               style: TextStyle(color: Colors.white),
             ),
@@ -50,7 +49,7 @@ class _SleepScreenState extends State<SleepScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   FontAwesomeIcons.arrowLeft,
                   color: Colors.white,
                 )),
@@ -78,6 +77,7 @@ class _SleepScreenState extends State<SleepScreen> {
                             cubit.selectedSleepTime = pickedTime;
                             CachingHelper.instance?.writeData(
                                 'savedSleepTime', pickedTime.toString());
+                            cubit.setSleep();
                             print(CachingHelper.instance
                                 ?.readString('savedSleepTime'));
                           });
@@ -192,7 +192,7 @@ class _SleepScreenState extends State<SleepScreen> {
                           sleepStat('${cubit.elapsedTime.inMinutes} Min',
                               'Duration'),
                           sleepStat(
-                              '${(cubit.totalSleepHours / 60).toInt()} hours',
+                              '${cubit.totalSleepHours ~/ 60} hours',
                               'Sleep Hours'),
                           sleepStat('${cubit.sleepQuality}%', 'Quality'),
                         ],

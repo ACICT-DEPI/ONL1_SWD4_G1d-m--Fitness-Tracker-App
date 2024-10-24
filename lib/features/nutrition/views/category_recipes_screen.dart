@@ -52,12 +52,12 @@ class CategoryRecipesScreen extends StatelessWidget {
                             child: ListTile(
                               leading: Image.network(recipe.image??'',
                                   width: 50, height: 50, fit: BoxFit.cover),
-                              title: Text(recipe.recipe, style: TextStyle(color: Colors.deepOrange),),
+                              title: Text(recipe.recipe, style: const TextStyle(color: Colors.deepOrange),),
                               subtitle: Text(
                                   'Calories: ${recipe.calories} kcal\nServing: ${recipe.serving}',
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
-                              trailing: Text(recipe.difficulty??"", style: TextStyle(color: Colors.deepOrange),),
+                              trailing: Text(recipe.difficulty??"", style: const TextStyle(color: Colors.deepOrange),),
                             ),
                           ),
                         );

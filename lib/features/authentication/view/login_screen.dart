@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            FitnessBackground(),
+            const FitnessBackground(),
             Center(
               child: Column(
                 children: [
@@ -140,7 +140,7 @@ class LoginScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            FitnessBackground(),
+            const FitnessBackground(),
             Center(
               child: Column(
                 children: [

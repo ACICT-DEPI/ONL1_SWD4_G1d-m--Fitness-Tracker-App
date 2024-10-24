@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/caching/caching_helper.dart';
 
 class WaterScreen extends StatefulWidget {
+  const WaterScreen({super.key});
+
   @override
   _WaterScreenState createState() => _WaterScreenState();
 }
@@ -27,7 +29,7 @@ class _WaterScreenState extends State<WaterScreen> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
+            title: const Text(
               'Water Tracker',
               style: TextStyle(color: Colors.white),
             ),
@@ -35,7 +37,7 @@ class _WaterScreenState extends State<WaterScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   FontAwesomeIcons.arrowLeft,
                   color: Colors.white,
                 )),
@@ -54,20 +56,20 @@ class _WaterScreenState extends State<WaterScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Current water intake display
                   Container(
                     width: MediaQuery.of(context).size.width / 1,
                     decoration: BoxDecoration(
                       color: Colors.blue[50],
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Set reminder to drink water',
                             style: TextStyle(
                                 fontSize: 20,
@@ -82,12 +84,12 @@ class _WaterScreenState extends State<WaterScreen> {
                                     cubit.selectedReminderTime != null
                                       ? cubit.selectedReminderTime!.format(context)
                                       : "No Reminder",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.blue),
                                   ),
-                                  Text('1gl water', style: TextStyle(fontSize: 16, color: Colors.grey),),
-                                  SizedBox(height: 20,),
+                                  const Text('1gl water', style: TextStyle(fontSize: 16, color: Colors.grey),),
+                                  const SizedBox(height: 20,),
                                   GestureDetector(
                                 onTap: () async {
                                     final TimeOfDay? picked = await showTimePicker(
@@ -107,11 +109,11 @@ class _WaterScreenState extends State<WaterScreen> {
                                 child: Container(
                                   width: MediaQuery.of(context).size.width / 3,
                                   height: MediaQuery.of(context).size.height / 18,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                         color: Colors.blue,
                                         borderRadius: BorderRadius.all(Radius.circular(20))
                                       ),
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       'Add reminder',
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
@@ -121,7 +123,7 @@ class _WaterScreenState extends State<WaterScreen> {
                               ),
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Icon(FontAwesomeIcons.glassWaterDroplet, color: Colors.blue.shade200, size: 100,),
                             ],
                           ),
@@ -129,7 +131,7 @@ class _WaterScreenState extends State<WaterScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Circular progress indicator for daily water goal
                   Center(
                     child: Stack(
@@ -144,34 +146,34 @@ class _WaterScreenState extends State<WaterScreen> {
                             //color: Colors.white,
                             backgroundColor: Colors.blue.shade100,
                             valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.blue),
+                                const AlwaysStoppedAnimation<Color>(Colors.blue),
                           ),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.water_drop,
                               size: 70,
                               color: Colors.white,
                             ),
                             Text(
                               '${cubit.totalWater.toInt()}gl',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
                             Text(
                               'of ${cubit.waterGoal.toInt()} glasses',
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   // Add water button
                   Center(
                     child: SizedBox(
@@ -180,7 +182,13 @@ class _WaterScreenState extends State<WaterScreen> {
                         onPressed: () {
                           cubit.addWater(200); // adds 200ml
                         },
-                        child: Row(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 0, vertical: 25),
+                          textStyle: const TextStyle(fontSize: 18),
+                        ),
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
@@ -196,21 +204,15 @@ class _WaterScreenState extends State<WaterScreen> {
                             ),
                           ],
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 0, vertical: 25),
-                          textStyle: TextStyle(fontSize: 18),
-                        ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Daily goal status
                   Center(
                     child: Text(
                       'You got ${((cubit.totalWater / cubit.waterGoal) * 100).toInt()}% of today\'s goal. Keep it up!',
-                      style: TextStyle(fontSize: 16, color: Colors.blue),
+                      style: const TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ),
                 ],

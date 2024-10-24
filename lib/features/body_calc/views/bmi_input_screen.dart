@@ -13,6 +13,8 @@ import '../widgets/round_icon_button.dart';
 
 
 class BmiInputScreen extends StatefulWidget {
+  const BmiInputScreen({super.key});
+
   @override
   _BmiInputScreenState createState() => _BmiInputScreenState();
 }
@@ -29,9 +31,9 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
         backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('BMI CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('BMI CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +50,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kChosenGenderColor : kReusableCardColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE'
                     ),
@@ -63,7 +65,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kReusableCardColor : kChosenGenderColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE'
                     ),
@@ -78,7 +80,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                   ),
@@ -95,12 +97,12 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith( // use context and get theme of nearest slider to modify
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
                       thumbColor: Colors.deepOrange[500],
                       activeTrackColor: Colors.white,
                       overlayColor: Colorsapp.liteOrange.withOpacity(0.2),
-                      inactiveTrackColor: Color(0xFF8D8E98),
+                      inactiveTrackColor: const Color(0xFF8D8E98),
                     ),
                     child: Slider(
                       value: cubit.height.toDouble(),
@@ -126,7 +128,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'WEIGHT',
                           style: kLabelTextStyle,
                         ),
@@ -141,20 +143,22 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                               icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.weight > 1)
+                                  if (cubit.weight > 1) {
                                     cubit.weight--;
+                                  }
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.weight < 1000)
+                                  if (cubit.weight < 1000) {
                                     cubit.weight++;
+                                  }
                                 });
                               },
                             ),
@@ -170,7 +174,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'AGE',
                           style: kLabelTextStyle,
                         ),
@@ -185,20 +189,22 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
                               icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.age > 1)
+                                  if (cubit.age > 1) {
                                     cubit.age--;
+                                  }
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.age < 120)
+                                  if (cubit.age < 120) {
                                     cubit.age++;
+                                  }
                                 });
                               },
                             ),
@@ -219,7 +225,7 @@ class _BmiInputScreenState extends State<BmiInputScreen> {
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BmiResultScreen(),)
+                MaterialPageRoute(builder: (context) => const BmiResultScreen(),)
               );
             },
           ),

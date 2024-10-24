@@ -42,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            FitnessBackground(),
+            const FitnessBackground(),
             Center(
               child: Column(
                 children: [
@@ -50,7 +50,7 @@ class SignUpScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width * .8,
                     height: MediaQuery.of(context).size.height * .7,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
@@ -175,7 +175,7 @@ class SignUpScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            FitnessBackground(),
+            const FitnessBackground(),
             Center(
               child: Column(
                 children: [
@@ -183,7 +183,7 @@ class SignUpScreen extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width * .8,
                     height: MediaQuery.of(context).size.height * .7,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),

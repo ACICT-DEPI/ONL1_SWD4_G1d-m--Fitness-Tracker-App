@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/core/utils/colors.dart';
-import 'package:final_project/features/Workout/widgets/input_textfield.dart';
+import 'package:final_project/features/workout/widgets/input_textfield.dart';
 import 'package:final_project/features/authentication/cubit/auth_cubit.dart';
-import 'package:final_project/features/authentication/cubit/auth_states.dart';
+import 'package:final_project/features/workout/cubit/workout_cubit.dart';
+import 'package:final_project/features/workout/cubit/workout_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,31 +24,36 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
   DateTime selecteddDay = DateTime.now();
   TextEditingController eventcontroller = TextEditingController();
   String currentTime = DateFormat("hh:mm a").format(DateTime.now()).toString();
-  String schudualTime = "02:00 PM";
+  String schudualTime = DateFormat("hh:mm a").format(DateTime.now()).toString();
  
-
+@override
+  void initState() {
+    super.initState();
+    WorkoutCubit.get(context).initWorkout();
+  }
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<WorkoutCubit, WorkoutState>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = WorkoutCubit.get(context);
           return Scaffold(
             extendBody: true,
             backgroundColor: Colors.black,
             appBar: AppBar(
               centerTitle: true,
-              title: const Text("Training Schudual"),
+              title: const Text("Training Schedule"),
               backgroundColor: Colors.black,
               foregroundColor: Colorsapp.darkOrange,
             ),
             body: SingleChildScrollView(
               child: Column(
-                children: [addcalenderBody()],
+                children: [addCalenderBody()],
               ),
             ),
             floatingActionButton: FloatingActionButton.extended(
               icon: const Icon(Icons.add),
-              label: const Text("Add Exersice"),
+              label: const Text("Add Exercise"),
               onPressed: () {
                 showDialog(
                     context: context,
@@ -79,11 +85,18 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
                           actions: [
                             TextButton(
                                 onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cancel")),
+                            TextButton(
+                                onPressed: () async{
                                   AuthCubit.get(context).addTrain(
                                       focusDay: focuseddDay.day.toString(),
                                       title: eventcontroller.text,
                                       schudualTime: schudualTime,
-                                      currentTime: currentTime);
+                                      currentTime: currentTime).then((v)async{
+                                        cubit.setAlarm();
+                                  });
                                   // if (eventcontroller.text.isEmpty) {
                                   // } else {
                                   //   if (selectedEvents[selecteddDay] != null) {
@@ -106,11 +119,6 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
                                   return;
                                 },
                                 child: const Text("Ok")),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Cancel")),
                           ],
                         ),
                       );
@@ -144,6 +152,7 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
       if (isStartTime == true) {
         setState(() {
           schudualTime = formatedTime;
+          WorkoutCubit.get(context).selectedAlarmTime = pickedTime;
         });
       } else {
         setState(() {
@@ -153,7 +162,7 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
     }
   }
 
-  addcalenderBody() {
+  addCalenderBody() {
     User? user = FirebaseAuth.instance.currentUser;
 
     // Reference to the user's 'fav' collection in Firestore
@@ -198,15 +207,15 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
             print(focuseddDay);
           },
           calendarFormat: format,
-          onFormatChanged: (CalendarFormat _format) {
+          onFormatChanged: (CalendarFormat format) {
             setState(() {
-              format = _format;
+              format = format;
             });
           },
           headerStyle: HeaderStyle(
               formatButtonDecoration: BoxDecoration(
                   borderRadius:
-                      const BorderRadius.all(const Radius.circular(12)),
+                      const BorderRadius.all(Radius.circular(12)),
                   border: Border(
                     bottom: BorderSide(
                       color: Colorsapp.darkOrange,
@@ -256,7 +265,10 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
 
               // Check if there are no favorites
               if (exercises.isEmpty) {
-                return const Center(child: Text('No favorite exercises found'));
+                return const Padding(
+                  padding: EdgeInsets.all(50.0),
+                  child: Center(child: Text('No favorite exercises found', style: TextStyle(color: Colors.grey),)),
+                );
               }
 
               return SizedBox(
@@ -271,37 +283,27 @@ class _SchudualCalendarState extends State<SchudualCalendar> {
                       String cTime = exercisetime['currenttime'];
 
                       return Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 12),
+                          margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: Colorsapp.darkOrange,
+                            color: Colors.grey[900],
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: ListTile(
                             title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const Text("Exercise will Start at : "),
-                                Text(sTime),
+                                //Text("Exercise time: ", style: TextStyle(color: Colors.deepOrange),),
+                                Text(sTime, style: TextStyle(color: Colors.white),),
                               ],
                             ),
                             titleTextStyle: const TextStyle(
                               fontSize: 14,
+                              color: Colors.deepOrange
                             ),
                             leadingAndTrailingTextStyle: const TextStyle(
                               fontSize: 22,
                             ),
-                            leading: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(stitle),
-                                Text(
-                                  cTime,
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            leading: Text(stitle, style: TextStyle(color: Colors.deepOrange),),
                             trailing: IconButton(
                                 onPressed: () {
                                   AuthCubit.get(context).removeTrain(

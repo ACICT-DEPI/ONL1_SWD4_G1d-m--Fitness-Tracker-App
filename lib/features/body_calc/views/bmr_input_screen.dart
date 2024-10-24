@@ -13,6 +13,8 @@ import 'bmr_result_screen.dart';
 
 
 class BMRInputScreen extends StatefulWidget {
+  const BMRInputScreen({super.key});
+
   @override
   _BMRInputScreenState createState() => _BMRInputScreenState();
 }
@@ -30,9 +32,9 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
         backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('BMR CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('BMR CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +51,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kChosenGenderColor : kReusableCardColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE'
                     ),
@@ -64,7 +66,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kReusableCardColor : kChosenGenderColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE'
                     ),
@@ -79,7 +81,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                   ),
@@ -96,12 +98,12 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith( // use context and get theme of nearest slider to modify
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
                       thumbColor: Colors.deepOrange[500],
                       activeTrackColor: Colors.white,
                       overlayColor: Colorsapp.liteOrange.withOpacity(0.2),
-                      inactiveTrackColor: Color(0xFF8D8E98),
+                      inactiveTrackColor: const Color(0xFF8D8E98),
                     ),
                     child: Slider(
                       value: cubit.height.toDouble(),
@@ -127,7 +129,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'WEIGHT',
                           style: kLabelTextStyle,
                         ),
@@ -142,20 +144,22 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                               icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.weight > 1)
+                                  if (cubit.weight > 1) {
                                     cubit.weight--;
+                                  }
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.weight < 1000)
+                                  if (cubit.weight < 1000) {
                                     cubit.weight++;
+                                  }
                                 });
                               },
                             ),
@@ -171,7 +175,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'AGE',
                           style: kLabelTextStyle,
                         ),
@@ -186,20 +190,22 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
                               icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.age > 1)
+                                  if (cubit.age > 1) {
                                     cubit.age--;
+                                  }
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  if (cubit.age < 120)
+                                  if (cubit.age < 120) {
                                     cubit.age++;
+                                  }
                                 });
                               },
                             ),
@@ -220,7 +226,7 @@ class _BMRInputScreenState extends State<BMRInputScreen> {
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BmrResultScreen(),)
+                MaterialPageRoute(builder: (context) => const BmrResultScreen(),)
               );
             },
           ),

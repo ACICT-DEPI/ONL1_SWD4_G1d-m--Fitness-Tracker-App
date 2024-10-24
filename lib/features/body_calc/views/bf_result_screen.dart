@@ -8,6 +8,8 @@ import '../widgets/calculate_button.dart';
 import '../widgets/reusable_card.dart';
 
 class BfResultScreen extends StatelessWidget {
+  const BfResultScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BodyCalcCubit, BodyCalcStates>(
@@ -18,7 +20,7 @@ class BfResultScreen extends StatelessWidget {
             backgroundColor: Colors.black,
             appBar: AppBar(
               backgroundColor: Colors.black,
-              title: Text(
+              title: const Text(
                 'BFP CALCULATOR',
                 style: TextStyle(color: Colors.white),
               ),
@@ -26,7 +28,7 @@ class BfResultScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     FontAwesomeIcons.arrowLeft,
                     color: Colors.white,
                   )),
@@ -37,7 +39,7 @@ class BfResultScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       'Your Result',

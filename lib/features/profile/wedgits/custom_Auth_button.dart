@@ -21,7 +21,7 @@ class LogOutButton extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -29,7 +29,7 @@ class LogOutButton extends StatelessWidget {
                 text,
                 style: const TextStyle(color: Colors.deepOrange, fontSize: 20),
               ),
-              Spacer(),
+              const Spacer(),
               Icon(Icons.exit_to_app, color: Colors.grey[700], size: 25,)
             ],
           ),

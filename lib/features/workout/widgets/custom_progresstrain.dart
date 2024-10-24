@@ -1,13 +1,14 @@
 import 'dart:async';
-
+import 'package:final_project/core/caching/caching_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class CustomProgresstrain extends StatefulWidget {
   final int trainTime;
   final String pic;
+  final double cal;
   const CustomProgresstrain(
-      {super.key, required this.pic, required this.trainTime});
+      {super.key, required this.pic, required this.trainTime, required this.cal});
 
   @override
   _CustomProgresstrainState createState() => _CustomProgresstrainState();
@@ -38,6 +39,7 @@ class _CustomProgresstrainState extends State<CustomProgresstrain> {
         if (newsec <= 0) {
           timer.cancel();
           isrestart = true;
+          CachingHelper.instance?.writeData("workoutCalories", widget.cal.toDouble());
         }
         Duration dd = Duration(minutes: widget.trainTime);
         if (revsec >= dd.inSeconds) {

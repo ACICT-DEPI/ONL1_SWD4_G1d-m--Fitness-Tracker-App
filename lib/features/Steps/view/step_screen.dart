@@ -9,6 +9,8 @@ import '../cubit/steps_state.dart';
 import '../widgets/steps_circular_indicator.dart';
 
 class StepsScreen extends StatefulWidget {
+  const StepsScreen({super.key});
+
   @override
   _StepsScreenState createState() => _StepsScreenState();
 }
@@ -78,7 +80,7 @@ class _StepsScreenState extends State<StepsScreen> {
       _totalSteps = stepsSinceBoot;
       _todaySteps = _totalSteps - lastSavedSteps; // Calculate today's steps
       CachingHelper.instance?.writeData('savedTodaySteps', _todaySteps);
-      CachingHelper.instance?.writeData('stepsCalories', (_todaySteps/20));
+      CachingHelper.instance?.writeData('stepsCalories', (_todaySteps/20.0));
       if (_todaySteps == 8000) {
         StepsCubit.get(context).sendNotification();
       }
@@ -128,7 +130,7 @@ class _StepsScreenState extends State<StepsScreen> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text(
+            title: const Text(
               'Steps Tracker',
               style: TextStyle(color: Colors.white),
             ),
@@ -136,7 +138,7 @@ class _StepsScreenState extends State<StepsScreen> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   FontAwesomeIcons.arrowLeft,
                   color: Colors.white,
                 )),
@@ -150,17 +152,17 @@ class _StepsScreenState extends State<StepsScreen> {
                   size: 100,
                   color: Colorsapp.darkOrange,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
                 StepsCircularIndicator(
                   steps: _todaySteps, // Replace with actual steps value
                   stepGoal: 8000, // Replace with actual step goal value
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'Steps Taken Today',
                   style: TextStyle(fontSize: 24, color: Colors.white),
                 ),
@@ -171,7 +173,7 @@ class _StepsScreenState extends State<StepsScreen> {
                       fontWeight: FontWeight.bold,
                       color: Colorsapp.darkOrange),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Padding(
@@ -179,7 +181,7 @@ class _StepsScreenState extends State<StepsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'All your steps: ',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
@@ -200,7 +202,7 @@ class _StepsScreenState extends State<StepsScreen> {
                     children: [
                       Text(
                         'burned calories: ${_todaySteps / 20} 🔥',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        style: const TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ],
                   ),

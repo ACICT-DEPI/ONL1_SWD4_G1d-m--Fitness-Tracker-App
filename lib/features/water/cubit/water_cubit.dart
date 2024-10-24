@@ -61,7 +61,7 @@ class WaterCubit extends Cubit<WaterStates> {
           selectedReminderTime!.hour, selectedReminderTime!.minute);
       // If the selected time is in the past, schedule it for the next day
       if (alarmTime.isBefore(now)) {
-        alarmTime = alarmTime.add(Duration(days: 1));
+        alarmTime = alarmTime.add(const Duration(days: 1));
       }
       await scheduleAlarm(alarmTime);
       print("Schedule Alaaaaaaaaaaaaaaaaaarm :     $alarmTime");
@@ -71,7 +71,7 @@ class WaterCubit extends Cubit<WaterStates> {
   }
 
   Future<void> scheduleAlarm(DateTime alarmTime) async {
-    final int alarmId = 0; // You can give each alarm a unique ID
+    const int alarmId = 0; // You can give each alarm a unique ID
     await AndroidAlarmManager.oneShotAt(
       alarmTime,
       alarmId,
@@ -121,14 +121,14 @@ class WaterCubit extends Cubit<WaterStates> {
           // Extract the content within "TimeOfDay(...)"
           timeString = timeString.substring(10, timeString.length - 1);
         } else {
-          throw FormatException("Invalid format, must be TimeOfDay(hh:mm)");
+          throw const FormatException("Invalid format, must be TimeOfDay(hh:mm)");
         }
 
         // Split the string to get hour and minute
         final timeParts = timeString.split(':');
 
         if (timeParts.length != 2) {
-          throw FormatException("Invalid time format, must be hh:mm");
+          throw const FormatException("Invalid time format, must be hh:mm");
         }
 
         final hour = int.parse(timeParts[0].trim()); // Extract the hour

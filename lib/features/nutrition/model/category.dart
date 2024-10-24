@@ -11,7 +11,7 @@ class CategoryModel {
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      id: json['id'] != null ? json['id'] : 0, // Default to 0 if id is null
+      id: json['id'] ?? 0, // Default to 0 if id is null
       category: json['category'] ?? 'Unknown', // Default to 'Unknown' if category is null
       thumbnail: json['thumbnail'] ?? '', // Default to empty string if thumbnail is null
     );

@@ -20,7 +20,7 @@ class RecipeDetails extends StatelessWidget {
                 ),
                 Text(
                   "${recipe.calories.toString()} cal",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
@@ -31,7 +31,7 @@ class RecipeDetails extends StatelessWidget {
                         TextStyle(color: Colors.deepOrange[300], fontSize: 16)),
                 Text(
                   "${recipe.fatInGrams.toString()} g",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
@@ -42,7 +42,7 @@ class RecipeDetails extends StatelessWidget {
                         TextStyle(color: Colors.deepOrange[300], fontSize: 16)),
                 Text(
                   "${recipe.carbohydratesInGrams.toString()} g",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
@@ -53,20 +53,20 @@ class RecipeDetails extends StatelessWidget {
                         TextStyle(color: Colors.deepOrange[300], fontSize: 16)),
                 Text(
                   "${recipe.proteinInGrams.toString()} g",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
           ],
         ),
-        RecipeDivider(),
+        const RecipeDivider(),
         Row(
           children: [
             Text("preparation time: ",
                 style: TextStyle(color: Colors.deepOrange[300], fontSize: 16)),
             Text(
               "${recipe.prepTimeInMinutes.toString()} min",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
@@ -76,11 +76,11 @@ class RecipeDetails extends StatelessWidget {
                 style: TextStyle(color: Colors.deepOrange[300], fontSize: 16)),
             Text(
               "${recipe.cookTimeInMinutes.toString()} min",
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
-        RecipeDivider(),
+        const RecipeDivider(),
       ],
     );
   }

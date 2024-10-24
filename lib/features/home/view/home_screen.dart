@@ -18,7 +18,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {},
-      builder: (context, state) => Scaffold(
+      builder: (context, state) {
+        AuthCubit.get(context).getUserData();
+        return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.black,
         //Colorsapp.darkGrey,
@@ -70,40 +72,40 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             CustomWorkoutCard(),
             SizedBox(
               height: MediaQuery.of(context).size.height / 1.8,
               child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 childAspectRatio: 1 / 1.1,
                 children: [
                   CustomTargetCard(
                     title: "Nutrition",
                     image: "assets/images/salad.png",
-                    route: NutritionScreen(),
+                    route: const NutritionScreen(),
                     context: context,
                     des: "Keep fit with healthy recipes",
                   ),
                   CustomTargetCard(
                     title: "Steps",
                     image: "assets/images/walk.png",
-                    route: StepsScreen(),
+                    route: const StepsScreen(),
                     context: context,
                     des: "Take 8000 steps per day",
                   ),
                   CustomTargetCard(
                     title: "Water",
                     image: "assets/images/water.png",
-                    route: WaterScreen(),
+                    route: const WaterScreen(),
                     context: context,
                     des: "Drink 8 glasses of water per day",
                   ),
                   CustomTargetCard(
                     title: "Sleep",
                     image: "assets/images/sleep_blue.png",
-                    route: SleepScreen(),
+                    route: const SleepScreen(),
                     context: context,
                     des: "Sleep 8 Hours per day",
                   ),
@@ -115,7 +117,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      );},
     );
   }
 }

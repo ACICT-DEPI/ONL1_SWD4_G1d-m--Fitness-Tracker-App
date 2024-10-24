@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ProgressScreen extends StatelessWidget {
+  const ProgressScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weekly Progress"),
+        title: const Text("Weekly Progress"),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Icon(Icons.arrow_back, color: Colors.black),
+        leading: const Icon(Icons.arrow_back, color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,7 +47,7 @@ class ProgressItem extends StatelessWidget {
   final int progress;
   final int lastWeekProgress;
 
-  const ProgressItem({
+  const ProgressItem({super.key, 
     required this.title,
     required this.progress,
     required this.lastWeekProgress,
@@ -54,7 +56,7 @@ class ProgressItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -75,30 +77,30 @@ class ProgressItem extends StatelessWidget {
                 value: progress / 100,
                 strokeWidth: 8,
                 backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.pinkAccent),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.pinkAccent),
               ),
               Text(
                 "$progress%",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Last Week: $lastWeekProgress%",
-                style: TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.grey),
               ),
             ],
           ),
-          Spacer(),
-          Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16),
+          const Spacer(),
+          const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16),
         ],
       ),
     );

@@ -12,6 +12,8 @@ import '../widgets/reusable_card.dart';
 
 
 class IwInputScreen extends StatefulWidget {
+  const IwInputScreen({super.key});
+
   @override
   _IwInputScreenState createState() => _IwInputScreenState();
 }
@@ -29,9 +31,9 @@ class _IwInputScreenState extends State<IwInputScreen> {
         backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('IBW CALCULATOR', style: TextStyle(color: Colors.white),),
+        title: const Text('IBW CALCULATOR', style: TextStyle(color: Colors.white),),
          leading: InkWell(onTap: (){Navigator.pop(context);},
-             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
+             child: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white,)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +50,7 @@ class _IwInputScreenState extends State<IwInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kChosenGenderColor : kReusableCardColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE'
                     ),
@@ -63,7 +65,7 @@ class _IwInputScreenState extends State<IwInputScreen> {
                       });
                     },
                     colour: cubit.isMale ? kReusableCardColor : kChosenGenderColor,
-                    cardChild: GenderCardContent(
+                    cardChild: const GenderCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE'
                     ),
@@ -78,7 +80,7 @@ class _IwInputScreenState extends State<IwInputScreen> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                   ),
@@ -95,12 +97,12 @@ class _IwInputScreenState extends State<IwInputScreen> {
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith( // use context and get theme of nearest slider to modify
-                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
                       thumbColor: Colors.deepOrange[500],
                       activeTrackColor: Colors.white,
                       overlayColor: Colorsapp.liteOrange.withOpacity(0.2),
-                      inactiveTrackColor: Color(0xFF8D8E98),
+                      inactiveTrackColor: const Color(0xFF8D8E98),
                     ),
                     child: Slider(
                       value: cubit.height.toDouble(),
@@ -125,7 +127,7 @@ class _IwInputScreenState extends State<IwInputScreen> {
 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => IwResultsPage(),)
+                MaterialPageRoute(builder: (context) => const IwResultsPage(),)
               );
             },
           ),

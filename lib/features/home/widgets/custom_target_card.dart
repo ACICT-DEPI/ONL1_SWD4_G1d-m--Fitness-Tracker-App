@@ -27,12 +27,12 @@ class CustomTargetCard extends StatelessWidget {
               ));
         },
         child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
                   color: Colors.grey[900],
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -58,7 +58,7 @@ class CustomTargetCard extends StatelessWidget {
                         ),
                         Text(
                           des,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                               ),

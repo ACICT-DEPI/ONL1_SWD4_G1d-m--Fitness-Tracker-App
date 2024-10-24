@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class StepsCircularIndicator extends StatelessWidget {
-  StepsCircularIndicator({super.key, required this.steps, required this.stepGoal});
+  const StepsCircularIndicator({super.key, required this.steps, required this.stepGoal});
 
   final int steps;
   final int stepGoal;
@@ -29,7 +29,7 @@ class StepsCircularIndicator extends StatelessWidget {
           Text(
             "Today's Goal\n$stepGoal Steps",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 16.0,
             ),

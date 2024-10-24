@@ -37,7 +37,8 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
       backgroundColor: Colorsapp.secondarycolor,
       appBar: AppBar(
         elevation: 0,
-        foregroundColor: Colorsapp.darkOrange,
+        title: Text("${allWorkoutPhoto[widget.ind].tname} WORKOUT",),
+        foregroundColor: Colors.white,
         backgroundColor: Colorsapp.secondarycolor,
       ),
       body: BlocConsumer<WorkoutCubit, WorkoutState>(
@@ -52,19 +53,19 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 12),
-                  Center(
-                    child: Text(
-                      "${allWorkoutPhoto[widget.ind].tname} WORKOUT",
-                      style: const TextStyle(color: Colors.white, fontSize: 30),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      "START TRAINING",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ),
+                  // const SizedBox(height: 12),
+                  // Center(
+                  //   child: Text(
+                  //     "${allWorkoutPhoto[widget.ind].tname} WORKOUT",
+                  //     style: const TextStyle(color: Colors.white, fontSize: 30),
+                  //   ),
+                  // ),
+                  // const Center(
+                  //   child: Text(
+                  //     "START TRAINING",
+                  //     style: TextStyle(color: Colors.white, fontSize: 15),
+                  //   ),
+                  // ),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -86,12 +87,13 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                                 ind: index,
                                 pic: state.workouts[index].gifUrl,
                                 isfavorite: isFavoriteList[index],
+                                cal: allWorkoutTimeAndcalory[widget.ind][index].tCalory.toDouble(),
                               ),
                             ),
                           );
                         },
                         child: Card(
-                          color: Colorsapp.darkGrey,
+                          color: Colors.grey[900],
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(33),
@@ -143,14 +145,14 @@ class _SpecificWorkoutState extends State<SpecificWorkout> {
                                         state.workouts[index].bodyPart,
                                         style: TextStyle(
                                           fontSize: 15,
-                                          color: Colorsapp.darkOrange,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 //SizedBox(width: sizee.width / 8),
                                 IconButton(
                                   onPressed: () async {

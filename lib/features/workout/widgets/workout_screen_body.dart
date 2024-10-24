@@ -37,7 +37,7 @@ class _WorkoutScreenBodyState extends State<WorkoutScreenBody> {
                       MaterialPageRoute(
                           builder: (context) => const SchudualCalendar()));
                 },
-                icon: const Icon(Icons.schedule,color: Colors.white,size: 30,))
+                icon: const Icon(Icons.date_range,color: Colors.white,size: 30,))
           ],
         ),
         body: const SingleChildScrollView(

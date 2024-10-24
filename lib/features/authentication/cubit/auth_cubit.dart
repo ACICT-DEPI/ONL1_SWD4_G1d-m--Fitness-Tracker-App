@@ -49,8 +49,8 @@ class AuthCubit extends Cubit<AuthState> {
       userFound = true;
       print(name);
       CachingHelper.instance?.writeData("firstTime", "yes");
-      CachingHelper.instance?.writeData("stepsCalories", 0);
-      CachingHelper.instance?.writeData("workoutCalories", 0);
+      CachingHelper.instance?.writeData("stepsCalories", 0.0);
+      CachingHelper.instance?.writeData("workoutCalories", 0.0);
       emit(AuthSuccess());
     } on FirebaseAuthException catch (e) {
       emit(AuthError(e.message ?? 'An unknown error occurred'));

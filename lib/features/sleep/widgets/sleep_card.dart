@@ -6,7 +6,7 @@ class SleepCard extends StatelessWidget {
   final String label;
   final IconData icon;
 
-  SleepCard({
+  const SleepCard({super.key, 
     required this.color,
     required this.time,
     required this.label,

@@ -1,5 +1,6 @@
 import 'package:final_project/features/nutrition/cubit/nutrition_cubit.dart';
 import 'package:final_project/features/nutrition/cubit/nutrition_states.dart';
+import 'package:final_project/features/nutrition/widgets/cat_list.dart';
 import 'package:final_project/features/nutrition/widgets/meal_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,9 +39,9 @@ class NutritionScreen extends StatelessWidget {
               children: [
                 //Image(image: AssetImage("assets/images/weights.jpg")),
                 //Text("Follow the steps to lose weight using healthy ways", style: TextStyle(color: Colors.teal[100], fontSize: 18),),
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.all(10.0,),
+                      EdgeInsets.all(10.0,),
                   child: Text(
                     "Healthy Meal Categories",
                     style: TextStyle(
@@ -50,17 +51,17 @@ class NutritionScreen extends StatelessWidget {
                   ),
                 ),
                 cubit.categories.isEmpty
-                    ? Center(child: CircularProgressIndicator()):
+                    ? const Center(child: CircularProgressIndicator()):
                      SizedBox(
                         height: MediaQuery.of(context).size.height / 1.3,
                         width: MediaQuery.of(context).size.width * 1,
                         child: ListView.builder(
                           //scrollDirection: Axis.horizontal,
-                          itemCount: cubit.categories.length,
+                          itemCount: Categories.length,
                           itemBuilder: (context, index) => MealCard(
-                            title: cubit.categories[index].category.toString(),
-                            image: cubit.categories[index].thumbnail.toString(),
-                            id: cubit.categories[index].id,
+                            title: Categories[index].category.toString(),
+                            image: Categories[index].thumbnail.toString(),
+                            id: Categories[index].id,
                           ),
                         ),
                       ),

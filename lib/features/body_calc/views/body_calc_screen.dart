@@ -20,10 +20,10 @@ class BodyCalcScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 50.0, left: 10),
+                      padding: EdgeInsets.only(top: 50.0, left: 10),
                       child: Text("Body Calculators", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),),
                     ),
                   ],
@@ -48,7 +48,7 @@ class BodyCalcScreen extends StatelessWidget {
                       image: calc[3].image,
                       route: calc[3].route,
                     ),
-                SizedBox(height: 70,),
+                const SizedBox(height: 70,),
                 // SizedBox(
                 //   height: MediaQuery.of(context).size.height / 1,
                 //   child: ListView.separated(

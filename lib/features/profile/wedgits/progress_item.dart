@@ -7,7 +7,7 @@ class ProgressItem extends StatelessWidget {
   final int percent;
   final Widget route;
 
-  const ProgressItem({
+  const ProgressItem({super.key, 
     required this.title,
     required this.subTitle,
     required this.percent,
@@ -19,7 +19,7 @@ class ProgressItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: Colors.grey[900],
           borderRadius: BorderRadius.circular(16),
@@ -40,38 +40,38 @@ class ProgressItem extends StatelessWidget {
                   radius: 25.0,
                   lineWidth: 8.0,
                   animation: true,
-                  percent: percent/100,
+                  percent: double.parse((percent/100).toString()),
                   circularStrokeCap: CircularStrokeCap.round,
                   backgroundColor: Colors.grey[300]!,
                   progressColor: Colors.deepOrange,
                 ),
                 Text(
                   "$percent%",
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ],
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepOrange),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepOrange),
                 ),
                 Text(
                   subTitle,
                   //"Today: $lastWeekProgress%",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => route,));
               },
-                child: Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16)),
+                child: const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 16)),
           ],
         ),
       ),

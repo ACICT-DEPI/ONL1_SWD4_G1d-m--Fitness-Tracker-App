@@ -10,7 +10,7 @@ class CustomAuthTitle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 80, bottom: 40),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontSize: 34, fontWeight: FontWeight.bold),
       ),
     );

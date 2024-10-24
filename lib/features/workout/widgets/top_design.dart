@@ -1,5 +1,4 @@
 import 'package:final_project/core/utils/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'custom_appbar.dart';
 
@@ -12,13 +11,13 @@ class TopDesign extends StatelessWidget {
     return     Container(
             padding: EdgeInsets.all(sizee.width / 33),
             color: Colorsapp.darkOrange,
-            child: Column(
+            child: const Column(
               children: [
                 customAppBar,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       width: 260, // Adjust the width as needed
                       child: Text(
                         'Hesham Mohamed',
@@ -62,7 +61,7 @@ class TopDesign extends StatelessWidget {
                     // ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   width: double.infinity, // Adjust the width as needed
                   child: Text(
                     '22 male',

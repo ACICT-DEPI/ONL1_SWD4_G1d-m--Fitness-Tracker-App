@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var sizee = MediaQuery.of(context).size;
@@ -24,7 +26,7 @@ class FavoritesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Favorite Exercises"),
         elevation: 0,
-        foregroundColor: Colorsapp.darkOrange,
+        foregroundColor: Colors.white,
         backgroundColor: Colorsapp.secondarycolor,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -79,10 +81,11 @@ class FavoritesScreen extends StatelessWidget {
                                   ind: index,
                                   pic: image,
                                   isfavorite: true,
+                              cal: allWorkoutTimeAndcalory[indd][index].tCalory.toDouble(),
                                 )));
                   },
                   child: Card(
-                    color: Colorsapp.darkOrange,
+                    color: Colors.grey[900],
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(33),
@@ -93,10 +96,11 @@ class FavoritesScreen extends StatelessWidget {
                       padding: EdgeInsets.all(sizee.width / 26),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // Image.memory(state.workouts[index].gifUrl),
                           AspectRatio(
-                              aspectRatio: 1.8 / 1.8,
+                              aspectRatio: 1 / 1,
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -112,13 +116,13 @@ class FavoritesScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width: 100,
+                                  width: sizee.width/2.5,
                                   child: Text(
                                     "Equipment: $equip",
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      // color: Colors.white,
+                                      color: Colors.deepOrange,
                                     ),
                                   ),
                                 ),
@@ -128,21 +132,17 @@ class FavoritesScreen extends StatelessWidget {
                                   style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: sizee.width / 8,
-                          ),
-                          IconButton(
-                              onPressed: () async {
-                                // String image = state.workouts[index].gifUrl;
-                                //   String eq = state.workouts[index].equipment;
-                                //   String exname = state.workouts[index].bodyPart;
-                                //   String indexx = widget.ind.toString();
-
+                          // SizedBox(
+                          //   width: sizee.width / 8,
+                          // ),
+                             GestureDetector(
+                               onTap: () async {
                                 // Check if the item already exists in Firestore
                                 QuerySnapshot querySnapshot =
                                     await AuthCubit.get(context).checkIfExists(
@@ -151,10 +151,8 @@ class FavoritesScreen extends StatelessWidget {
                                   exname: exName,
                                   indexx: ind,
                                 );
-
                                 bool isCurrentlyFavorite =
                                     querySnapshot.docs.isNotEmpty;
-
                                 if (!isCurrentlyFavorite) {
                                   // Item doesn't exist, so add it
                                   await AuthCubit.get(context).addData(
@@ -181,10 +179,12 @@ class FavoritesScreen extends StatelessWidget {
                                   // });
                                 }
                               },
-                              icon: const Icon(
-                                Icons.favorite,
-                                color: Colors.white,
-                              ))
+                               child: const Icon(
+                                  Icons.favorite,
+                                  size: 30,
+                                  color: Colors.red,
+                                ),
+                             )
                         ],
                       ),
                     ),

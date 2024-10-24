@@ -5,6 +5,8 @@ import 'custom_cliper_shape.dart';
 
 
 class FitnessBackground extends StatelessWidget {
+  const FitnessBackground({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -87,7 +89,7 @@ class FitnessBackground extends StatelessWidget {
             ),
           ),
         ),
-        Center(
+        const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
