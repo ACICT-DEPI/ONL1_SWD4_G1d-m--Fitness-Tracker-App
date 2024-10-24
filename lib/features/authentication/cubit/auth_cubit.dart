@@ -6,22 +6,21 @@ import 'auth_states.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
- 
+
   AuthCubit() : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of(context);
-
 
   String? name;
   String? email;
   bool userFound = true;
 
-  Future<void> getUserData()async{
+  Future<void> getUserData() async {
     User? user = _auth.currentUser;
-      print('User signed in: ${user?.email}, Display Name: ${user?.displayName}');
-      // set user name value
-      name = user?.displayName??"";
-      email = user?.email??"";
-      if(user!=null) userFound = true;
+    print('User signed in: ${user?.email}, Display Name: ${user?.displayName}');
+    // set user name value
+    name = user?.displayName ?? "";
+    email = user?.email ?? "";
+    if (user != null) userFound = true;
   }
 
   Future<void> signUpWithEmailAndPassword({
@@ -32,7 +31,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       // Create user with email and password
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -41,10 +41,11 @@ class AuthCubit extends Cubit<AuthState> {
       await userCredential.user!.reload();
       // Print user details
       User? user = _auth.currentUser;
-      print('User signed up: ${user?.email}, Display Name: ${user?.displayName}');
+      print(
+          'User signed up: ${user?.email}, Display Name: ${user?.displayName}');
       // set user name value
-      name = user?.displayName??"";
-      email = user?.email??"";
+      name = user?.displayName ?? "";
+      email = user?.email ?? "";
       userFound = true;
       print(name);
       CachingHelper.instance?.writeData("firstTime", "yes");
@@ -69,10 +70,11 @@ class AuthCubit extends Cubit<AuthState> {
       );
       // Print user details
       User? user = _auth.currentUser;
-      print('User signed in: ${user?.email}, Display Name: ${user?.displayName} kkkk ${user?.uid}');
+      print(
+          'User signed in: ${user?.email}, Display Name: ${user?.displayName} kkkk ${user?.uid}');
       // set user name value
-      name = user?.displayName??"";
-      email = user?.email??"";
+      name = user?.displayName ?? "";
+      email = user?.email ?? "";
       userFound = true;
       print(name);
       emit(AuthSuccess());
@@ -97,114 +99,156 @@ class AuthCubit extends Cubit<AuthState> {
   //
   //   db.collection("uuser").doc(user?.uid).collection("fav").add(exercise);
   // }
- 
-
-Future<void> addData({
-  required String image,
-  required String eq,
-  required String exname,
-  required String indexx,
-}) async {
-  var db = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
-
-  // Check if the user is authenticated
-  if (user == null) {
-    print("User is not logged in");
-    return;
-  }
-
-  // Reference to the user's fav collection
-  CollectionReference favCollection = db.collection("uuser").doc(user.uid).collection("fav");
-
-  // Query Firestore to check if the item already exists
-  QuerySnapshot querySnapshot = await favCollection
-      .where("image", isEqualTo: image)
-      .where("equip", isEqualTo: eq)
-      .where("exName", isEqualTo: exname)
-      .where("index", isEqualTo: indexx)
-      .get();
-
-  // If no matching document is found, add the new exercise
-  if (querySnapshot.docs.isEmpty) {
+  Future<void> addTrain({
+    required String title,
+    required String schudualTime,
+    required String currentTime,
+    required String focusDay,
+  }) async {
+    var db = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+    CollectionReference userTrain = FirebaseFirestore.instance
+        .collection('test')
+        .doc(user!.uid)
+        .collection("d${focusDay.toString()}");
     final exercise = <String, String>{
-      "image": image,
-      "equip": eq,
-      "exName": exname,
-      "index": indexx,
+      "schud_title": title,
+      "schudualtime": schudualTime,
+      "currenttime": currentTime
     };
 
     // Add the new exercise to Firestore
-    await favCollection.add(exercise);
-    print("Exercise added to favorites.");
-  } else {
-    print("Exercise already exists in favorites.");
+    await userTrain.add(exercise);
+
+    
+    // users.doc(user!.uid).set({
+    //   "schud_title": title,
+    //   "schudualtime": schudualTime,
+    //   "currenttime": currentTime
+    // });
   }
-}
+Future<void> removeTrain({
+    required String documentId,
+    required String focusDay,
+  }) async {
+    var db = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+    CollectionReference userTrain = FirebaseFirestore.instance
+        .collection('test')
+        .doc(user!.uid)
+        .collection("d${focusDay.toString()}");
 
-
-Future<void> removeData({
-  required String image,
-  required String eq,
-  required String exname,
-  required String indexx,
-}) async {
-  var db = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
-
-  // Check if the user is authenticated
-  if (user == null) {
-    print("User is not logged in");
-    return;
+    // Remove the specified exercise from Firestore
+    await userTrain.doc(documentId).delete();
+    
   }
 
-  // Reference to the user's fav collection
-  CollectionReference favCollection = db.collection("uuser").doc(user.uid).collection("fav");
+  Future<void> addData({
+    required String image,
+    required String eq,
+    required String exname,
+    required String indexx,
+  }) async {
+    var db = FirebaseFirestore.instance;
+    User? user = FirebaseAuth.instance.currentUser;
 
-  // Query Firestore to find the document with matching fields
-  QuerySnapshot querySnapshot = await favCollection
-      .where("image", isEqualTo: image)
-      .where("equip", isEqualTo: eq)
-      .where("exName", isEqualTo: exname)
-      .where("index", isEqualTo: indexx)
-      .get();
-
-  // If a matching document is found, delete it
-  if (querySnapshot.docs.isNotEmpty) {
-    for (var doc in querySnapshot.docs) {
-      await doc.reference.delete();
-      print("Exercise removed from favorites.");
+    // Check if the user is authenticated
+    if (user == null) {
+      print("User is not logged in");
+      return;
     }
-  } else {
-    print("No matching exercise found in favorites.");
+
+    // Reference to the user's fav collection
+    CollectionReference favCollection =
+        db.collection("uuser").doc(user.uid).collection("fav");
+
+    // Query Firestore to check if the item already exists
+    QuerySnapshot querySnapshot = await favCollection
+        .where("image", isEqualTo: image)
+        .where("equip", isEqualTo: eq)
+        .where("exName", isEqualTo: exname)
+        .where("index", isEqualTo: indexx)
+        .get();
+
+    // If no matching document is found, add the new exercise
+    if (querySnapshot.docs.isEmpty) {
+      final exercise = <String, String>{
+        "image": image,
+        "equip": eq,
+        "exName": exname,
+        "index": indexx,
+      };
+
+      // Add the new exercise to Firestore
+      await favCollection.add(exercise);
+      print("Exercise added to favorites.");
+    } else {
+      print("Exercise already exists in favorites.");
+    }
   }
-}
 
-Future<QuerySnapshot> checkIfExists({
-  required String image,
-  required String eq,
-  required String exname,
-  required String indexx,
-}) async {
-  var db = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
+  Future<void> removeData({
+    required String image,
+    required String eq,
+    required String exname,
+    required String indexx,
+  }) async {
+    var db = FirebaseFirestore.instance;
+    User? user = FirebaseAuth.instance.currentUser;
 
-  if (user == null) {
-    print("User is not logged in");
-    throw Exception("User is not authenticated");
+    // Check if the user is authenticated
+    if (user == null) {
+      print("User is not logged in");
+      return;
+    }
+
+    // Reference to the user's fav collection
+    CollectionReference favCollection =
+        db.collection("uuser").doc(user.uid).collection("fav");
+
+    // Query Firestore to find the document with matching fields
+    QuerySnapshot querySnapshot = await favCollection
+        .where("image", isEqualTo: image)
+        .where("equip", isEqualTo: eq)
+        .where("exName", isEqualTo: exname)
+        .where("index", isEqualTo: indexx)
+        .get();
+
+    // If a matching document is found, delete it
+    if (querySnapshot.docs.isNotEmpty) {
+      for (var doc in querySnapshot.docs) {
+        await doc.reference.delete();
+        print("Exercise removed from favorites.");
+      }
+    } else {
+      print("No matching exercise found in favorites.");
+    }
   }
 
-  CollectionReference favCollection = db.collection("uuser").doc(user.uid).collection("fav");
+  Future<QuerySnapshot> checkIfExists({
+    required String image,
+    required String eq,
+    required String exname,
+    required String indexx,
+  }) async {
+    var db = FirebaseFirestore.instance;
+    User? user = FirebaseAuth.instance.currentUser;
 
-  return await favCollection
-      .where("image", isEqualTo: image)
-      .where("equip", isEqualTo: eq)
-      .where("exName", isEqualTo: exname)
-      .where("index", isEqualTo: indexx)
-      .get();
+    if (user == null) {
+      print("User is not logged in");
+      throw Exception("User is not authenticated");
+    }
 
-}
+    CollectionReference favCollection =
+        db.collection("uuser").doc(user.uid).collection("fav");
 
+    return await favCollection
+        .where("image", isEqualTo: image)
+        .where("equip", isEqualTo: eq)
+        .where("exName", isEqualTo: exname)
+        .where("index", isEqualTo: indexx)
+        .get();
+  }
 
   Future<void> signOut() async {
     emit(AuthLoading());
@@ -230,5 +274,4 @@ Future<QuerySnapshot> checkIfExists({
     }
     return user;
   }
-
 }

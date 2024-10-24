@@ -1,3 +1,4 @@
+import 'package:final_project/features/Workout/views/schudual_calender.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'custom_workoutview.dart';
@@ -28,6 +29,16 @@ class _WorkoutScreenBodyState extends State<WorkoutScreenBody> {
                 FontAwesomeIcons.arrowLeft,
                 color: Colors.white,
               )),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SchudualCalendar()));
+                },
+                icon: const Icon(Icons.schedule,color: Colors.white,size: 30,))
+          ],
         ),
         body: const SingleChildScrollView(
           child: Column(
